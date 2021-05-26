@@ -337,213 +337,213 @@
   </div>
 </template>
 <script>
-import PointerTitle from "../../common/pointerTitle";
-import { RoleshowXbqk } from "../../api/getApi";
+import PointerTitle from '../../common/pointerTitle'
+import { RoleshowXbqk } from '../../api/getApi'
 
 export default {
   components: {
-    PointerTitle,
+    PointerTitle
   },
-  data() {
+  data () {
     return {
-      msg: "-",
+      msg: '-',
       list: [],
       GetWindowInfo: {
-        width: "",
+        width: ''
       },
-      mixWidth: "126",
-      maxWidth: "176",
-      strWidth: "10",
-      xSize: 18,
-    };
+      mixWidth: '126',
+      maxWidth: '176',
+      strWidth: '10',
+      xSize: 18
+    }
   },
-  mounted() {
-    this.drowBar();
+  mounted () {
+    this.drowBar()
   },
   watch: {
-    list() {
-      this.drowBar();
+    list () {
+      this.drowBar()
     },
-    "$store.state.role.state"() {
-      this.getRoleshowXbqk();
-    },
+    '$store.state.role.state' () {
+      this.getRoleshowXbqk()
+    }
   },
-  created() {
-    window.addEventListener("resize", this.GetWindowInfo);
-    this.GetWindow();
-    window.addEventListener("resize", this.GetWindowInfo);
-    this.GetWindow();
+  created () {
+    window.addEventListener('resize', this.GetWindowInfo)
+    this.GetWindow()
+    window.addEventListener('resize', this.GetWindowInfo)
+    this.GetWindow()
     // this.getRoleshowXbqk()
   },
   computed: {},
   methods: {
-    GetWindow() {
-      this.GetWindowInfo.width = window.outerWidth;
-      console.log(this.GetWindowInfo.width);
+    GetWindow () {
+      this.GetWindowInfo.width = window.outerWidth
+      console.log(this.GetWindowInfo.width)
       if (this.GetWindowInfo.width === 1366) {
-        this.mixWidth = "99";
-        this.maxWidth = "120";
-        this.strWidth = "6";
-        this.xSize = 14;
+        this.mixWidth = '99'
+        this.maxWidth = '120'
+        this.strWidth = '6'
+        this.xSize = 14
       }
       if (this.GetWindowInfo.width === 1600) {
-        this.mixWidth = "114";
-        this.maxWidth = "148";
-        this.xSize = 16;
+        this.mixWidth = '114'
+        this.maxWidth = '148'
+        this.xSize = 16
       }
       if (this.GetWindowInfo.width === 1920) {
-        this.mixWidth = "126";
-        this.maxWidth = "176";
-        this.xSize = 18;
+        this.mixWidth = '126'
+        this.maxWidth = '176'
+        this.xSize = 18
       }
     },
-    getRoleshowXbqk() {
+    getRoleshowXbqk () {
       const params = {
         id: this.$store.state.role.orglResult,
         sales_channelcode: this.$store.state.role.channelResult,
         year: this.$store.state.role.dateYear,
         month: this.$store.state.role.dateMonth,
         dataDate: this.$store.state.role.date,
-        level: this.$store.state.role.orglOption,
-      };
+        level: this.$store.state.role.orglOption
+      }
       RoleshowXbqk(params).then((res) => {
-        this.list = res.data.data.secondcompanyRoleshowXbqk[0];
-      });
+        this.list = res.data.data.secondcompanyRoleshowXbqk[0]
+      })
     },
-    drowBar() {
-      const bar = this.$refs.bar;
-      const myChart = this.$echarts.init(bar);
+    drowBar () {
+      const bar = this.$refs.bar
+      const myChart = this.$echarts.init(bar)
       const option = {
         grid: {
-          right: "15%",
+          right: '15%'
         },
         tooltip: {
-          trigger: "axis",
+          trigger: 'axis',
           axisPointer: {
-            type: "shadow",
+            type: 'shadow'
           },
           formatter: (a) => {
             return (
               a[0].axisValue +
-              "月" +
-              "<br />" +
+              '月' +
+              '<br />' +
               a[0].seriesName +
-              "：" +
+              '：' +
               a[0].data +
-              "%" +
-              "<br />" +
+              '%' +
+              '<br />' +
               a[1].seriesName +
-              "：" +
+              '：' +
               a[1].data +
-              "%" +
-              "<br />" +
+              '%' +
+              '<br />' +
               a[2].seriesName +
-              "：" +
+              '：' +
               a[2].data +
-              "%"
-            );
-          },
+              '%'
+            )
+          }
         },
         legend: {
-          data: ["首报率", "二报率", "三报率"],
+          data: ['首报率', '二报率', '三报率']
         },
         xAxis: {
-          name: "月份",
+          name: '月份',
           nameTextStyle: {
-            fontSize: 18,
+            fontSize: 18
           },
-          type: "category",
-          data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+          type: 'category',
+          data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
           axisLine: {
-            show: false,
+            show: false
           },
           axisTick: {
-            show: false,
+            show: false
           },
           axisLabel: {
             textStyle: {
-              fontSize: 16,
+              fontSize: 16
             },
-            margin: 20,
-          },
+            margin: 20
+          }
         },
         yAxis: {
-          name: "%",
+          name: '%',
           nameTextStyle: {
-            fontSize: 16,
+            fontSize: 16
           },
-          type: "value",
+          type: 'value',
           axisLine: {
-            show: false,
+            show: false
           },
           axisTick: {
-            show: false,
+            show: false
           },
           axisLabel: {
-            formatter: "{value}%",
+            formatter: '{value}%',
             textStyle: {
-              fontSize: this.xSize,
-            },
-          },
+              fontSize: this.xSize
+            }
+          }
         },
         series: [
           {
-            name: "首报率",
+            name: '首报率',
             data: this.list.dm_end_1stquo_polnumGdp,
-            type: "line",
+            type: 'line',
             smooth: true,
-            symbolSize: "0",
-            symbol: "circle",
+            symbolSize: '0',
+            symbol: 'circle',
             itemStyle: {
               normal: {
-                color: "#619EFF", // 改变折线点的颜色
+                color: '#619EFF', // 改变折线点的颜色
                 lineStyle: {
-                  color: "#619EFF", // 改变折线颜色
-                },
-              },
-            },
+                  color: '#619EFF' // 改变折线颜色
+                }
+              }
+            }
           },
           {
-            name: "二报率",
+            name: '二报率',
             data: this.list.dm_end_2ndquo_polnumGdp,
-            type: "line",
+            type: 'line',
             smooth: true,
-            symbolSize: "0",
-            symbol: "circle",
+            symbolSize: '0',
+            symbol: 'circle',
             itemStyle: {
               normal: {
-                color: "#70D2DB", // 改变折线点的颜色
+                color: '#70D2DB', // 改变折线点的颜色
                 lineStyle: {
-                  color: "#70D2DB", // 改变折线颜色
-                },
-              },
-            },
+                  color: '#70D2DB' // 改变折线颜色
+                }
+              }
+            }
           },
           {
-            name: "三报率",
+            name: '三报率',
             data: this.list.dm_end_3rdquo_polnumGdp,
-            type: "line",
+            type: 'line',
             smooth: true,
-            symbolSize: "0",
-            symbol: "circle",
+            symbolSize: '0',
+            symbol: 'circle',
             itemStyle: {
               normal: {
-                color: "#FFC95C", // 改变折线点的颜色
+                color: '#FFC95C', // 改变折线点的颜色
                 lineStyle: {
-                  color: "#FFC95C", // 改变折线颜色
-                },
-              },
-            },
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-  },
-};
+                  color: '#FFC95C' // 改变折线颜色
+                }
+              }
+            }
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .pointerTitle {

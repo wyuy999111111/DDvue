@@ -541,7 +541,7 @@ export default {
         }
       } else {
         setTimeout(() => {
-            this.gotoSee(e)
+          this.gotoSee(e)
         }, 1000)
       }
     },
@@ -557,21 +557,21 @@ export default {
           }
         } else {
           setTimeout(() => {
-              this.gotoUpdate(e)
+            this.gotoUpdate(e)
           }, 1000)
         }
       }
     },
     gotoCopy (e) {
       if (this.$store.state.user.userName) {
-          if (this.getUserName(e.createUser) === this.$store.state.user.userName || this.$store.state.user.roleName === '系统管理员') {
-            this.$router.push({ path: `/groupManagement/create?groupId=${e.groupId}&history=/groupManagement/polling` })
-          } else {
-            this.$router.push({ path: `/groupManagement/create?groupId=${e.groupId}&history=/groupManagement/polling&share=true` })
-          }
+        if (this.getUserName(e.createUser) === this.$store.state.user.userName || this.$store.state.user.roleName === '系统管理员') {
+          this.$router.push({ path: `/groupManagement/create?groupId=${e.groupId}&history=/groupManagement/polling` })
         } else {
+          this.$router.push({ path: `/groupManagement/create?groupId=${e.groupId}&history=/groupManagement/polling&share=true` })
+        }
+      } else {
         setTimeout(() => {
-            this.gotoCopy(e)
+          this.gotoCopy(e)
         }, 1000)
       }
     },
@@ -636,14 +636,14 @@ export default {
         this.shareVisible = false
       })
     },
-    setDialogWidth() {
+    setDialogWidth () {
       var val = document.body.clientWidth
       console.log(val)
       const def = 1625
       if (val > def) {
         this.dialogWidth = '35%'
       } else {
-        this.dialogWidth =  '600px'
+        this.dialogWidth = '600px'
       }
     }
   }

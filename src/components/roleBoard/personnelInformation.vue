@@ -139,16 +139,16 @@
   </div>
 </template>
 <script>
-import PointerTitle from "../../common/pointerTitle";
-import PersonCardBig from "../../common/personCardBig";
-import PersonCard from "../../common/personCard";
-import PersonHealthyTop from "../../common/personHealthyTop";
-import PersonHealthyTopB from "../../common/personHealthyTopB";
-import PersonHealthyTopC from "../../common/personHealthyTopC";
-import PersonHealthyTopD from "../../common/personHealthyTopD";
-import headlthImgA from "../../assets/logo/healthya.png";
-import headlthImgB from "../../assets/logo/healthyb.png";
-import { PersonnelInformation } from "@/api/portrait";
+import PointerTitle from '../../common/pointerTitle'
+import PersonCardBig from '../../common/personCardBig'
+import PersonCard from '../../common/personCard'
+import PersonHealthyTop from '../../common/personHealthyTop'
+import PersonHealthyTopB from '../../common/personHealthyTopB'
+import PersonHealthyTopC from '../../common/personHealthyTopC'
+import PersonHealthyTopD from '../../common/personHealthyTopD'
+import headlthImgA from '../../assets/logo/healthya.png'
+import headlthImgB from '../../assets/logo/healthyb.png'
+import { PersonnelInformation } from '@/api/portrait'
 export default {
   components: {
     PointerTitle,
@@ -160,410 +160,410 @@ export default {
     PersonHealthyTopD,
     headlthImgA
   },
-  data() {
+  data () {
     return {
       status: false,
-      dataSourse: "",
+      dataSourse: '',
       healthyParamsA: {
         img: headlthImgA,
-        titleA: "高产能人数",
-        numA: "1611",
-        leftTypeA: "RISE",
-        leftTypeB: "DECLINE",
-        leftTextA: "比上月",
-        leftTextB: "比年初",
-        leftNumA: "60",
-        leftNumB: "16",
-        proportion: "43",
-        proportionText: "高产能人员占比",
-        rightTexta: "比上月",
-        rightNuma: "60",
-        rightTypea: "RISE",
-        rightTextb: "比年初",
-        rightNumb: "16",
-        rightTypeb: "EQULE",
+        titleA: '高产能人数',
+        numA: '1611',
+        leftTypeA: 'RISE',
+        leftTypeB: 'DECLINE',
+        leftTextA: '比上月',
+        leftTextB: '比年初',
+        leftNumA: '60',
+        leftNumB: '16',
+        proportion: '43',
+        proportionText: '高产能人员占比',
+        rightTexta: '比上月',
+        rightNuma: '60',
+        rightTypea: 'RISE',
+        rightTextb: '比年初',
+        rightNumb: '16',
+        rightTypeb: 'EQULE'
       },
       healthyParamsB: {
         img: headlthImgB,
-        titleA: "低产能人数",
-        numA: "1611",
-        leftTypeA: "RISE",
-        leftTypeB: "DECLINE",
-        leftTextA: "比上月",
-        leftTextB: "比年初",
-        leftNumA: "60",
-        leftNumB: "16",
-        proportion: "43",
-        proportionText: "低产能人员占比",
-        rightTexta: "比上月",
-        rightNuma: "60",
-        rightTypea: "RISE",
-        rightTextb: "比年初",
-        rightNumb: "16",
-        rightTypeb: "EQULE",
+        titleA: '低产能人数',
+        numA: '1611',
+        leftTypeA: 'RISE',
+        leftTypeB: 'DECLINE',
+        leftTextA: '比上月',
+        leftTextB: '比年初',
+        leftNumA: '60',
+        leftNumB: '16',
+        proportion: '43',
+        proportionText: '低产能人员占比',
+        rightTexta: '比上月',
+        rightNuma: '60',
+        rightTypea: 'RISE',
+        rightTextb: '比年初',
+        rightNumb: '16',
+        rightTypeb: 'EQULE'
       },
       healthyParamsC: {
-        title: "高定人数占比",
-        num: "57",
-        typeTexta: "比上月",
-        typeTextb: "比同期",
-        typea: "RISE",
-        typeb: "DECLINE",
-        numa: "60",
-        numb: "16",
-        color: ["#E6E6E6", "#76CCFF"],
+        title: '高定人数占比',
+        num: '57',
+        typeTexta: '比上月',
+        typeTextb: '比同期',
+        typea: 'RISE',
+        typeb: 'DECLINE',
+        numa: '60',
+        numb: '16',
+        color: ['#E6E6E6', '#76CCFF']
       },
       healthyParamsD: {
-        title: "入司一年以上存量人员人均产能",
-        num: "1685",
-        typeTexta: "比上月",
-        typeTextb: "比年初",
-        typea: "DECLINE",
-        typeb: "RISE",
-        numa: "60",
-        numb: "16",
+        title: '入司一年以上存量人员人均产能',
+        num: '1685',
+        typeTexta: '比上月',
+        typeTextb: '比年初',
+        typea: 'DECLINE',
+        typeb: 'RISE',
+        numa: '60',
+        numb: '16'
       },
       healthyParamsE: {
-        title: "低定人数占比",
-        num: "43",
-        typeTexta: "比上月",
-        typeTextb: "比同期",
-        typea: "RISE",
-        typeb: "RISE",
-        numa: "60",
-        numb: "16",
-        color: ["#E6E6E6", "#ABDE99"],
+        title: '低定人数占比',
+        num: '43',
+        typeTexta: '比上月',
+        typeTextb: '比同期',
+        typea: 'RISE',
+        typeb: 'RISE',
+        numa: '60',
+        numb: '16',
+        color: ['#E6E6E6', '#ABDE99']
       },
       healthyParamsF: {
-        title: "入司未满一年存量人员人均产能",
-        num: "1085",
-        typeTexta: "比上月",
-        typeTextb: "比年初",
-        typea: "DECLINE",
-        typeb: "RISE",
-        numa: "32",
-        numb: "21",
+        title: '入司未满一年存量人员人均产能',
+        num: '1085',
+        typeTexta: '比上月',
+        typeTextb: '比年初',
+        typea: 'DECLINE',
+        typeb: 'RISE',
+        numa: '32',
+        numb: '21'
       },
       paramsa: {
-        titleLeft: "队伍人数总数",
-        titleRight: "新增人数",
-        numLeft: "7393",
-        numRight: "913",
-        numLeftTitlea: "比上月",
-        numLeftTitleb: "比年初",
-        numRightTitlea: "比上月",
-        numRightTitleb: "比同期",
-        numLeftTypea: "RISE",
-        numLeftTypeb: "DECLINE",
-        numRightTypea: "RISE",
-        numRightTypeb: "DECLINE",
-        numLefta: "60",
-        numLeftb: "16",
-        numRighta: "14",
-        numRightb: "11",
+        titleLeft: '队伍人数总数',
+        titleRight: '新增人数',
+        numLeft: '7393',
+        numRight: '913',
+        numLeftTitlea: '比上月',
+        numLeftTitleb: '比年初',
+        numRightTitlea: '比上月',
+        numRightTitleb: '比同期',
+        numLeftTypea: 'RISE',
+        numLeftTypeb: 'DECLINE',
+        numRightTypea: 'RISE',
+        numRightTypeb: 'DECLINE',
+        numLefta: '60',
+        numLeftb: '16',
+        numRighta: '14',
+        numRightb: '11'
       },
       paramsb: {
-        titleLeft: "团队数",
-        titleRight: "新增团队",
-        numLeft: "2622",
-        numRight: "161",
-        numLeftTitlea: "比上月",
-        numLeftTitleb: "比年初",
-        numRightTitlea: "比上月",
-        numRightTitleb: "比同期",
-        numLeftTypea: "RISE",
-        numLeftTypeb: "DECLINE",
-        numRightTypea: "RISE",
-        numRightTypeb: "RISE",
-        numLefta: "81",
-        numLeftb: "26",
-        numRighta: "53",
-        numRightb: "11",
+        titleLeft: '团队数',
+        titleRight: '新增团队',
+        numLeft: '2622',
+        numRight: '161',
+        numLeftTitlea: '比上月',
+        numLeftTitleb: '比年初',
+        numRightTitlea: '比上月',
+        numRightTitleb: '比同期',
+        numLeftTypea: 'RISE',
+        numLeftTypeb: 'DECLINE',
+        numRightTypea: 'RISE',
+        numRightTypeb: 'RISE',
+        numLefta: '81',
+        numLeftb: '26',
+        numRighta: '53',
+        numRightb: '11'
       },
       paramsc: {
-        title: "转入人数 (选择渠道后显示)",
-        titleTwo: "转入人数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '转入人数 (选择渠道后显示)',
+        titleTwo: '转入人数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsd: {
-        title: "转出人数 (选择渠道后显示)",
-        titleTwo: "转出人数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '转出人数 (选择渠道后显示)',
+        titleTwo: '转出人数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramse: {
-        title: "离职人数",
-        titleTwo: "离职人数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '离职人数',
+        titleTwo: '离职人数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsf: {
-        title: "入团率",
-        titleTwo: "入团率",
-        num: "642",
-        typea: "比上月",
-        typeb: "比年初",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '入团率',
+        titleTwo: '入团率',
+        num: '642',
+        typea: '比上月',
+        typeb: '比年初',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsg: {
-        title: "渠道总监数",
-        titleTwo: "渠道总监数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比年初",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '渠道总监数',
+        titleTwo: '渠道总监数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比年初',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsh: {
-        title: "业务部总监数",
-        titleTwo: "业务部总监数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比年初",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '业务部总监数',
+        titleTwo: '业务部总监数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比年初',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsi: {
-        title: "渠道经理A/B数",
-        titleTwo: "渠道经理A/B数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比年初",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '渠道经理A/B数',
+        titleTwo: '渠道经理A/B数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比年初',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsj: {
-        title: "专员/渠道助理数",
-        titleTwo: "专员/渠道助理数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比年初",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '专员/渠道助理数',
+        titleTwo: '专员/渠道助理数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比年初',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsk: {
-        title: "维护客户经理数",
-        titleTwo: "维护客户经理数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '维护客户经理数',
+        titleTwo: '维护客户经理数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsl: {
-        title: "拓展客户经理数",
-        titleTwo: "拓展客户经理数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
+        title: '拓展客户经理数',
+        titleTwo: '拓展客户经理数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
       },
       paramsm: {
-        title: "渠道经理数",
-        titleTwo: "渠道经理数",
-        num: "642",
-        typea: "比上月",
-        typeb: "比同期",
-        numa: "31",
-        numb: "11",
-        numTypea: "RISE",
-        numTypeb: "DECLINE",
-      },
-    };
+        title: '渠道经理数',
+        titleTwo: '渠道经理数',
+        num: '642',
+        typea: '比上月',
+        typeb: '比同期',
+        numa: '31',
+        numb: '11',
+        numTypea: 'RISE',
+        numTypeb: 'DECLINE'
+      }
+    }
   },
   mounted: () => {},
   watch: {
-    "$store.state.role.state"() {
-      this.getData();
-    },
+    '$store.state.role.state' () {
+      this.getData()
+    }
   },
-  created() {
+  created () {
     // this.getData()
   },
   computed: {},
   methods: {
-    getData() {
+    getData () {
       const params = {
         id: this.$store.state.role.orglResult,
         sales_channelcode: this.$store.state.role.channelResult,
         year: this.$store.state.role.dateYear,
         month: this.$store.state.role.dateMonth,
         dataDate: this.$store.state.role.date,
-        level: this.$store.state.role.orglOption,
-      };
+        level: this.$store.state.role.orglOption
+      }
       PersonnelInformation(params).then((res) => {
-        this.status = !this.status;
-        const data = res.data.data;
-        this.dataSourse = res.data.data;
-        this.paramsa.numLeft = data.dmAllsalesonempnum;
-        this.paramsa.numLefta = data.dmAllsalesonempLastMonth;
-        this.paramsa.numLeftb = data.dmAllsalesonempBeginYear;
-        this.paramsa.numRight = data.dmpartinnum;
-        this.paramsa.numRighta = data.dmpartinnumLastMonth;
-        this.paramsa.numRightb = data.dmpartinnumSamePeriod;
-        this.paramsa.numLeftTypea = data.dmAllsalesonempLastMonthFlag;
-        this.paramsa.numLeftTypeb = data.dmAllsalesonempBeginYearFalg;
-        this.paramsa.numRightTypea = data.dmpartinnumLastMonthFalg;
-        this.paramsa.numRightTypeb = data.dmpartinnumSamePeriodFalg;
+        this.status = !this.status
+        const data = res.data.data
+        this.dataSourse = res.data.data
+        this.paramsa.numLeft = data.dmAllsalesonempnum
+        this.paramsa.numLefta = data.dmAllsalesonempLastMonth
+        this.paramsa.numLeftb = data.dmAllsalesonempBeginYear
+        this.paramsa.numRight = data.dmpartinnum
+        this.paramsa.numRighta = data.dmpartinnumLastMonth
+        this.paramsa.numRightb = data.dmpartinnumSamePeriod
+        this.paramsa.numLeftTypea = data.dmAllsalesonempLastMonthFlag
+        this.paramsa.numLeftTypeb = data.dmAllsalesonempBeginYearFalg
+        this.paramsa.numRightTypea = data.dmpartinnumLastMonthFalg
+        this.paramsa.numRightTypeb = data.dmpartinnumSamePeriodFalg
 
-        this.paramsb.numLeft = data.dmTeamNum;
-        this.paramsb.numLefta = data.dmTeamNumLastMonth;
-        this.paramsb.numLeftb = data.dmTeamNumBeginYear;
-        this.paramsb.numRight = data.dmAddteamNum;
-        this.paramsb.numRighta = data.dmAddteamNumLastMonth;
-        this.paramsb.numRightb = data.dmAddteamNumSamePeriod;
-        this.paramsb.numLeftTypea = data.dmTeamNumLastMonthFalg;
-        this.paramsb.numLeftTypeb = data.dmTeamNumBeginYearFalg;
-        this.paramsb.numRightTypea = data.dmAddteamNumLastMonthFalg;
-        this.paramsb.numRightTypeb = data.dmAddteamNumSamePeriodFalg;
+        this.paramsb.numLeft = data.dmTeamNum
+        this.paramsb.numLefta = data.dmTeamNumLastMonth
+        this.paramsb.numLeftb = data.dmTeamNumBeginYear
+        this.paramsb.numRight = data.dmAddteamNum
+        this.paramsb.numRighta = data.dmAddteamNumLastMonth
+        this.paramsb.numRightb = data.dmAddteamNumSamePeriod
+        this.paramsb.numLeftTypea = data.dmTeamNumLastMonthFalg
+        this.paramsb.numLeftTypeb = data.dmTeamNumBeginYearFalg
+        this.paramsb.numRightTypea = data.dmAddteamNumLastMonthFalg
+        this.paramsb.numRightTypeb = data.dmAddteamNumSamePeriodFalg
 
-        this.paramsc.num = data.dmInchannelNum;
-        this.paramsc.numa = data.dmInchannelNumLastMonth;
-        this.paramsc.numb = data.dmInchannelNumSamePeriod;
-        this.paramsc.numTypea = data.dmInchannelNumLastMonthFalg;
-        this.paramsc.numTypeb = data.dmInchannelNumSamePeriodFalg;
+        this.paramsc.num = data.dmInchannelNum
+        this.paramsc.numa = data.dmInchannelNumLastMonth
+        this.paramsc.numb = data.dmInchannelNumSamePeriod
+        this.paramsc.numTypea = data.dmInchannelNumLastMonthFalg
+        this.paramsc.numTypeb = data.dmInchannelNumSamePeriodFalg
 
-        this.paramsd.num = data.dmOutchannelNum;
-        this.paramsd.numa = data.dmOutchannelNumLastMonth;
-        this.paramsd.numb = data.dmOutchannelNumSamePeriod;
-        this.paramsd.numTypea = data.dmOutchannelNumLastMonthFalg;
-        this.paramsd.numTypeb = data.dmOutchannelNumSamePeriodFalg;
+        this.paramsd.num = data.dmOutchannelNum
+        this.paramsd.numa = data.dmOutchannelNumLastMonth
+        this.paramsd.numb = data.dmOutchannelNumSamePeriod
+        this.paramsd.numTypea = data.dmOutchannelNumLastMonthFalg
+        this.paramsd.numTypeb = data.dmOutchannelNumSamePeriodFalg
 
-        this.paramse.num = data.dmDimissionNum;
-        this.paramse.numa = data.dmDimissionNumLastMonth;
-        this.paramse.numb = data.dmDimissionNumSamePeriod;
-        this.paramse.numTypea = data.dmDimissionNumLastMonthFalg;
-        this.paramse.numTypeb = data.dmDimissionNumSamePeriodFalg;
+        this.paramse.num = data.dmDimissionNum
+        this.paramse.numa = data.dmDimissionNumLastMonth
+        this.paramse.numb = data.dmDimissionNumSamePeriod
+        this.paramse.numTypea = data.dmDimissionNumLastMonthFalg
+        this.paramse.numTypeb = data.dmDimissionNumSamePeriodFalg
 
-        this.paramsf.num = data.enrollmentRate + "%";
-        this.paramsf.numa = data.enrollmentRateMonth;
-        this.paramsf.numb = data.enrollmentRateBeginYear;
-        this.paramsf.numTypea = data.enrollmentRateMonthFalg;
-        this.paramsf.numTypeb = data.enrollmentRateBeginYearFalg;
+        this.paramsf.num = data.enrollmentRate + '%'
+        this.paramsf.numa = data.enrollmentRateMonth
+        this.paramsf.numb = data.enrollmentRateBeginYear
+        this.paramsf.numTypea = data.enrollmentRateMonthFalg
+        this.paramsf.numTypeb = data.enrollmentRateBeginYearFalg
 
-        this.paramsg.num = data.dmChaDirNum;
-        this.paramsg.numa = data.dmChaDirNumLastMonth;
-        this.paramsg.numb = data.dmChaDirNumBeginYear;
-        this.paramsg.numTypea = data.dmChaDirNumLastMonthFalg;
-        this.paramsg.numTypeb = data.dmChaDirNumBeginYearFalg;
+        this.paramsg.num = data.dmChaDirNum
+        this.paramsg.numa = data.dmChaDirNumLastMonth
+        this.paramsg.numb = data.dmChaDirNumBeginYear
+        this.paramsg.numTypea = data.dmChaDirNumLastMonthFalg
+        this.paramsg.numTypeb = data.dmChaDirNumBeginYearFalg
 
-        this.paramsh.num = data.dmBusiDirectorNum;
-        this.paramsh.numa = data.dmBusiDirectorNumLastMonth;
-        this.paramsh.numb = data.dmBusiDirectorNumBeginYear;
-        this.paramsh.numTypea = data.dmBusiDirectorNumLastMonthFalg;
-        this.paramsh.numTypeb = data.dmBusiDirectorNumBeginYearFalg;
+        this.paramsh.num = data.dmBusiDirectorNum
+        this.paramsh.numa = data.dmBusiDirectorNumLastMonth
+        this.paramsh.numb = data.dmBusiDirectorNumBeginYear
+        this.paramsh.numTypea = data.dmBusiDirectorNumLastMonthFalg
+        this.paramsh.numTypeb = data.dmBusiDirectorNumBeginYearFalg
 
-        this.paramsi.num = data.dmMnaNum;
-        this.paramsi.numa = data.dmMnaNumlastMonth;
-        this.paramsi.numb = data.dmMnaNumBeginYear;
-        this.paramsi.numTypea = data.dmMnaNumlastMonthFalg;
-        this.paramsi.numTypeb = data.dmMnaNumBeginYearFalg;
+        this.paramsi.num = data.dmMnaNum
+        this.paramsi.numa = data.dmMnaNumlastMonth
+        this.paramsi.numb = data.dmMnaNumBeginYear
+        this.paramsi.numTypea = data.dmMnaNumlastMonthFalg
+        this.paramsi.numTypeb = data.dmMnaNumBeginYearFalg
 
-        this.paramsj.num = data.dmAidNum;
-        this.paramsj.numa = data.dmAidNumlastMonth;
-        this.paramsj.numb = data.dmAidNumBeginYear;
-        this.paramsj.numTypea = data.dmAidNumlastMonthFalg;
-        this.paramsj.numTypeb = data.dmAidNumBeginYearFalg;
+        this.paramsj.num = data.dmAidNum
+        this.paramsj.numa = data.dmAidNumlastMonth
+        this.paramsj.numb = data.dmAidNumBeginYear
+        this.paramsj.numTypea = data.dmAidNumlastMonthFalg
+        this.paramsj.numTypeb = data.dmAidNumBeginYearFalg
 
-        this.paramsk.num = data.saveManagerNum;
-        this.paramsk.numa = data.saveManagerNumLastMonth;
-        this.paramsk.numb = data.saveManagerNumSamePeriod;
-        this.paramsk.numTypea = data.saveManagerNumLastMonthFalg;
-        this.paramsk.numTypeb = data.saveManagerNumSamePeriodFalg;
+        this.paramsk.num = data.saveManagerNum
+        this.paramsk.numa = data.saveManagerNumLastMonth
+        this.paramsk.numb = data.saveManagerNumSamePeriod
+        this.paramsk.numTypea = data.saveManagerNumLastMonthFalg
+        this.paramsk.numTypeb = data.saveManagerNumSamePeriodFalg
 
-        this.paramsl.num = data.expManagerNum;
-        this.paramsl.numa = data.expManagerNumLastMonth;
-        this.paramsl.numb = data.expManagerNumSamePeriod;
-        this.paramsl.numTypea = data.expManagerNumLastMonthFalg;
-        this.paramsl.numTypeb = data.expManagerNumSamePeriodFalg;
+        this.paramsl.num = data.expManagerNum
+        this.paramsl.numa = data.expManagerNumLastMonth
+        this.paramsl.numb = data.expManagerNumSamePeriod
+        this.paramsl.numTypea = data.expManagerNumLastMonthFalg
+        this.paramsl.numTypeb = data.expManagerNumSamePeriodFalg
 
-        this.paramsm.num = data.chlManagerNum;
-        this.paramsm.numa = data.chlManagerNumLastMonth;
-        this.paramsm.numb = data.chlManagerNumSamePeriod;
-        this.paramsm.numTypea = data.chlManagerNumLastMonthFalg;
-        this.paramsm.numTypeb = data.chlManagerNumSamePeriodFalg;
+        this.paramsm.num = data.chlManagerNum
+        this.paramsm.numa = data.chlManagerNumLastMonth
+        this.paramsm.numb = data.chlManagerNumSamePeriod
+        this.paramsm.numTypea = data.chlManagerNumLastMonthFalg
+        this.paramsm.numTypeb = data.chlManagerNumSamePeriodFalg
 
-        this.healthyParamsA.numA = data.highCapacityNum;
-        this.healthyParamsA.leftNumA = data.highCapacityNumlastMonth;
-        this.healthyParamsA.leftNumB = data.highCapacityNumBeginYear;
-        this.healthyParamsA.proportion = data.highCapacityPropor;
-        this.healthyParamsA.rightNuma = data.highCapacityProporlastMonth;
-        this.healthyParamsA.rightNumb = data.highCapacityProporBeginYear;
-        this.healthyParamsA.leftTypeA = data.highCapacityNumlastMonthFalg;
-        this.healthyParamsA.leftTypeB = data.highCapacityNumBeginYearFalg;
-        this.healthyParamsA.rightTypea = data.highCapacityProporlastMonthFalg;
-        this.healthyParamsA.rightTypeb = data.highCapacityProporBeginYearFalg;
+        this.healthyParamsA.numA = data.highCapacityNum
+        this.healthyParamsA.leftNumA = data.highCapacityNumlastMonth
+        this.healthyParamsA.leftNumB = data.highCapacityNumBeginYear
+        this.healthyParamsA.proportion = data.highCapacityPropor
+        this.healthyParamsA.rightNuma = data.highCapacityProporlastMonth
+        this.healthyParamsA.rightNumb = data.highCapacityProporBeginYear
+        this.healthyParamsA.leftTypeA = data.highCapacityNumlastMonthFalg
+        this.healthyParamsA.leftTypeB = data.highCapacityNumBeginYearFalg
+        this.healthyParamsA.rightTypea = data.highCapacityProporlastMonthFalg
+        this.healthyParamsA.rightTypeb = data.highCapacityProporBeginYearFalg
 
-        this.healthyParamsB.numA = data.dmLowCapacityNum;
-        this.healthyParamsB.leftNumA = data.dmLowCapacityNumlastMonth;
-        this.healthyParamsB.leftNumB = data.dmLowCapacityNumBeginYear;
-        this.healthyParamsB.proportion = data.dmLowCapacityPropor;
-        this.healthyParamsB.rightNuma = data.dmLowCapacityProporlastMonth;
-        this.healthyParamsB.rightNumb = data.dmLowCapacityProporBeginYear;
-        this.healthyParamsB.leftTypeA = data.dmLowCapacityNumlastMonthFalg;
-        this.healthyParamsB.leftTypeB = data.dmLowCapacityNumBeginYearFalg;
-        this.healthyParamsB.rightTypea = data.dmLowCapacityProporlastMonthFalg;
-        this.healthyParamsB.rightTypeb = data.dmLowCapacityProporBeginYearFalg;
+        this.healthyParamsB.numA = data.dmLowCapacityNum
+        this.healthyParamsB.leftNumA = data.dmLowCapacityNumlastMonth
+        this.healthyParamsB.leftNumB = data.dmLowCapacityNumBeginYear
+        this.healthyParamsB.proportion = data.dmLowCapacityPropor
+        this.healthyParamsB.rightNuma = data.dmLowCapacityProporlastMonth
+        this.healthyParamsB.rightNumb = data.dmLowCapacityProporBeginYear
+        this.healthyParamsB.leftTypeA = data.dmLowCapacityNumlastMonthFalg
+        this.healthyParamsB.leftTypeB = data.dmLowCapacityNumBeginYearFalg
+        this.healthyParamsB.rightTypea = data.dmLowCapacityProporlastMonthFalg
+        this.healthyParamsB.rightTypeb = data.dmLowCapacityProporBeginYearFalg
 
-        this.healthyParamsC.num = data.lmHighjugHalesPro;
-        this.healthyParamsC.numa = data.lmHighjugHalesProlastMonth;
-        this.healthyParamsC.numb = data.lmHighjugHalesProSamePeriod;
-        this.healthyParamsC.typea = data.lmHighjugHalesProlastMonthFalg;
-        this.healthyParamsC.typeb = data.lmHighjugHalesProSamePeriodFalg;
+        this.healthyParamsC.num = data.lmHighjugHalesPro
+        this.healthyParamsC.numa = data.lmHighjugHalesProlastMonth
+        this.healthyParamsC.numb = data.lmHighjugHalesProSamePeriod
+        this.healthyParamsC.typea = data.lmHighjugHalesProlastMonthFalg
+        this.healthyParamsC.typeb = data.lmHighjugHalesProSamePeriodFalg
 
-        this.healthyParamsE.num = data.lmLowJugPro;
-        this.healthyParamsE.numa = data.lmLowJugProlastMonth;
-        this.healthyParamsE.numb = data.lmLowJugProSamePeriod;
-        this.healthyParamsE.typea = data.lmLowJugProlastMonthFalg;
-        this.healthyParamsE.typeb = data.lmLowJugProSamePeriodFalg;
+        this.healthyParamsE.num = data.lmLowJugPro
+        this.healthyParamsE.numa = data.lmLowJugProlastMonth
+        this.healthyParamsE.numb = data.lmLowJugProSamePeriod
+        this.healthyParamsE.typea = data.lmLowJugProlastMonthFalg
+        this.healthyParamsE.typeb = data.lmLowJugProSamePeriodFalg
 
-        this.healthyParamsD.num = data.dmSengt1PerCapitaCapacity;
-        this.healthyParamsD.numa = data.dmSengt1PerCapitaCapacitylastMonth;
-        this.healthyParamsD.numb = data.dmSengt1PerCapitaCapacityBeginYear;
-        this.healthyParamsD.typea = data.dmSengt1PerCapitaCapacitylastMonthFalg;
-        this.healthyParamsD.typeb = data.dmSengt1PerCapitaCapacityBeginYearFalg;
+        this.healthyParamsD.num = data.dmSengt1PerCapitaCapacity
+        this.healthyParamsD.numa = data.dmSengt1PerCapitaCapacitylastMonth
+        this.healthyParamsD.numb = data.dmSengt1PerCapitaCapacityBeginYear
+        this.healthyParamsD.typea = data.dmSengt1PerCapitaCapacitylastMonthFalg
+        this.healthyParamsD.typeb = data.dmSengt1PerCapitaCapacityBeginYearFalg
 
-        this.healthyParamsF.num = data.dmSenlt1PerCapitaCapacity;
-        this.healthyParamsF.numa = data.dmSenlt1PerCapitaCapacitylastMonth;
-        this.healthyParamsF.numb = data.dmSenlt1PerCapitaCapacityBeginYear;
-        this.healthyParamsF.typea = data.dmSenlt1PerCapitaCapacitylastMonthFalg;
-        this.healthyParamsF.typeb = data.dmSenlt1PerCapitaCapacityBeginYearFalg;
-      });
-    },
-  },
-};
+        this.healthyParamsF.num = data.dmSenlt1PerCapitaCapacity
+        this.healthyParamsF.numa = data.dmSenlt1PerCapitaCapacitylastMonth
+        this.healthyParamsF.numb = data.dmSenlt1PerCapitaCapacityBeginYear
+        this.healthyParamsF.typea = data.dmSenlt1PerCapitaCapacitylastMonthFalg
+        this.healthyParamsF.typeb = data.dmSenlt1PerCapitaCapacityBeginYearFalg
+      })
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 #personnelInformation {

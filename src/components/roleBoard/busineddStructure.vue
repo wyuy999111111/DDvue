@@ -497,633 +497,633 @@
   </div>
 </template>
 <script>
-import ButtonWhite from "../../common/ButtonWhite";
-import ButtonBlue from "../../common/ButtonBlue";
-import giftImageUrl from "../../assets/portraitImg/车险.png";
-import PointerTitle from "../../common/pointerTitle";
-import { RoleshowYwjg } from "../../api/getApi";
+import ButtonWhite from '../../common/ButtonWhite'
+import ButtonBlue from '../../common/ButtonBlue'
+import giftImageUrl from '../../assets/portraitImg/车险.png'
+import PointerTitle from '../../common/pointerTitle'
+import { RoleshowYwjg } from '../../api/getApi'
 export default {
-  name: "business",
+  name: 'business',
   components: {
     ButtonWhite,
     ButtonBlue,
-    PointerTitle,
+    PointerTitle
   },
-  data() {
+  data () {
     return {
-      list: "",
-      msg: "（请选择机构与渠道后展示）",
+      list: '',
+      msg: '（请选择机构与渠道后展示）',
       GetWindowInfo: {
-        width: "",
+        width: ''
       },
-      xSize: 18,
-    };
+      xSize: 18
+    }
   },
-  created() {
-    window.addEventListener("resize", this.GetWindowInfo);
-    this.GetWindow();
+  created () {
+    window.addEventListener('resize', this.GetWindowInfo)
+    this.GetWindow()
     // this.getRoleshowYwjg()
-    console.log(this.$store.state.role.orglOption);
+    console.log(this.$store.state.role.orglOption)
   },
-  mounted() {
+  mounted () {
     // this.drowR()
-    this.drowRoundCharta();
-    this.drowRoundChartb();
-    this.drowRoundChartc();
-    this.drowProductMix();
-    this.drowProductMixR();
-    this.drowProductMixRT();
-    this.drowPieaT();
-    this.drowPieaB();
-    this.drow();
-    this.drowR();
+    this.drowRoundCharta()
+    this.drowRoundChartb()
+    this.drowRoundChartc()
+    this.drowProductMix()
+    this.drowProductMixR()
+    this.drowProductMixRT()
+    this.drowPieaT()
+    this.drowPieaB()
+    this.drow()
+    this.drowR()
   },
   watch: {
-    list() {
+    list () {
       setTimeout(() => {
-        this.drowRoundCharta();
-        this.drowRoundChartb();
-        this.drowRoundChartc();
-        this.drowProductMix();
-        this.drowProductMixR();
-        this.drowProductMixRT();
-        this.drowPieaT();
-        this.drowPieaB();
-        this.drow();
-        this.drowR();
-      }, 0);
+        this.drowRoundCharta()
+        this.drowRoundChartb()
+        this.drowRoundChartc()
+        this.drowProductMix()
+        this.drowProductMixR()
+        this.drowProductMixRT()
+        this.drowPieaT()
+        this.drowPieaB()
+        this.drow()
+        this.drowR()
+      }, 0)
     },
-    "$store.state.role.state"() {
-      this.getRoleshowYwjg();
-      this.drowR();
+    '$store.state.role.state' () {
+      this.getRoleshowYwjg()
+      this.drowR()
       // if (this.$store.state.role.orglResult !== '' && this.$store.state.role.channelResult === '') {
       // }
-    },
+    }
   },
   methods: {
-    GetWindow() {
-      this.GetWindowInfo.width = window.outerWidth;
+    GetWindow () {
+      this.GetWindowInfo.width = window.outerWidth
       if (this.GetWindowInfo.width === 1366) {
-        this.xSize = 12;
+        this.xSize = 12
       }
       if (this.GetWindowInfo.width === 1600) {
-        this.xSize = 16;
+        this.xSize = 16
       }
       if (this.GetWindowInfo.width === 1920) {
-        this.xSize = 18;
+        this.xSize = 18
       }
     },
-    getRoleshowYwjg() {
+    getRoleshowYwjg () {
       const params = {
         id: this.$store.state.role.orglResult,
         sales_channelcode: this.$store.state.role.channelResult,
         year: this.$store.state.role.dateYear,
         month: this.$store.state.role.dateMonth,
         dataDate: this.$store.state.role.date,
-        level: this.$store.state.role.orglOption,
-      };
+        level: this.$store.state.role.orglOption
+      }
       RoleshowYwjg(params).then((res) => {
-        this.list = res.data.data.secondcompanyRoleshowYwjg[0];
-        console.log(this.$store.state.role.orglResult);
-        console.log(this.list.dy_nocar_top10_pro_prm_money.length === 0);
-      });
+        this.list = res.data.data.secondcompanyRoleshowYwjg[0]
+        console.log(this.$store.state.role.orglResult)
+        console.log(this.list.dy_nocar_top10_pro_prm_money.length === 0)
+      })
     },
-    drowRoundCharta() {
-      var roundChart = this.$refs.roundChartb;
-      const myChart = this.$echarts.init(roundChart);
+    drowRoundCharta () {
+      var roundChart = this.$refs.roundChartb
+      const myChart = this.$echarts.init(roundChart)
       const option = {
-        color: ["#CCD3FC", "#92A5F6", "#6070FD"],
+        color: ['#CCD3FC', '#92A5F6', '#6070FD'],
         grid: {
-          top: "0px",
-          left: "0%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '0px',
+          left: '0%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         tooltip: {
           show: true,
-          trigger: "item",
+          trigger: 'item',
           formatter: (a) => {
-            return a.data.name + "：" + a.data.value + "%";
-          },
+            return a.data.name + '：' + a.data.value + '%'
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["60%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['60%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
-              position: "inner",
-              formatter: "{b}: {d}%",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {d}%',
+              color: '#000'
             },
             emphasis: {
               label: {
                 show: false,
-                fontSize: "12",
+                fontSize: '12'
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dy_ud2t_bizcar_prm, name: "2吨以下" },
-              { value: this.list.dy_bt2to10t_bizcar_prm, name: "2-10吨以下" },
-              { value: this.list.dy_gt10t_bizcar_prm, name: "10吨以上" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dy_ud2t_bizcar_prm, name: '2吨以下' },
+              { value: this.list.dy_bt2to10t_bizcar_prm, name: '2-10吨以下' },
+              { value: this.list.dy_gt10t_bizcar_prm, name: '10吨以上' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowRoundChartb() {
-      var roundChart = this.$refs.roundCharta;
-      const myChart = this.$echarts.init(roundChart);
+    drowRoundChartb () {
+      var roundChart = this.$refs.roundCharta
+      const myChart = this.$echarts.init(roundChart)
       const option = {
-        color: ["#D15D01", "#FEE2BB", "#FACA57", "#F7921B"],
+        color: ['#D15D01', '#FEE2BB', '#FACA57', '#F7921B'],
         grid: {
-          top: "0px",
-          left: "0%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '0px',
+          left: '0%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         tooltip: {
           show: true,
-          trigger: "item",
+          trigger: 'item',
           formatter: (a) => {
-            return a.data.name + "：" + a.data.value + "%";
-          },
+            return a.data.name + '：' + a.data.value + '%'
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["60%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['60%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
-              position: "inner",
-              formatter: "{b}: {d}%",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {d}%',
+              color: '#000'
             },
             emphasis: {
               label: {
                 show: false,
-                fontSize: "12",
+                fontSize: '12'
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dm_t1car_prm, name: "特种车一" },
-              { value: this.list.dm_t2car_prm, name: "特种车二" },
-              { value: this.list.dm_t3car_prm, name: "特种车三" },
-              { value: this.list.dm_t4car_prm, name: "特种车四" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dm_t1car_prm, name: '特种车一' },
+              { value: this.list.dm_t2car_prm, name: '特种车二' },
+              { value: this.list.dm_t3car_prm, name: '特种车三' },
+              { value: this.list.dm_t4car_prm, name: '特种车四' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowRoundChartc() {
-      var roundChart = this.$refs.roundChartc;
-      const myChart = this.$echarts.init(roundChart);
+    drowRoundChartc () {
+      var roundChart = this.$refs.roundChartc
+      const myChart = this.$echarts.init(roundChart)
       const option = {
-        color: ["#C8EEBB", "#8CE394", "#67BF96", "#4CA37A"],
+        color: ['#C8EEBB', '#8CE394', '#67BF96', '#4CA37A'],
         grid: {
-          top: "0px",
-          left: "0%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '0px',
+          left: '0%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         tooltip: {
           show: true,
-          trigger: "item",
+          trigger: 'item',
           formatter: (a) => {
-            return a.data.name + "：" + a.data.value + "%";
-          },
+            return a.data.name + '：' + a.data.value + '%'
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["60%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['60%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
-              position: "inner",
-              formatter: "{b}: {d}%",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {d}%',
+              color: '#000'
             },
             emphasis: {
               label: {
                 show: false,
-                fontSize: "12",
+                fontSize: '12'
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dy_high_pasger_prm, name: "公路客运" },
-              { value: this.list.dy_pubbus_prm, name: "城市公交" },
-              { value: this.list.dy_lease_car_prm, name: "出租租赁" },
-              { value: this.list.dy_apmt_taxi_prm, name: "预约出租车" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dy_high_pasger_prm, name: '公路客运' },
+              { value: this.list.dy_pubbus_prm, name: '城市公交' },
+              { value: this.list.dy_lease_car_prm, name: '出租租赁' },
+              { value: this.list.dy_apmt_taxi_prm, name: '预约出租车' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowProductMix() {
-      var productMix = this.$refs.productMix;
-      const myChart = this.$echarts.init(productMix);
+    drowProductMix () {
+      var productMix = this.$refs.productMix
+      const myChart = this.$echarts.init(productMix)
       const option = {
-        color: ["#76cbff", "#4a98f8", "#8ee498", "#ffc95c"],
+        color: ['#76cbff', '#4a98f8', '#8ee498', '#ffc95c'],
         grid: {
-          top: "0px",
-          left: "0%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '0px',
+          left: '0%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         tooltip: {
           show: true,
-          trigger: "item",
+          trigger: 'item',
           formatter: (a) => {
-            return a.data.name + "：" + a.data.value + "%";
-          },
+            return a.data.name + '：' + a.data.value + '%'
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["35%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['35%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
-              position: "inner",
-              formatter: "{b}: {d}%",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {d}%',
+              color: '#000'
             },
             emphasis: {
               label: {
                 show: false,
-                fontSize: "12",
+                fontSize: '12'
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dy_car_prm0, name: "车险" },
-              { value: this.list.dy_e_prm0, name: "财产险" },
-              { value: this.list.dy_prop_prm0, name: "健康险" },
-              { value: this.list.dy_jk_prm0, name: "意外险" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dy_car_prm0, name: '车险' },
+              { value: this.list.dy_e_prm0, name: '财产险' },
+              { value: this.list.dy_prop_prm0, name: '健康险' },
+              { value: this.list.dy_jk_prm0, name: '意外险' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowProductMixR() {
-      var productMix = this.$refs.productMixR;
-      const myChart = this.$echarts.init(productMix);
+    drowProductMixR () {
+      var productMix = this.$refs.productMixR
+      const myChart = this.$echarts.init(productMix)
       const option = {
         color: [
-          "#61afff",
-          "#6172ff",
-          "#ff6671",
-          "#ffc95c",
-          "#8ee498",
-          "#9adbf9",
-          "#ddd1c2",
-          "#FD94A1",
+          '#61afff',
+          '#6172ff',
+          '#ff6671',
+          '#ffc95c',
+          '#8ee498',
+          '#9adbf9',
+          '#ddd1c2',
+          '#FD94A1'
         ],
         grid: {
-          top: "80px",
-          left: "5%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '80px',
+          left: '5%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         graphic: {
           elements: [
             {
-              type: "image",
+              type: 'image',
               style: {
                 image: giftImageUrl,
                 width: 45,
-                height: 45,
+                height: 45
               },
-              left: "center",
-              top: "middle",
-            },
-          ],
+              left: 'center',
+              top: 'middle'
+            }
+          ]
         },
         tooltip: {
-          trigger: "item",
+          trigger: 'item',
           show: true,
           formatter: (a) => {
             // return a.name + '：' + a.data.value + '元' + '(' + a.percent + '%' + ')'
-            var reg = /\d(?=(\d{3})+$)/g;
+            var reg = /\d(?=(\d{3})+$)/g
             if (a.data.value < 10000) {
-              let integer = a.data.value + "";
+              let integer = a.data.value + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
+                return content + ','
+              })
               return (
-                a.name + "：" + integer + "元" + "(" + a.percent + "%" + ")"
-              );
+                a.name + '：' + integer + '元' + '(' + a.percent + '%' + ')'
+              )
             } else if (a.data.value < 100000000) {
-              let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+              let integer = parseInt((a.data.value % 100000000) / 10000) + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
-              let decimals = (a.data.value % 10000) / 10000;
+                return content + ','
+              })
+              let decimals = (a.data.value % 10000) / 10000
               if (decimals === 0) {
-                decimals = "" + "万";
+                decimals = '' + '万'
               } else {
                 decimals =
-                  "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                  '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
               }
               if (integer === 0) {
-                integer = "";
+                integer = ''
               }
               return (
                 a.name +
-                "：" +
+                '：' +
                 integer +
                 decimals +
-                "元" +
-                "(" +
+                '元' +
+                '(' +
                 a.percent +
-                "%" +
-                ")"
-              );
+                '%' +
+                ')'
+              )
             } else if (a.data.value > 100000000) {
-              let yi = parseInt(a.data.value / 100000000) + "";
+              let yi = parseInt(a.data.value / 100000000) + ''
               yi = yi.replace(reg, (content) => {
-                return content + ",";
-              });
-              let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+                return content + ','
+              })
+              let integer = parseInt((a.data.value % 100000000) / 10000) + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
-              let decimals = (a.data.value % 10000) / 10000;
+                return content + ','
+              })
+              let decimals = (a.data.value % 10000) / 10000
               if (decimals === 0) {
-                decimals = "";
+                decimals = ''
               } else {
                 decimals =
-                  "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                  '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
               }
               if (integer === 0) {
-                integer = "";
+                integer = ''
               }
               return (
                 a.name +
-                "：" +
+                '：' +
                 yi +
-                "亿" +
+                '亿' +
                 integer +
                 decimals +
-                "元" +
-                "(" +
+                '元' +
+                '(' +
                 a.percent +
-                "%" +
-                ")"
-              );
+                '%' +
+                ')'
+              )
             }
-          },
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["50%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['50%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
               // fontSize: '30',
-              position: "inner",
-              formatter: "{b}: {c}元",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {c}元',
+              color: '#000'
             },
             emphasis: {
               label: {
-                show: false,
+                show: false
                 // fontSize: '30',
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dy_biz_hc_prm, name: "营业货车" },
-              { value: this.list.dy_nonbiz_hc_prm, name: "非营业货车" },
-              { value: this.list.dy_biz_kc_prm, name: "营业客车" },
-              { value: this.list.dy_nonbiz_kc_prm, name: "非营业客车" },
-              { value: this.list.dy_cerv_prm, name: "特种车" },
-              { value: this.list.dy_fmcar_prm, name: "家庭自用车" },
-              { value: this.list.dy_tractor_prm, name: "拖拉机" },
-              { value: this.list.dy_motor_prm, name: "摩托车" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dy_biz_hc_prm, name: '营业货车' },
+              { value: this.list.dy_nonbiz_hc_prm, name: '非营业货车' },
+              { value: this.list.dy_biz_kc_prm, name: '营业客车' },
+              { value: this.list.dy_nonbiz_kc_prm, name: '非营业客车' },
+              { value: this.list.dy_cerv_prm, name: '特种车' },
+              { value: this.list.dy_fmcar_prm, name: '家庭自用车' },
+              { value: this.list.dy_tractor_prm, name: '拖拉机' },
+              { value: this.list.dy_motor_prm, name: '摩托车' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowProductMixRT() {
-      var productMix = this.$refs.productMixR2;
-      const myChart = this.$echarts.init(productMix);
+    drowProductMixRT () {
+      var productMix = this.$refs.productMixR2
+      const myChart = this.$echarts.init(productMix)
       const option = {
         color: [
-          "#61afff",
-          "#6172ff",
-          "#ff6671",
-          "#ffc95c",
-          "#8ee498",
-          "#9adbf9",
-          "#ddd1c2",
+          '#61afff',
+          '#6172ff',
+          '#ff6671',
+          '#ffc95c',
+          '#8ee498',
+          '#9adbf9',
+          '#ddd1c2'
         ],
         grid: {
-          top: "80px",
-          left: "5%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '80px',
+          left: '5%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         graphic: {
           elements: [
             {
-              type: "image",
+              type: 'image',
               style: {
                 image: giftImageUrl,
                 width: 45,
-                height: 45,
+                height: 45
               },
-              left: "center",
-              top: "middle",
-            },
-          ],
+              left: 'center',
+              top: 'middle'
+            }
+          ]
         },
         tooltip: {
-          trigger: "item",
+          trigger: 'item',
           show: true,
           formatter: (a) => {
             // return a.name + '：' + a.data.value + '元' + '(' + a.percent + '%' + ')'
-            var reg = /\d(?=(\d{3})+$)/g;
+            var reg = /\d(?=(\d{3})+$)/g
             if (a.data.value < 10000) {
-              let integer = a.data.value + "";
+              let integer = a.data.value + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
+                return content + ','
+              })
               return (
-                a.name + "：" + integer + "元" + "(" + a.percent + "%" + ")"
-              );
+                a.name + '：' + integer + '元' + '(' + a.percent + '%' + ')'
+              )
             } else if (a.data.value < 100000000) {
-              let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+              let integer = parseInt((a.data.value % 100000000) / 10000) + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
-              let decimals = (a.data.value % 10000) / 10000;
+                return content + ','
+              })
+              let decimals = (a.data.value % 10000) / 10000
               if (decimals === 0) {
-                decimals = "" + "万";
+                decimals = '' + '万'
               } else {
                 decimals =
-                  "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                  '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
               }
               if (integer === 0) {
-                integer = "";
+                integer = ''
               }
               return (
                 a.name +
-                "：" +
+                '：' +
                 integer +
                 decimals +
-                "元" +
-                "(" +
+                '元' +
+                '(' +
                 a.percent +
-                "%" +
-                ")"
-              );
+                '%' +
+                ')'
+              )
             } else if (a.data.value > 100000000) {
-              let yi = parseInt(a.data.value / 100000000) + "";
+              let yi = parseInt(a.data.value / 100000000) + ''
               yi = yi.replace(reg, (content) => {
-                return content + ",";
-              });
-              let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+                return content + ','
+              })
+              let integer = parseInt((a.data.value % 100000000) / 10000) + ''
               integer = integer.replace(reg, (content) => {
-                return content + ",";
-              });
-              let decimals = (a.data.value % 10000) / 10000;
+                return content + ','
+              })
+              let decimals = (a.data.value % 10000) / 10000
               if (decimals === 0) {
-                decimals = "";
+                decimals = ''
               } else {
                 decimals =
-                  "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                  '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
               }
               if (integer === 0) {
-                integer = "";
+                integer = ''
               }
               return (
                 a.name +
-                "：" +
+                '：' +
                 yi +
-                "亿" +
+                '亿' +
                 integer +
                 decimals +
-                "元" +
-                "(" +
+                '元' +
+                '(' +
                 a.percent +
-                "%" +
-                ")"
-              );
+                '%' +
+                ')'
+              )
             }
-          },
+          }
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["50%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['50%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
               // fontSize: '30',
-              position: "inner",
-              formatter: "{b}: {c}元",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {c}元',
+              color: '#000'
             },
             emphasis: {
               label: {
-                show: false,
+                show: false
                 // fontSize: '30',
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
             data: [
-              { value: this.list.dy_biz_hc_prm, name: "营业货车" },
-              { value: this.list.dy_nonbiz_hc_prm, name: "非营业货车" },
-              { value: this.list.dy_biz_kc_prm, name: "营业客车" },
-              { value: this.list.dy_nonbiz_kc_prm, name: "非营业客车" },
-              { value: this.list.dy_cerv_prm, name: "特种车" },
-              { value: this.list.dy_fmcar_prm, name: "家庭自用车" },
-              { value: this.list.otherCarPrm, name: "其他" },
-            ],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+              { value: this.list.dy_biz_hc_prm, name: '营业货车' },
+              { value: this.list.dy_nonbiz_hc_prm, name: '非营业货车' },
+              { value: this.list.dy_biz_kc_prm, name: '营业客车' },
+              { value: this.list.dy_nonbiz_kc_prm, name: '非营业客车' },
+              { value: this.list.dy_cerv_prm, name: '特种车' },
+              { value: this.list.dy_fmcar_prm, name: '家庭自用车' },
+              { value: this.list.otherCarPrm, name: '其他' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowPieaT() {
+    drowPieaT () {
       const abc =
-        this.list.dy_fmcar_newcar_prm + this.list.dy_fmcar_newcar_prm_not;
-      var pieChartT = this.$refs.pieChartT;
-      const myChart = this.$echarts.init(pieChartT);
+        this.list.dy_fmcar_newcar_prm + this.list.dy_fmcar_newcar_prm_not
+      var pieChartT = this.$refs.pieChartT
+      const myChart = this.$echarts.init(pieChartT)
       const option = {
         grid: {
-          top: "10%",
-          left: "20%",
-          right: "0%",
-          bottom: "10%",
-          containLabel: true,
+          top: '10%',
+          left: '20%',
+          right: '0%',
+          bottom: '10%',
+          containLabel: true
         },
         tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)",
-          show: false,
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
+          show: false
         },
         series: [
           {
@@ -1132,100 +1132,100 @@ export default {
                 label: {
                   textStyle: {
                     fontSize: this.xSize,
-                    color: "#000",
-                  },
-                },
-              },
+                    color: '#000'
+                  }
+                }
+              }
             },
-            color: ["#ddebf2", "#76cbff"],
-            name: "",
-            type: "pie",
-            radius: "55%",
-            center: ["50%", "60%"],
+            color: ['#ddebf2', '#76cbff'],
+            name: '',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
             hoverAnimation: false,
             labelLine: {
               normal: {
                 length: 15,
-                length2: 35,
-              },
+                length2: 35
+              }
             },
             label: {
               normal: {
                 formatter: (value) => {
                   // return a.data.name + '\n' + parseInt(a.data.value).toLocaleString() + '元' + '\n' + (parseInt(a.data.value) / abc * 100).toFixed(2) + '%'
-                  var reg = /\d(?=(\d{3})+$)/g;
+                  var reg = /\d(?=(\d{3})+$)/g
                   if (value.data.value < 10000) {
-                    let integer = value.data.value + "";
+                    let integer = value.data.value + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
+                      return content + ','
+                    })
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       integer +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   } else if (value.data.value < 100000000) {
                     let integer =
-                      parseInt((value.data.value % 100000000) / 10000) + "";
+                      parseInt((value.data.value % 100000000) / 10000) + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
-                    let decimals = (value.data.value % 10000) / 10000;
+                      return content + ','
+                    })
+                    let decimals = (value.data.value % 10000) / 10000
                     if (decimals === 0) {
-                      decimals = "" + "万";
+                      decimals = '' + '万'
                     } else {
                       decimals =
-                        "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                        '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                     }
                     if (integer === 0) {
-                      integer = "";
+                      integer = ''
                     }
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       integer +
                       decimals +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   } else if (value.data.value > 100000000) {
-                    let yi = parseInt(value.data.value / 100000000) + "";
+                    let yi = parseInt(value.data.value / 100000000) + ''
                     yi = yi.replace(reg, (content) => {
-                      return content + ",";
-                    });
+                      return content + ','
+                    })
                     let integer =
-                      parseInt((value.data.value % 100000000) / 10000) + "";
+                      parseInt((value.data.value % 100000000) / 10000) + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
-                    let decimals = (value.data.value % 10000) / 10000;
+                      return content + ','
+                    })
+                    let decimals = (value.data.value % 10000) / 10000
                     if (decimals === 0) {
-                      decimals = "";
+                      decimals = ''
                     } else {
                       decimals =
-                        "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                        '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                     }
                     if (integer === 0) {
-                      integer = "";
+                      integer = ''
                     }
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       yi +
-                      "亿" +
+                      '亿' +
                       integer +
                       decimals +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   }
                 },
                 borderWidth: 20,
@@ -1233,61 +1233,61 @@ export default {
                 padding: [0, 10],
                 rich: {
                   d: {
-                    color: "#000",
+                    color: '#000',
                     fontSize: 18,
                     lineHeight: 20,
-                    align: "right",
+                    align: 'right'
                   },
                   b: {
                     fontSize: 18,
                     lineHeight: 20,
-                    color: "#000",
-                    align: "right",
+                    color: '#000',
+                    align: 'right'
                   },
                   c: {
                     fontSize: 18,
                     lineHeight: 20,
-                    color: "#000",
-                    align: "right",
-                  },
-                },
-              },
+                    color: '#000',
+                    align: 'right'
+                  }
+                }
+              }
             },
             data: [
-              { value: this.list.dy_fmcar_newcar_prm, name: "家用新车" },
-              { value: this.list.dy_fmcar_newcar_prm_not, name: "家用非新车" },
+              { value: this.list.dy_fmcar_newcar_prm, name: '家用新车' },
+              { value: this.list.dy_fmcar_newcar_prm_not, name: '家用非新车' }
             ],
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowPieaB() {
-      const abc = this.list.dy_fmcar_dj_prm + this.list.dy_fmcar_dj_prm_not;
-      var pieChartB = this.$refs.pieChartB;
-      const myChart = this.$echarts.init(pieChartB);
+    drowPieaB () {
+      const abc = this.list.dy_fmcar_dj_prm + this.list.dy_fmcar_dj_prm_not
+      var pieChartB = this.$refs.pieChartB
+      const myChart = this.$echarts.init(pieChartB)
       const option = {
         grid: {
-          top: "10%",
-          left: "5%",
-          right: "0%",
-          bottom: "10%",
-          containLabel: true,
+          top: '10%',
+          left: '5%',
+          right: '0%',
+          bottom: '10%',
+          containLabel: true
         },
         tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)",
-          show: false,
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
+          show: false
         },
         series: [
           {
@@ -1296,100 +1296,100 @@ export default {
                 label: {
                   textStyle: {
                     fontSize: this.xSize,
-                    color: "#000",
-                  },
-                },
-              },
+                    color: '#000'
+                  }
+                }
+              }
             },
-            color: ["#ddebf2", "#76cbff"],
-            name: "",
-            type: "pie",
-            radius: "55%",
-            center: ["50%", "60%"],
+            color: ['#ddebf2', '#76cbff'],
+            name: '',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
             hoverAnimation: false,
             labelLine: {
               normal: {
                 length: 15,
-                length2: 35,
-              },
+                length2: 35
+              }
             },
             label: {
               normal: {
                 formatter: (value) => {
                   // return a.data.name + '\n' + parseInt(a.data.value).toLocaleString() + '元' + '\n' + (parseInt(a.data.value) / abc * 100).toFixed(2) + '%'
-                  var reg = /\d(?=(\d{3})+$)/g;
+                  var reg = /\d(?=(\d{3})+$)/g
                   if (value.data.value < 10000) {
-                    let integer = value.data.value + "";
+                    let integer = value.data.value + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
+                      return content + ','
+                    })
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       integer +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   } else if (value.data.value < 100000000) {
                     let integer =
-                      parseInt((value.data.value % 100000000) / 10000) + "";
+                      parseInt((value.data.value % 100000000) / 10000) + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
-                    let decimals = (value.data.value % 10000) / 10000;
+                      return content + ','
+                    })
+                    let decimals = (value.data.value % 10000) / 10000
                     if (decimals === 0) {
-                      decimals = "" + "万";
+                      decimals = '' + '万'
                     } else {
                       decimals =
-                        "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                        '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                     }
                     if (integer === 0) {
-                      integer = "";
+                      integer = ''
                     }
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       integer +
                       decimals +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   } else if (value.data.value > 100000000) {
-                    let yi = parseInt(value.data.value / 100000000) + "";
+                    let yi = parseInt(value.data.value / 100000000) + ''
                     yi = yi.replace(reg, (content) => {
-                      return content + ",";
-                    });
+                      return content + ','
+                    })
                     let integer =
-                      parseInt((value.data.value % 100000000) / 10000) + "";
+                      parseInt((value.data.value % 100000000) / 10000) + ''
                     integer = integer.replace(reg, (content) => {
-                      return content + ",";
-                    });
-                    let decimals = (value.data.value % 10000) / 10000;
+                      return content + ','
+                    })
+                    let decimals = (value.data.value % 10000) / 10000
                     if (decimals === 0) {
-                      decimals = "";
+                      decimals = ''
                     } else {
                       decimals =
-                        "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                        '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                     }
                     if (integer === 0) {
-                      integer = "";
+                      integer = ''
                     }
                     return (
                       value.data.name +
-                      "\n" +
+                      '\n' +
                       yi +
-                      "亿" +
+                      '亿' +
                       integer +
                       decimals +
-                      "元" +
-                      "\n" +
+                      '元' +
+                      '\n' +
                       ((parseInt(value.data.value) / abc) * 100).toFixed(2) +
-                      "%"
-                    );
+                      '%'
+                    )
                   }
                 },
                 borderWidth: 20,
@@ -1397,171 +1397,171 @@ export default {
                 padding: [0, 10],
                 rich: {
                   d: {
-                    color: "#000",
+                    color: '#000',
                     fontSize: 18,
                     lineHeight: 20,
-                    align: "right",
+                    align: 'right'
                   },
                   b: {
                     fontSize: 18,
                     lineHeight: 20,
-                    color: "#000",
-                    align: "right",
+                    color: '#000',
+                    align: 'right'
                   },
                   c: {
                     fontSize: 18,
                     lineHeight: 20,
-                    color: "#000",
-                    align: "right",
-                  },
-                },
-              },
+                    color: '#000',
+                    align: 'right'
+                  }
+                }
+              }
             },
             data: [
-              { value: this.list.dy_fmcar_dj_prm, name: "家用车单交" },
-              { value: this.list.dy_fmcar_dj_prm_not, name: "家庭车非单交" },
+              { value: this.list.dy_fmcar_dj_prm, name: '家用车单交' },
+              { value: this.list.dy_fmcar_dj_prm_not, name: '家庭车非单交' }
             ],
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drow() {
-      var asd = this.$refs.discountChart;
-      const myChart = this.$echarts.init(asd);
+    drow () {
+      var asd = this.$refs.discountChart
+      const myChart = this.$echarts.init(asd)
       const option = {
         tooltip: {
-          trigger: "axis",
+          trigger: 'axis'
         },
         legend: {
-          data: ["保费", "购买客户数"],
+          data: ['保费', '购买客户数']
         },
         xAxis: [
           {
-            type: "category",
+            type: 'category',
             data: this.list.dy_nocar_top10_pro_prm_name,
             axisPointer: {
-              type: "shadow",
-            },
-          },
+              type: 'shadow'
+            }
+          }
         ],
         yAxis: [
           {
-            type: "value",
-            name: "保费",
+            type: 'value',
+            name: '保费'
           },
           {
-            type: "value",
-            name: "购买客户数",
-          },
+            type: 'value',
+            name: '购买客户数'
+          }
         ],
         series: [
           {
-            name: "保费",
-            type: "bar",
-            position: "left",
+            name: '保费',
+            type: 'bar',
+            position: 'left',
             barWidth: 22,
             yAxisIndex: 1,
             data: this.list.dy_nocar_top10_pro_prm_money,
-            color: ["#62AFFF"],
+            color: ['#62AFFF']
           },
           {
-            name: "购买客户数",
-            position: "right",
-            type: "bar",
+            name: '购买客户数',
+            position: 'right',
+            type: 'bar',
             barWidth: 22,
             data: this.list.dy_nocar_top10_pro_prm_num,
-            color: ["#98DCF8"],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
+            color: ['#98DCF8']
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
     },
-    drowR() {
-      var asd = this.$refs.discountChartR;
-      const myChart = this.$echarts.init(asd);
+    drowR () {
+      var asd = this.$refs.discountChartR
+      const myChart = this.$echarts.init(asd)
       const option = {
         tooltip: {
           show: true,
           axisPointer: {
-            type: "none",
+            type: 'none'
           },
-          formatter: "{b}:{c}元",
+          formatter: '{b}:{c}元'
         },
         grid: {
-          top: "50px",
-          left: "5%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '50px',
+          left: '5%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         xAxis: {
-          type: "category",
+          type: 'category',
           data: [
-            "产品1",
-            "产品2",
-            "产品3",
-            "产品4",
-            "产品5",
-            "产品6",
-            "产品7",
-            "产品8",
-            "产品9",
-            "产品10",
+            '产品1',
+            '产品2',
+            '产品3',
+            '产品4',
+            '产品5',
+            '产品6',
+            '产品7',
+            '产品8',
+            '产品9',
+            '产品10'
           ],
           axisTick: {
             // y轴刻度线
-            show: false,
+            show: false
           },
           axisLine: {
             // y轴
-            show: false,
+            show: false
           },
           axisLabel: {
             margin: 25,
-            fontSize: 14,
-          },
+            fontSize: 14
+          }
         },
         yAxis: {
-          type: "value",
+          type: 'value',
           axisTick: {
             // y轴刻度线
-            show: false,
+            show: false
           },
           axisLine: {
             // y轴
-            show: false,
-          },
+            show: false
+          }
         },
         series: [
           {
-            data: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
-            type: "bar",
+            data: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+            type: 'bar',
             barWidth: 22,
-            color: ["#61afff"],
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-  },
-};
+            color: ['#61afff']
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
 .business {

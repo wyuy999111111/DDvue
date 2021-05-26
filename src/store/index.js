@@ -107,7 +107,7 @@ export default new Vuex.Store({
       std_rank: '', // 标准职级
       working_experience: '' // 工作经验
     },
-    specialDto:[],
+    specialDto: [],
     // 图表数据
     salesPortrayDto: {
       change_sales_date: '', // 转销事件

@@ -295,102 +295,102 @@
 </template>
 
 <script>
-import { managerTagClass, viewManagerMessage } from "@/api/getApi";
+import { managerTagClass, viewManagerMessage } from '@/api/getApi'
 
 export default {
-  name: "strategyUddate",
-  props: ["props"],
-  data() {
+  name: 'strategyUddate',
+  props: ['props'],
+  data () {
     return {
-      filterTreeMessage: "",
+      filterTreeMessage: '',
       checkList: [],
       messageVisible: false,
       num: 0,
-      params: "",
+      params: '',
       defaultProps: {
-        children: "child",
-        label: "tagName",
+        children: 'child',
+        label: 'tagName'
       },
       treeData: [],
       arr: [],
-      action: ["", "", ""],
+      action: ['', '', ''],
       messageListVisible: false,
-      message: "",
-      blur: 0,
-    };
+      message: '',
+      blur: 0
+    }
   },
   watch: {
-    "$store.state.adminSendState"() {
+    '$store.state.adminSendState' () {
       managerTagClass({
-        tagEnumList: this.$store.state.strategy.tagEnumList,
+        tagEnumList: this.$store.state.strategy.tagEnumList
       }).then((res) => {
-        this.treeData = res.data.data;
-      });
+        this.treeData = res.data.data
+      })
       for (
         let i = 0;
         i < this.$store.state.strategy.managerMessageList.length;
         i++
       ) {
-        this.$store.state.strategy.managerMessageList[i].messageContent = "";
+        this.$store.state.strategy.managerMessageList[i].messageContent = ''
       }
     },
-    filterTreeMessage(val) {
-      this.$refs.treeMessage.filter(val);
-    },
+    filterTreeMessage (val) {
+      this.$refs.treeMessage.filter(val)
+    }
   },
-  created() {},
+  created () {},
   methods: {
-    setUploadNum(index) {
-      this.uploadNum = index;
-      const action = [];
+    setUploadNum (index) {
+      this.uploadNum = index
+      const action = []
       for (let i = 1; i < 4; i++) {
         action.push(
           `/sit-web/sit/strategy/uploadFile?strategyId=${this.$store.state.strategy.strategyId}&managerMessage=${i}`
-        );
+        )
       }
-      this.action = action;
+      this.action = action
     },
-    onSuccess(res) {
+    onSuccess (res) {
       const arr = JSON.parse(
         JSON.stringify(this.$store.state.strategy.managerMessageList)
-      );
-      arr[this.uploadNum].manageList = res.data;
-      this.$store.state.strategy.managerMessageList = arr;
+      )
+      arr[this.uploadNum].manageList = res.data
+      this.$store.state.strategy.managerMessageList = arr
     },
-    getBlur() {
-      this.blur = document.getElementById("blur" + this.params).selectionStart;
+    getBlur () {
+      this.blur = document.getElementById('blur' + this.params).selectionStart
     },
-    addMessage() {
-      this.messageVisible = false;
+    addMessage () {
+      this.messageVisible = false
     },
-    messageVisibleShow(index) {
-      this.messageVisible = true;
-      this.num = index;
+    messageVisibleShow (index) {
+      this.messageVisible = true
+      this.num = index
       this.blur = this.$store.state.strategy.managerMessageList[
         index
-      ].messageContent.length;
+      ].messageContent.length
       managerTagClass({
-        tagEnumList: this.$store.state.strategy.tagEnumList,
+        tagEnumList: this.$store.state.strategy.tagEnumList
       }).then((res) => {
-        this.treeData = res.data.data;
-      });
+        this.treeData = res.data.data
+      })
     },
-    preview(index) {
+    preview (index) {
       const params = {
         strategyId: this.$store.state.strategy.strategyId,
         managerMessageList: [
-          this.$store.state.strategy.managerMessageList[index],
+          this.$store.state.strategy.managerMessageList[index]
         ],
         sitConditions: this.$store.state.strategy.sitConditions,
         groupId: this.$store.state.strategy.groupId,
-        strategyName: this.$store.state.strategy.strategyName,
-      };
+        strategyName: this.$store.state.strategy.strategyName
+      }
       viewManagerMessage(params).then((res) => {
-        this.message = res.data.data;
-      });
-      this.messageListVisible = true;
+        this.message = res.data.data
+      })
+      this.messageListVisible = true
     },
-    handleNodeClick(data) {
+    handleNodeClick (data) {
       if (data.tagFieldName) {
         if (
           this.$store.state.strategy.managerMessageList[this.num]
@@ -398,7 +398,7 @@ export default {
         ) {
           this.$store.state.strategy.managerMessageList[
             this.num
-          ].messageContent = "#" + data.tagName + "#";
+          ].messageContent = '#' + data.tagName + '#'
         } else if (data.pname) {
           this.$store.state.strategy.managerMessageList[
             this.num
@@ -406,15 +406,15 @@ export default {
             this.$store.state.strategy.managerMessageList[
               this.num
             ].messageContent.slice(0, this.blur) +
-            "#" +
+            '#' +
             data.pname +
-            "," +
+            ',' +
             data.tagName +
-            "#" +
+            '#' +
             this.$store.state.strategy.managerMessageList[
               this.num
-            ].messageContent.slice(this.blur);
-          this.blur += data.tagName.length + 3 + data.pname.length;
+            ].messageContent.slice(this.blur)
+          this.blur += data.tagName.length + 3 + data.pname.length
         } else {
           this.$store.state.strategy.managerMessageList[
             this.num
@@ -422,32 +422,32 @@ export default {
             this.$store.state.strategy.managerMessageList[
               this.num
             ].messageContent.slice(0, this.blur) +
-            "#" +
+            '#' +
             data.tagName +
-            "#" +
+            '#' +
             this.$store.state.strategy.managerMessageList[
               this.num
-            ].messageContent.slice(this.blur);
-          this.blur += data.tagName.length + 2;
+            ].messageContent.slice(this.blur)
+          this.blur += data.tagName.length + 2
         }
         if (
           this.$store.state.strategy.managerMessageList[this.num].tagFieldName
         ) {
           this.$store.state.strategy.managerMessageList[
             this.num
-          ].tagFieldName += "#" + data.tagFieldName + "#";
+          ].tagFieldName += '#' + data.tagFieldName + '#'
         } else {
           this.$store.state.strategy.managerMessageList[this.num].tagFieldName =
-            "#" + data.tagFieldName + "#";
+            '#' + data.tagFieldName + '#'
         }
       }
     },
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.tagName.indexOf(value) !== -1;
-    },
-  },
-};
+    filterNode (value, data) {
+      if (!value) return true
+      return data.tagName.indexOf(value) !== -1
+    }
+  }
+}
 </script>
 <style scoped lang="less">
 .setMessage {

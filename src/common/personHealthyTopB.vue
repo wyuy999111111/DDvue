@@ -102,11 +102,11 @@
 </template>
 <script>
 export default {
-  props: ["params"],
-  data() {
-    return {};
-  },
-};
+  props: ['params'],
+  data () {
+    return {}
+  }
+}
 </script>
 <style lang="less" scoped>
 #personHeathyTop {

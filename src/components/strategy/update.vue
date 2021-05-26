@@ -743,10 +743,10 @@
 </template>
 
 <script>
-import HeadTitle from "../../common/HeadTitle";
-import Action from "./components/action";
-import CronUi from "./components/cron/cron-ui/index";
-import AdminSend from "./components/adminSend";
+import HeadTitle from '../../common/HeadTitle'
+import Action from './components/action'
+import CronUi from './components/cron/cron-ui/index'
+import AdminSend from './components/adminSend'
 import {
   findAllTagClassAndTagCustom,
   findAllTags,
@@ -759,181 +759,181 @@ import {
   cronParse,
   strategyUpdate,
   findAllTagsMessage,
-  updateJobStatus,
-} from "@/api/getApi";
+  updateJobStatus
+} from '@/api/getApi'
 import {
   getGroupTemplates,
-  addTagGroupTemplate,
+  addTagGroupTemplate
   // , getGroupId
-} from "@/api/nameList";
+} from '@/api/nameList'
 
 export default {
-  name: "asd",
+  name: 'asd',
   components: {
     HeadTitle,
     Action,
     CronUi,
-    AdminSend,
+    AdminSend
   },
-  data() {
+  data () {
     return {
       message: {
         nowNum: 0,
         nowList: {
-          tagName: "",
+          tagName: '',
           enumValueList: [],
-          nameAdd: "",
+          nameAdd: ''
         },
-        list: [],
+        list: []
       },
       managerMessageList: [
         {
-          messageContent: "",
-          managerMessage: "",
+          messageContent: '',
+          managerMessage: '',
           manageIdList: [],
-          text: "总公司",
-          sendMethod: "1",
+          text: '总公司',
+          sendMethod: '1'
         },
         {
-          messageContent: "",
-          managerMessage: "",
+          messageContent: '',
+          managerMessage: '',
           manageIdList: [],
-          text: "分公司",
-          sendMethod: "1",
+          text: '分公司',
+          sendMethod: '1'
         },
         {
-          messageContent: "",
-          managerMessage: "",
+          messageContent: '',
+          managerMessage: '',
           manageIdList: [],
-          text: "中支公司",
-          sendMethod: "1",
-        },
+          text: '中支公司',
+          sendMethod: '1'
+        }
       ],
       messageSetVisible: false,
-      sendShow: "",
+      sendShow: '',
       checkListWeek: [],
       checkListMonth: [],
       monthList: [],
       sendEles: [],
-      radio: "day",
+      radio: 'day',
       sendVisible: false,
-      templateName: "",
+      templateName: '',
       getFenZuNum: 0,
       getTemplateNameVisible: false,
-      filterTree: "",
+      filterTree: '',
       tagNamesList: [],
       tageNameVisible: false,
       option: [],
       form: {}, // 条件数据
       situationList: [1], // 情况数据
-      newData: "123",
+      newData: '123',
       testInp: 123,
-      result: "",
+      result: '',
       resultForm: {
-        cpmEveryStartCron: "",
-        cpmEveryEndCron: "",
+        cpmEveryStartCron: '',
+        cpmEveryEndCron: ''
       },
-      filterText: "",
+      filterText: '',
       defaultProps: {
-        children: "child",
-        label: "name",
+        children: 'child',
+        label: 'name'
       },
-      cron: "",
-      cornResult: "",
+      cron: '',
+      cornResult: '',
       error: false,
-      loading: false,
-    };
+      loading: false
+    }
   },
-  created() {
+  created () {
     for (let i = 1; i < 32; i++) {
-      this.monthList.push(i.toString());
+      this.monthList.push(i.toString())
     }
     if (
-      this.$store.state.strategy.dockSystems === "3" ||
-      this.$store.state.strategy.dockSystems === "2"
+      this.$store.state.strategy.dockSystems === '3' ||
+      this.$store.state.strategy.dockSystems === '2'
     ) {
-      this.disabled = false;
+      this.disabled = false
     } else {
-      this.disabled = true;
+      this.disabled = true
     }
-    this.getData();
+    this.getData()
     this.$store.state.strategy = {
       // 策略部分
       groupList: [], // 弹出框选项树
       switch: false,
       sitConditions: [], // 策略动作
       sitStratrgyTegTags: [], // 关注指标
-      strategyName: "",
-      groupId: "",
-      strategyDesc: "",
-      strategyStartTime: "",
-      strategyEndTime: "",
-      dockSystems: "",
+      strategyName: '',
+      groupId: '',
+      strategyDesc: '',
+      strategyStartTime: '',
+      strategyEndTime: '',
+      dockSystems: '',
       tagNames: [],
       tagIds: [],
-      cron: "",
-      sendType: "",
+      cron: '',
+      sendType: '',
       strategyVisible: false,
-      getFenZuNum: "",
-      disabled: false,
-    };
+      getFenZuNum: '',
+      disabled: false
+    }
     selectGroup().then((res) => {
-      console.log(res.data.data);
-      this.option = res.data.data;
-    });
+      console.log(res.data.data)
+      this.option = res.data.data
+    })
     if (this.$route.query.firId) {
       getStrategyReturnDate(this.$route.query.firId).then((res) => {
-        this.$store.state.strategy = res.data.data;
-        if (res.data.data.messageCronType === "1") {
+        this.$store.state.strategy = res.data.data
+        if (res.data.data.messageCronType === '1') {
           // 每周
-          this.checkListWeek = res.data.data.sendDay.split(",");
-          this.radio = "week";
-        } else if (res.data.data.messageCronType === "2") {
+          this.checkListWeek = res.data.data.sendDay.split(',')
+          this.radio = 'week'
+        } else if (res.data.data.messageCronType === '2') {
           // 每月
-          this.checkListMonth = res.data.data.sendDay.split(",");
-          this.radio = "month";
+          this.checkListMonth = res.data.data.sendDay.split(',')
+          this.radio = 'month'
         } else {
-          this.radio = "day";
+          this.radio = 'day'
         }
         if (res.data.data.exceptionDay) {
-          this.sendEles = res.data.data.exceptionDay.split(",");
+          this.sendEles = res.data.data.exceptionDay.split(',')
         }
-        this.message.list = res.data.data.tagEnumList;
+        this.message.list = res.data.data.tagEnumList
         if (res.data.data.tagEnumList[0]) {
-          this.message.nowList = res.data.data.tagEnumList[0];
+          this.message.nowList = res.data.data.tagEnumList[0]
         }
-        this.sendFrequency();
+        this.sendFrequency()
         for (let i = 0; i < res.data.data.sitStratrgyTegTags.length; i++) {
           getGroupTemplates({
-            tagId: res.data.data.sitStratrgyTegTags[i].id,
+            tagId: res.data.data.sitStratrgyTegTags[i].id
           }).then((res) => {
             this.$store.state.strategy.sitStratrgyTegTags[i].option =
-              res.data.data;
-          });
+              res.data.data
+          })
         }
-      });
+      })
     }
   },
   watch: {
-    filterText(val) {
-      this.$refs.treeStrategy.filter(val);
+    filterText (val) {
+      this.$refs.treeStrategy.filter(val)
     },
-    "$store.state.strategy.dockSystems"() {
+    '$store.state.strategy.dockSystems' () {
       if (
-        this.$store.state.strategy.dockSystems === "3" ||
-        this.$store.state.strategy.dockSystems === "2"
+        this.$store.state.strategy.dockSystems === '3' ||
+        this.$store.state.strategy.dockSystems === '2'
       ) {
-        this.disabled = false;
+        this.disabled = false
       } else {
-        this.disabled = true;
+        this.disabled = true
       }
     },
-    "$store.state.strategy.groupId"() {
+    '$store.state.strategy.groupId' () {
       findAllTagClassAndTagCustom(this.$store.state.strategy.groupId).then(
         (res) => {
-          this.$store.state.strategy.groupList = res.data.data;
+          this.$store.state.strategy.groupList = res.data.data
         }
-      );
+      )
       // let newArr = this.$store.state.strategy.sitConditions.slice(0)
       // let newArrT = this.$store.state.strategy.sitStratrgyTegTags.slice(0)
       // newArr = []
@@ -941,37 +941,37 @@ export default {
       // this.$store.state.strategy.sitConditions = newArr
       // this.$store.state.strategy.sitStratrgyTegTags = newArrT
       findAllTags(this.$store.state.strategy.groupId).then((res) => {
-        this.$store.state.strategy.groupListAll = res.data.data;
-      });
+        this.$store.state.strategy.groupListAll = res.data.data
+      })
       findAllTagsMessage(this.$store.state.strategy.groupId).then((res) => {
-        this.$store.state.strategy.messageList = res.data.data;
-      });
+        this.$store.state.strategy.messageList = res.data.data
+      })
     },
-    filterTree(val) {
-      this.$refs.treeMessage.filter(val);
+    filterTree (val) {
+      this.$refs.treeMessage.filter(val)
     },
-    "$store.state.strategy.cron"() {
+    '$store.state.strategy.cron' () {
       if (this.$store.state.strategy.cron.length !== 0) {
         cronParse(this.$store.state.strategy.cron).then((res) => {
-          this.cron = this.$store.state.strategy.cron + res.data.data;
-          console.log(this.cron);
-        });
+          this.cron = this.$store.state.strategy.cron + res.data.data
+          console.log(this.cron)
+        })
       }
-    },
+    }
   },
   methods: {
-    handleDelete(index) {
+    handleDelete (index) {
       // 删除列表
-      const arr = this.message.list.slice(0);
-      arr.splice(index, 1);
-      this.message.list = arr;
-      this.message.nowNum = this.message.list.length;
+      const arr = this.message.list.slice(0)
+      arr.splice(index, 1)
+      this.message.list = arr
+      this.message.nowNum = this.message.list.length
       this.message.nowList = {
-        tagName: "",
+        tagName: '',
         enumValueList: [],
-        nameAdd: "",
-      };
-      this.$store.state.strategy.tagEnumList = arr;
+        nameAdd: ''
+      }
+      this.$store.state.strategy.tagEnumList = arr
       for (
         let i = 0;
         i < this.$store.state.strategy.sitConditions.length;
@@ -979,39 +979,39 @@ export default {
       ) {
         const arr = this.$store.state.strategy.sitConditions[
           i
-        ].strategyTagEnumDtoList.slice(0);
-        arr.splice(index, 1);
+        ].strategyTagEnumDtoList.slice(0)
+        arr.splice(index, 1)
         this.$store.state.strategy.sitConditions[
           i
-        ].strategyTagEnumDtoList = arr;
+        ].strategyTagEnumDtoList = arr
       }
     },
-    handleChangeMessage(index) {
+    handleChangeMessage (index) {
       // 切换标签
-      this.message.nowNum = index;
-      const arr = JSON.parse(JSON.stringify(this.message.list[index]));
-      this.message.nowList = arr;
+      this.message.nowNum = index
+      const arr = JSON.parse(JSON.stringify(this.message.list[index]))
+      this.message.nowList = arr
     },
-    handleSubMessageList() {
+    handleSubMessageList () {
       // 保存标签
-      let can = true;
+      let can = true
       for (let i = 0; i < this.message.list.length; i++) {
         if (
           this.message.list[i].tagName === this.message.nowList.tagName &&
           this.message.nowNum !== i
         ) {
-          this.$message.warning("名称重复");
-          can = false;
-          return;
+          this.$message.warning('名称重复')
+          can = false
+          return
         }
       }
       if (!can) {
-        return;
+        return
       }
-      if (this.message.nowList.tagName === "") {
-        this.$message.warning("请输入统计指标名称");
+      if (this.message.nowList.tagName === '') {
+        this.$message.warning('请输入统计指标名称')
       } else if (this.message.nowList.enumValueList.length === 0) {
-        this.$message.warning("请添加枚举值");
+        this.$message.warning('请添加枚举值')
       } else {
         for (
           let i = 0;
@@ -1021,92 +1021,92 @@ export default {
           this.$store.state.strategy.sitConditions[
             i
           ].strategyTagEnumDtoList.push({
-            enumValue: "",
-          });
+            enumValue: ''
+          })
         }
-        const arr = this.message.list.slice(0);
-        arr[this.message.nowNum] = this.message.nowList;
-        this.message.list = arr;
-        this.$store.state.strategy.tagEnumList = arr;
-        console.log(this.$store.state.strategy);
+        const arr = this.message.list.slice(0)
+        arr[this.message.nowNum] = this.message.nowList
+        this.message.list = arr
+        this.$store.state.strategy.tagEnumList = arr
+        console.log(this.$store.state.strategy)
       }
     },
-    handleAddMessageList() {
+    handleAddMessageList () {
       // 添加枚举值
-      let canAdd = true;
-      const str = this.message.nowList.nameAdd.replace(/\s*/g, "");
-      console.log(str);
+      let canAdd = true
+      const str = this.message.nowList.nameAdd.replace(/\s*/g, '')
+      console.log(str)
       if (str.length === 0) {
-        this.$message.warning("枚举值不能为空");
-        return;
+        this.$message.warning('枚举值不能为空')
+        return
       } else {
-        this.message.nowList.nameAdd = str;
+        this.message.nowList.nameAdd = str
       }
       for (let i = 0; i < this.message.nowList.enumValueList.length; i++) {
         if (
           this.message.nowList.nameAdd === this.message.nowList.enumValueList[i]
         ) {
-          this.$message.warning("枚举值有重复");
-          canAdd = false;
-          return;
+          this.$message.warning('枚举值有重复')
+          canAdd = false
+          return
         }
       }
       if (canAdd) {
-        const enumValueList = this.message.nowList.enumValueList;
-        enumValueList.push(this.message.nowList.nameAdd);
-        this.message.nowList.enumValueList = enumValueList;
-        this.message.nowList.nameAdd = "";
+        const enumValueList = this.message.nowList.enumValueList
+        enumValueList.push(this.message.nowList.nameAdd)
+        this.message.nowList.enumValueList = enumValueList
+        this.message.nowList.nameAdd = ''
       }
     },
-    deleteMessageList(res) {
+    deleteMessageList (res) {
       // 删除枚举值
-      this.message.nowList.enumValueList.splice(res.$index, 1);
+      this.message.nowList.enumValueList.splice(res.$index, 1)
     },
-    addMessageList() {
+    addMessageList () {
       // 新增标签
       this.message.nowList = {
-        tagName: "",
+        tagName: '',
         enumValueList: [],
-        nameAdd: "",
-      };
-      this.message.nowNum = this.message.list.length;
+        nameAdd: ''
+      }
+      this.message.nowNum = this.message.list.length
     },
-    messageSet() {
+    messageSet () {
       // 标签弹窗
-      this.messageSetVisible = true;
+      this.messageSetVisible = true
     },
-    sendFrequency() {
-      let str = "";
-      if (this.radio === "day") {
-        this.$store.state.strategy.messageCronType = 0;
-        str += "根据策略频率每日发送";
-      } else if (this.radio === "month") {
-        this.$store.state.strategy.messageCronType = 2;
-        this.$store.state.strategy.sendDay = this.checkListMonth.toString();
-        str += "根据策略频率每月";
-        str += "<" + this.$store.state.strategy.sendDay + ">" + "发送";
+    sendFrequency () {
+      let str = ''
+      if (this.radio === 'day') {
+        this.$store.state.strategy.messageCronType = 0
+        str += '根据策略频率每日发送'
+      } else if (this.radio === 'month') {
+        this.$store.state.strategy.messageCronType = 2
+        this.$store.state.strategy.sendDay = this.checkListMonth.toString()
+        str += '根据策略频率每月'
+        str += '<' + this.$store.state.strategy.sendDay + '>' + '发送'
       } else {
-        this.$store.state.strategy.messageCronType = 1;
-        this.$store.state.strategy.sendDay = this.checkListWeek.toString();
-        str += "根据策略频率每周";
-        str += "<" + this.$store.state.strategy.sendDay + ">" + "发送";
+        this.$store.state.strategy.messageCronType = 1
+        this.$store.state.strategy.sendDay = this.checkListWeek.toString()
+        str += '根据策略频率每周'
+        str += '<' + this.$store.state.strategy.sendDay + '>' + '发送'
       }
-      if (this.sendEles.length === 1 && this.sendEles[0] === "6") {
-        str += "<周六不发>";
-      } else if (this.sendEles.length === 1 && this.sendEles[0] === "7") {
-        str += "<周日不发>";
+      if (this.sendEles.length === 1 && this.sendEles[0] === '6') {
+        str += '<周六不发>'
+      } else if (this.sendEles.length === 1 && this.sendEles[0] === '7') {
+        str += '<周日不发>'
       } else if (this.sendEles.length === 2) {
-        str += "<周末不发>";
+        str += '<周末不发>'
       }
-      this.sendVisible = false;
-      this.sendShow = str;
+      this.sendVisible = false
+      this.sendShow = str
       this.$store.state.strategy.exceptionDay =
-        this.sendEles.length !== 0 ? this.sendEles.toString() : 0;
+        this.sendEles.length !== 0 ? this.sendEles.toString() : 0
     },
-    sendOpen() {
-      this.sendVisible = true;
+    sendOpen () {
+      this.sendVisible = true
     },
-    handleChangeTemplates(e, index) {
+    handleChangeTemplates (e, index) {
       for (
         let i = 0;
         i < this.$store.state.strategy.sitStratrgyTegTags[index].option.length;
@@ -1121,103 +1121,103 @@ export default {
             index
           ].sitStrategyTags = this.$store.state.strategy.sitStratrgyTegTags[
             index
-          ].option[i].groupSwarmsList;
+          ].option[i].groupSwarmsList
         }
       }
     },
-    editTagName() {
+    editTagName () {
       if (this.$store.state.strategy.groupId) {
-        this.tageNameVisible = true;
-        console.log(this.$store.state.strategy.tagIds);
+        this.tageNameVisible = true
+        console.log(this.$store.state.strategy.tagIds)
         setTimeout(() => {
           this.$refs.treeMessage.setCheckedKeys(
             this.$store.state.strategy.tagIds
-          );
-        }, 0);
+          )
+        }, 0)
       } else {
-        this.$message.warning("请先选择群组");
+        this.$message.warning('请先选择群组')
       }
     },
-    goBack() {
-      this.$router.push("/strategy/query");
+    goBack () {
+      this.$router.push('/strategy/query')
     },
-    gotoGroupManagement() {
+    gotoGroupManagement () {
       if (this.$store.state.strategy.groupId) {
         setStrategyReturnDate(this.$store.state.strategy).then((res) => {
           this.$router.push(
-            "/groupManagement/see?history=/strategy/update&firId=" +
+            '/groupManagement/see?history=/strategy/update&firId=' +
               res.data.data +
-              "&groupId=" +
+              '&groupId=' +
               this.$store.state.strategy.groupId
-          );
-        });
+          )
+        })
       } else {
-        this.$message.error("先选择群组");
+        this.$message.error('先选择群组')
       }
     },
-    handleBlue() {
-      const getInput = document.getElementById("inputGet");
-      console.log(getInput.selectionStart);
+    handleBlue () {
+      const getInput = document.getElementById('inputGet')
+      console.log(getInput.selectionStart)
     },
-    getFenZu(index, item) {
-      this.getFenZuNum = index;
+    getFenZu (index, item) {
+      this.getFenZuNum = index
       this.$store.state.strategy.sitStratrgyTegTags[
         index
-      ].factorDialogVisible = true;
+      ].factorDialogVisible = true
     },
-    groupClose(index) {
+    groupClose (index) {
       // this.$store.state.strategy.sitStratrgyTegTags[index].sitStrategyTags = this.$store.state.strategy.sitStratrgyTegTags[index].sitStrategyTags.filter(item => item.itemIndex !== this.itemIndex)
-      const newArr = this.$store.state.strategy.sitStratrgyTegTags.slice(0);
-      console.log(newArr);
-      newArr[this.getFenZuNum].sitStrategyTags.splice(index, 1);
-      this.$store.state.strategy.sitStratrgyTegTags = newArr;
+      const newArr = this.$store.state.strategy.sitStratrgyTegTags.slice(0)
+      console.log(newArr)
+      newArr[this.getFenZuNum].sitStrategyTags.splice(index, 1)
+      this.$store.state.strategy.sitStratrgyTegTags = newArr
     },
-    addGroup(index) {
-      console.log(123);
+    addGroup (index) {
+      console.log(123)
       this.$store.state.strategy.sitStratrgyTegTags[index].sitStrategyTags.push(
         {
-          startValue: "",
-          endValue: "",
-          leftOperator: "<",
-          rightOperator: "<=",
-          groupName: "",
+          startValue: '',
+          endValue: '',
+          leftOperator: '<',
+          rightOperator: '<=',
+          groupName: ''
         }
-      );
+      )
     },
-    handleNodeClick(data) {
-      const dataOn = this.$refs.treeMessage.getCheckedNodes();
-      console.log(dataOn);
-      const arrName = [];
-      const arrTagFieldName = [];
-      const arrId = [];
-      this.$store.state.strategy.sitStrategySendTagfields = [];
+    handleNodeClick (data) {
+      const dataOn = this.$refs.treeMessage.getCheckedNodes()
+      console.log(dataOn)
+      const arrName = []
+      const arrTagFieldName = []
+      const arrId = []
+      this.$store.state.strategy.sitStrategySendTagfields = []
       for (let i = 0; i < dataOn.length; i++) {
         if (dataOn[i].tagFieldName) {
-          arrName.push(dataOn[i].name);
-          arrTagFieldName.push(dataOn[i].tagFieldName);
-          arrId.push(dataOn[i].id);
+          arrName.push(dataOn[i].name)
+          arrTagFieldName.push(dataOn[i].tagFieldName)
+          arrId.push(dataOn[i].id)
           this.$store.state.strategy.sitStrategySendTagfields.push({
             tagChinaName: dataOn[i].name,
             tagFieldName: dataOn[i].tagFieldName,
-            id: dataOn[i].id,
-          });
+            id: dataOn[i].id
+          })
         }
       }
-      this.$store.state.strategy.tagNames = arrName;
-      this.$store.state.strategy.tagFieldName = arrTagFieldName;
-      this.$store.state.strategy.tagIds = arrId;
+      this.$store.state.strategy.tagNames = arrName
+      this.$store.state.strategy.tagFieldName = arrTagFieldName
+      this.$store.state.strategy.tagIds = arrId
     },
-    filterNode(value, data) {
-      console.log(value, data);
-      if (!value) return true;
-      return data.name.indexOf(value) !== -1;
+    filterNode (value, data) {
+      console.log(value, data)
+      if (!value) return true
+      return data.name.indexOf(value) !== -1
     },
-    strategyUpdate(e) {
-      console.log(this.$store.state.strategy.messageCronType);
-      if (this.$store.state.strategy.messageCronType !== "0") {
-        if (this.$store.state.strategy.sendDay.length === "0") {
-          this.$message.warning("消息发送频率频率至少添加一个日期");
-          return;
+    strategyUpdate (e) {
+      console.log(this.$store.state.strategy.messageCronType)
+      if (this.$store.state.strategy.messageCronType !== '0') {
+        if (this.$store.state.strategy.sendDay.length === '0') {
+          this.$message.warning('消息发送频率频率至少添加一个日期')
+          return
         }
       }
       for (
@@ -1242,58 +1242,58 @@ export default {
                 i
               ].strategyTagEnumDtoList[
                 k
-              ].tagName = this.$store.state.strategy.tagEnumList[j].tagName;
+              ].tagName = this.$store.state.strategy.tagEnumList[j].tagName
             }
           }
         }
       }
-      if (this.$store.state.strategy.strategyName === "") {
-        this.$message.warning("请输入策略名称");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyName === '') {
+        this.$message.warning('请输入策略名称')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.groupId === "") {
-        this.$message.warning("请输入策略群组");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.groupId === '') {
+        this.$message.warning('请输入策略群组')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.strategyStartTime === "") {
-        this.$message.warning("请输入开始日期");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyStartTime === '') {
+        this.$message.warning('请输入开始日期')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.strategyEndTime === "") {
-        this.$message.warning("请输入结束日期");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyEndTime === '') {
+        this.$message.warning('请输入结束日期')
+        this.error = true
+        return
       }
       if (
         this.$store.state.strategy.strategyStartTime >=
         this.$store.state.strategy.strategyEndTime
       ) {
-        this.$message.warning("开始时间要小于结束时间");
-        return;
+        this.$message.warning('开始时间要小于结束时间')
+        return
       }
-      if (this.$store.state.strategy.dockSystems === "") {
-        this.$message.warning("请输入对接系统");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.dockSystems === '') {
+        this.$message.warning('请输入对接系统')
+        this.error = true
+        return
       }
       if (
-        this.$store.state.strategy.dockSystems === "2" ||
-        this.$store.state.strategy.dockSystems === "3"
+        this.$store.state.strategy.dockSystems === '2' ||
+        this.$store.state.strategy.dockSystems === '3'
       ) {
-        console.log("判断");
-        if (this.$store.state.strategy.sendType === "") {
-          this.$message.warning("请输入发送方式");
-          this.error = true;
-          return;
+        console.log('判断')
+        if (this.$store.state.strategy.sendType === '') {
+          this.$message.warning('请输入发送方式')
+          this.error = true
+          return
         }
       }
-      if (this.$store.state.strategy.cron === "") {
-        this.$message.warning("请输入频率");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.cron === '') {
+        this.$message.warning('请输入频率')
+        this.error = true
+        return
       }
       for (
         let i = 0;
@@ -1309,42 +1309,42 @@ export default {
         ) {
           if (
             this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-              .tagValueType !== "2"
+              .tagValueType !== '2'
           ) {
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagValue === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagValue === ""
+                .tagValue === ''
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .sitOperator === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .sitOperator === ""
+                .sitOperator === ''
             ) {
               if (
                 this.$store.state.strategy.sitConditions[i].sitConditionFactors[
                   j
-                ].tagValueType !== "2"
+                ].tagValueType !== '2'
               ) {
                 this.$message.warning(
                   `情况${i + 1}里${
                     this.$store.state.strategy.sitConditions[i]
                       .sitConditionFactors[j].name
                   }因子没写运算符`
-                );
-                this.error = true;
-                return;
+                )
+                this.error = true
+                return
               }
             }
             if (
@@ -1354,25 +1354,25 @@ export default {
                 ].tagValue
               ) &&
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagValueType === "1"
+                .tagValueType === '1'
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子值不是数字`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
           } else if (
             this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-              .tagValueType === "2"
+              .tagValueType === '2'
           ) {
             console.log(
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues
-            );
+            )
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues.length === 0
@@ -1382,57 +1382,57 @@ export default {
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
           } else {
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagEnumValues === ""
+                .tagEnumValues === ''
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .sitOperator === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .sitOperator === ""
+                .sitOperator === ''
             ) {
               if (
                 this.$store.state.strategy.sitConditions[i].sitConditionFactors[
                   j
-                ].tagValueType !== "2"
+                ].tagValueType !== '2'
               ) {
                 this.$message.warning(
                   `情况${i + 1}里${
                     this.$store.state.strategy.sitConditions[i]
                       .sitConditionFactors[j].name
                   }因子没写运算符`
-                );
-                this.error = true;
-                return;
+                )
+                this.error = true
+                return
               }
             }
           }
         }
-        this.error = false;
+        this.error = false
       }
       for (
         let i = 0;
         i < this.$store.state.strategy.sitStratrgyTegTags.length;
         i++
       ) {
-        if (this.$store.state.strategy.sitStratrgyTegTags[i].tagValue === "2") {
+        if (this.$store.state.strategy.sitStratrgyTegTags[i].tagValue === '2') {
           for (
             let j = 0;
             j <
@@ -1443,25 +1443,25 @@ export default {
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].groupName === ""
+              ].groupName === ''
             ) {
-              this.$message.warning(`指标里${i + 1}里分组${j + 1}名称为空`);
-              this.error = true;
-              return;
+              this.$message.warning(`指标里${i + 1}里分组${j + 1}名称为空`)
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].startValue === "" &&
+              ].startValue === '' &&
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].endValue === ""
+              ].endValue === ''
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}至少填写一个值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               isNaN(
@@ -1471,8 +1471,8 @@ export default {
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}开始值不是数字`
-              );
-              this.error = true;
+              )
+              this.error = true
             }
             if (
               isNaN(
@@ -1482,92 +1482,92 @@ export default {
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}结束值不是数字`
-              );
-              this.error = true;
+              )
+              this.error = true
             }
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags
                 .length === 0
             ) {
-              this.$message.warning(`指标里${i + 1}里分组数为0`);
-              this.error = true;
-              return;
+              this.$message.warning(`指标里${i + 1}里分组数为0`)
+              this.error = true
+              return
             }
           }
         }
-        this.error = false;
+        this.error = false
       }
       if (this.error) {
-        return;
+        return
       }
       if (this.$store.state.strategy.strategyStartTime) {
         this.$store.state.strategy.strategyStartTime =
-          this.$store.state.strategy.strategyStartTime + " 00:00:00";
+          this.$store.state.strategy.strategyStartTime + ' 00:00:00'
       }
       if (this.$store.state.strategy.strategyEndTime) {
         this.$store.state.strategy.strategyEndTime =
-          this.$store.state.strategy.strategyEndTime + " 23:59:59";
+          this.$store.state.strategy.strategyEndTime + ' 23:59:59'
       }
-      const params = JSON.parse(JSON.stringify(this.$store.state.strategy));
+      const params = JSON.parse(JSON.stringify(this.$store.state.strategy))
       for (let i = 0; i < params.sitConditions.length; i++) {
-        if (params.sitConditions[i].sitMessagev === "") {
-          const num = i + 1;
-          this.$message.error("情况" + num + "未设置消息模板");
-          return;
+        if (params.sitConditions[i].sitMessagev === '') {
+          const num = i + 1
+          this.$message.error('情况' + num + '未设置消息模板')
+          return
         }
       }
       for (let i = 0; i < params.sitStratrgyTegTags.length; i++) {
         if (
-          params.sitStratrgyTegTags[i].tagValue !== "2" &&
+          params.sitStratrgyTegTags[i].tagValue !== '2' &&
           params.sitStratrgyTegTags[i].sitStrategyTags.length === 0
         ) {
-          this.$message.error(params.sitStratrgyTegTags[i].name + "未设置分组");
-          return;
+          this.$message.error(params.sitStratrgyTegTags[i].name + '未设置分组')
+          return
         }
       }
       if (this.$store.state.strategy.sitStratrgyTegTags.length === 0) {
-        this.$confirm("还没添加关注指标 是否继续提交", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning",
+        this.$confirm('还没添加关注指标 是否继续提交', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
         }).then(() => {
           if (this.$store.state.strategy.strategyStartTime) {
             this.$store.state.strategy.strategyStartTime =
-              this.$store.state.strategy.strategyStartTime + " 00:00:00";
+              this.$store.state.strategy.strategyStartTime + ' 00:00:00'
           }
           if (this.$store.state.strategy.strategyEndTime) {
             this.$store.state.strategy.strategyEndTime =
-              this.$store.state.strategy.strategyEndTime + " 23:59:59";
+              this.$store.state.strategy.strategyEndTime + ' 23:59:59'
           }
-          params.strategyStatus = e;
-          this.loading = true;
+          params.strategyStatus = e
+          this.loading = true
           for (let i = 0; i < params.managerMessageList.length; i++) {
             if (params.managerMessageList[i].messageContent == null) {
-              params.managerMessageList[i].messageContent = "";
+              params.managerMessageList[i].messageContent = ''
             }
             if (params.managerMessageList[i].tagFieldNames == null) {
-              params.managerMessageList[i].tagFieldNames = "";
+              params.managerMessageList[i].tagFieldNames = ''
             }
           }
-          console.log(params.managerMessageList);
+          console.log(params.managerMessageList)
           strategyUpdate(params).then((res) => {
-            this.loading = false;
+            this.loading = false
             if (res.data.code === 0) {
-              this.$router.push({ path: "/strategy/query" });
+              this.$router.push({ path: '/strategy/query' })
             } else {
-              this.$message.error(res.data.msg);
+              this.$message.error(res.data.msg)
             }
-          });
-        });
+          })
+        })
       } else {
         for (
           let i = 0;
           i < this.$store.state.strategy.sitStratrgyTegTags.length;
           i++
         ) {
-          const paramsList = [];
+          const paramsList = []
           if (
-            this.$store.state.strategy.sitStratrgyTegTags[i].tagValue !== "2"
+            this.$store.state.strategy.sitStratrgyTegTags[i].tagValue !== '2'
           ) {
             for (
               let j = 0;
@@ -1587,14 +1587,14 @@ export default {
                 leftOperator: this.$store.state.strategy.sitStratrgyTegTags[i]
                   .sitStrategyTags[j].leftOperator,
                 rightOperator: this.$store.state.strategy.sitStratrgyTegTags[i]
-                  .sitStrategyTags[j].rightOperator,
-              });
+                  .sitStrategyTags[j].rightOperator
+              })
             }
           }
           checkAddGroup(paramsList).then((res) => {
             if (res.data.code && res.data.code !== 0) {
-              this.$message.warning(res.data.msg);
-              this.finAddError = true;
+              this.$message.warning(res.data.msg)
+              this.finAddError = true
             } else if (!this.finAddError) {
               if (
                 i ===
@@ -1602,45 +1602,45 @@ export default {
               ) {
                 if (this.$store.state.strategy.strategyStartTime) {
                   this.$store.state.strategy.strategyStartTime =
-                    this.$store.state.strategy.strategyStartTime + " 00:00:00";
+                    this.$store.state.strategy.strategyStartTime + ' 00:00:00'
                 }
                 if (this.$store.state.strategy.strategyEndTime) {
                   this.$store.state.strategy.strategyEndTime =
-                    this.$store.state.strategy.strategyEndTime + " 23:59:59";
+                    this.$store.state.strategy.strategyEndTime + ' 23:59:59'
                 }
                 if (e) {
-                  params.strategyStatus = e;
+                  params.strategyStatus = e
                 }
-                this.loading = true;
+                this.loading = true
                 for (let i = 0; i < params.managerMessageList.length; i++) {
                   if (params.managerMessageList[i].messageContent == null) {
-                    params.managerMessageList[i].messageContent = "";
+                    params.managerMessageList[i].messageContent = ''
                   }
                   if (params.managerMessageList[i].tagFieldNames == null) {
-                    params.managerMessageList[i].tagFieldNames = "";
+                    params.managerMessageList[i].tagFieldNames = ''
                   }
                 }
                 strategyUpdate(params)
                   .then((res) => {
-                    this.loading = false;
+                    this.loading = false
                     if (res.data.code === 0) {
-                      this.$router.push({ path: "/strategy/query" });
+                      this.$router.push({ path: '/strategy/query' })
                     } else {
-                      this.$message.error(res.data.msg);
+                      this.$message.error(res.data.msg)
                     }
                   })
                   .catch(() => {
-                    this.loading = true;
-                  });
+                    this.loading = true
+                  })
               }
             }
-          });
+          })
         }
       }
     },
-    updateJobStatus(e) {
-      function findEnumvalue(e) {
-        return e.enumValue === "";
+    updateJobStatus (e) {
+      function findEnumvalue (e) {
+        return e.enumValue === ''
       }
       for (
         let i = 0;
@@ -1648,62 +1648,62 @@ export default {
         i++
       ) {
         if (
-          this.$store.state.strategy.sitConditions[i].sitMessagev === "" &&
+          this.$store.state.strategy.sitConditions[i].sitMessagev === '' &&
           this.$store.state.strategy.sitConditions[
             i
           ].strategyTagEnumDtoList.findIndex(findEnumvalue) === 0
         ) {
-          this.$message.error("消息模板和标签设置不能同时为空");
-          return;
+          this.$message.error('消息模板和标签设置不能同时为空')
+          return
         }
       }
-      if (this.$store.state.strategy.strategyName === "") {
-        this.$message.warning("请输入策略名称");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyName === '') {
+        this.$message.warning('请输入策略名称')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.groupId === "") {
-        this.$message.warning("请输入策略群组");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.groupId === '') {
+        this.$message.warning('请输入策略群组')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.strategyStartTime === "") {
-        this.$message.warning("请输入开始日期");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyStartTime === '') {
+        this.$message.warning('请输入开始日期')
+        this.error = true
+        return
       }
-      if (this.$store.state.strategy.strategyEndTime === "") {
-        this.$message.warning("请输入结束日期");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.strategyEndTime === '') {
+        this.$message.warning('请输入结束日期')
+        this.error = true
+        return
       }
       if (
         this.$store.state.strategy.strategyStartTime >=
         this.$store.state.strategy.strategyEndTime
       ) {
-        this.$message.warning("开始时间要小于结束时间");
-        return;
+        this.$message.warning('开始时间要小于结束时间')
+        return
       }
-      if (this.$store.state.strategy.dockSystems === "") {
-        this.$message.warning("请输入对接系统");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.dockSystems === '') {
+        this.$message.warning('请输入对接系统')
+        this.error = true
+        return
       }
       if (
-        this.$store.state.strategy.dockSystems === "2" ||
-        this.$store.state.strategy.dockSystems === "3"
+        this.$store.state.strategy.dockSystems === '2' ||
+        this.$store.state.strategy.dockSystems === '3'
       ) {
-        console.log("判断");
-        if (this.$store.state.strategy.sendType === "") {
-          this.$message.warning("请输入发送方式");
-          this.error = true;
-          return;
+        console.log('判断')
+        if (this.$store.state.strategy.sendType === '') {
+          this.$message.warning('请输入发送方式')
+          this.error = true
+          return
         }
       }
-      if (this.$store.state.strategy.cron === "") {
-        this.$message.warning("请输入频率");
-        this.error = true;
-        return;
+      if (this.$store.state.strategy.cron === '') {
+        this.$message.warning('请输入频率')
+        this.error = true
+        return
       }
       for (
         let i = 0;
@@ -1719,42 +1719,42 @@ export default {
         ) {
           if (
             this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-              .tagValueType !== "2"
+              .tagValueType !== '2'
           ) {
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagValue === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagValue === ""
+                .tagValue === ''
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .sitOperator === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .sitOperator === ""
+                .sitOperator === ''
             ) {
               if (
                 this.$store.state.strategy.sitConditions[i].sitConditionFactors[
                   j
-                ].tagValueType !== "2"
+                ].tagValueType !== '2'
               ) {
                 this.$message.warning(
                   `情况${i + 1}里${
                     this.$store.state.strategy.sitConditions[i]
                       .sitConditionFactors[j].name
                   }因子没写运算符`
-                );
-                this.error = true;
-                return;
+                )
+                this.error = true
+                return
               }
             }
             if (
@@ -1764,25 +1764,25 @@ export default {
                 ].tagValue
               ) &&
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagValueType === "1"
+                .tagValueType === '1'
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子值不是数字`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
           } else if (
             this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-              .tagValueType === "2"
+              .tagValueType === '2'
           ) {
             console.log(
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues
-            );
+            )
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues.length === 0
@@ -1792,57 +1792,57 @@ export default {
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
           } else {
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .tagEnumValues === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .tagEnumValues === ""
+                .tagEnumValues === ''
             ) {
               this.$message.warning(
                 `情况${i + 1}里${
                   this.$store.state.strategy.sitConditions[i]
                     .sitConditionFactors[j].name
                 }因子没写值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
                 .sitOperator === undefined ||
               this.$store.state.strategy.sitConditions[i].sitConditionFactors[j]
-                .sitOperator === ""
+                .sitOperator === ''
             ) {
               if (
                 this.$store.state.strategy.sitConditions[i].sitConditionFactors[
                   j
-                ].tagValueType !== "2"
+                ].tagValueType !== '2'
               ) {
                 this.$message.warning(
                   `情况${i + 1}里${
                     this.$store.state.strategy.sitConditions[i]
                       .sitConditionFactors[j].name
                   }因子没写运算符`
-                );
-                this.error = true;
-                return;
+                )
+                this.error = true
+                return
               }
             }
           }
         }
-        this.error = false;
+        this.error = false
       }
       for (
         let i = 0;
         i < this.$store.state.strategy.sitStratrgyTegTags.length;
         i++
       ) {
-        if (this.$store.state.strategy.sitStratrgyTegTags[i].tagValue === "2") {
+        if (this.$store.state.strategy.sitStratrgyTegTags[i].tagValue === '2') {
           for (
             let j = 0;
             j <
@@ -1853,25 +1853,25 @@ export default {
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].groupName === ""
+              ].groupName === ''
             ) {
-              this.$message.warning(`指标里${i + 1}里分组${j + 1}名称为空`);
-              this.error = true;
-              return;
+              this.$message.warning(`指标里${i + 1}里分组${j + 1}名称为空`)
+              this.error = true
+              return
             }
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].startValue === "" &&
+              ].startValue === '' &&
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags[
                 j
-              ].endValue === ""
+              ].endValue === ''
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}至少填写一个值`
-              );
-              this.error = true;
-              return;
+              )
+              this.error = true
+              return
             }
             if (
               isNaN(
@@ -1881,8 +1881,8 @@ export default {
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}开始值不是数字`
-              );
-              this.error = true;
+              )
+              this.error = true
             }
             if (
               isNaN(
@@ -1892,88 +1892,88 @@ export default {
             ) {
               this.$message.warning(
                 `指标里${i + 1}里分组${j + 1}结束值不是数字`
-              );
-              this.error = true;
+              )
+              this.error = true
             }
             if (
               this.$store.state.strategy.sitStratrgyTegTags[i].sitStrategyTags
                 .length === 0
             ) {
-              this.$message.warning(`指标里${i + 1}里分组数为0`);
-              this.error = true;
-              return;
+              this.$message.warning(`指标里${i + 1}里分组数为0`)
+              this.error = true
+              return
             }
           }
         }
-        this.error = false;
+        this.error = false
       }
       if (this.error) {
-        return;
+        return
       }
       if (this.$store.state.strategy.strategyStartTime) {
         this.$store.state.strategy.strategyStartTime =
-          this.$store.state.strategy.strategyStartTime + " 00:00:00";
+          this.$store.state.strategy.strategyStartTime + ' 00:00:00'
       }
       if (this.$store.state.strategy.strategyEndTime) {
         this.$store.state.strategy.strategyEndTime =
-          this.$store.state.strategy.strategyEndTime + " 23:59:59";
+          this.$store.state.strategy.strategyEndTime + ' 23:59:59'
       }
-      const params = JSON.parse(JSON.stringify(this.$store.state.strategy));
+      const params = JSON.parse(JSON.stringify(this.$store.state.strategy))
       for (let i = 0; i < params.sitConditions.length; i++) {
-        if (params.sitConditions[i].sitMessagev === "") {
-          const num = i + 1;
-          this.$message.error("情况" + num + "未设置消息模板");
-          return;
+        if (params.sitConditions[i].sitMessagev === '') {
+          const num = i + 1
+          this.$message.error('情况' + num + '未设置消息模板')
+          return
         }
       }
       for (let i = 0; i < params.sitStratrgyTegTags.length; i++) {
         if (
-          params.sitStratrgyTegTags[i].tagValue !== "2" &&
+          params.sitStratrgyTegTags[i].tagValue !== '2' &&
           params.sitStratrgyTegTags[i].sitStrategyTags.length === 0
         ) {
-          this.$message.error(params.sitStratrgyTegTags[i].name + "未设置分组");
-          return;
+          this.$message.error(params.sitStratrgyTegTags[i].name + '未设置分组')
+          return
         }
       }
       if (this.$store.state.strategy.sitStratrgyTegTags.length === 0) {
-        this.$confirm("还没添加关注指标 是否继续提交", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning",
+        this.$confirm('还没添加关注指标 是否继续提交', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
         })
           .then(() => {
             if (this.$store.state.strategy.strategyStartTime) {
               this.$store.state.strategy.strategyStartTime =
-                this.$store.state.strategy.strategyStartTime + " 00:00:00";
+                this.$store.state.strategy.strategyStartTime + ' 00:00:00'
             }
             if (this.$store.state.strategy.strategyEndTime) {
               this.$store.state.strategy.strategyEndTime =
-                this.$store.state.strategy.strategyEndTime + " 23:59:59";
+                this.$store.state.strategy.strategyEndTime + ' 23:59:59'
             }
-            params.strategyStatus = e;
-            this.loading = true;
+            params.strategyStatus = e
+            this.loading = true
             updateJobStatus(params).then((res) => {
-              this.loading = false;
+              this.loading = false
               if (res.data.code === 0) {
-                this.$router.push({ path: "/strategy/query" });
+                this.$router.push({ path: '/strategy/query' })
               } else {
-                this.$message.error(res.data.msg);
+                this.$message.error(res.data.msg)
               }
-            });
+            })
           })
           .catch(() => {
-            this.loading = false;
-            console.log("catch");
-          });
+            this.loading = false
+            console.log('catch')
+          })
       } else {
         for (
           let i = 0;
           i < this.$store.state.strategy.sitStratrgyTegTags.length;
           i++
         ) {
-          const paramsList = [];
+          const paramsList = []
           if (
-            this.$store.state.strategy.sitStratrgyTegTags[i].tagValue !== "2"
+            this.$store.state.strategy.sitStratrgyTegTags[i].tagValue !== '2'
           ) {
             for (
               let j = 0;
@@ -1993,14 +1993,14 @@ export default {
                 leftOperator: this.$store.state.strategy.sitStratrgyTegTags[i]
                   .sitStrategyTags[j].leftOperator,
                 rightOperator: this.$store.state.strategy.sitStratrgyTegTags[i]
-                  .sitStrategyTags[j].rightOperator,
-              });
+                  .sitStrategyTags[j].rightOperator
+              })
             }
           }
           checkAddGroup(paramsList).then((res) => {
             if (res.data.code && res.data.code !== 0) {
-              this.$message.warning(res.data.msg);
-              this.finAddError = true;
+              this.$message.warning(res.data.msg)
+              this.finAddError = true
             } else if (!this.finAddError) {
               if (
                 i ===
@@ -2008,35 +2008,35 @@ export default {
               ) {
                 if (this.$store.state.strategy.strategyStartTime) {
                   this.$store.state.strategy.strategyStartTime =
-                    this.$store.state.strategy.strategyStartTime + " 00:00:00";
+                    this.$store.state.strategy.strategyStartTime + ' 00:00:00'
                 }
                 if (this.$store.state.strategy.strategyEndTime) {
                   this.$store.state.strategy.strategyEndTime =
-                    this.$store.state.strategy.strategyEndTime + " 23:59:59";
+                    this.$store.state.strategy.strategyEndTime + ' 23:59:59'
                 }
                 if (e) {
-                  params.strategyStatus = e;
+                  params.strategyStatus = e
                 }
-                this.loading = true;
+                this.loading = true
                 updateJobStatus(params)
                   .then((res) => {
-                    this.loading = false;
+                    this.loading = false
                     if (res.data.code === 0) {
-                      this.$router.push({ path: "/strategy/query" });
+                      this.$router.push({ path: '/strategy/query' })
                     } else {
-                      this.$message.error(res.data.msg);
+                      this.$message.error(res.data.msg)
                     }
                   })
                   .catch(() => {
-                    this.loading = false;
-                  });
+                    this.loading = false
+                  })
               }
             }
-          });
+          })
         }
       }
     },
-    setSitStrategyTags(e) {
+    setSitStrategyTags (e) {
       for (
         let j = 0;
         j <
@@ -2046,25 +2046,25 @@ export default {
       ) {
         if (
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].groupName === ""
+            .sitStrategyTags[j].groupName === ''
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}名称为空`
-          );
-          this.error = true;
-          return;
+          )
+          this.error = true
+          return
         }
         if (
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].startValue === "" &&
+            .sitStrategyTags[j].startValue === '' &&
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].endValue === ""
+            .sitStrategyTags[j].endValue === ''
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}至少填写一个值`
-          );
-          this.error = true;
-          return;
+          )
+          this.error = true
+          return
         }
         if (
           isNaN(
@@ -2074,8 +2074,8 @@ export default {
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}开始值不是数字`
-          );
-          this.error = true;
+          )
+          this.error = true
         }
         if (
           isNaN(
@@ -2085,20 +2085,20 @@ export default {
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}结束值不是数字`
-          );
-          this.error = true;
+          )
+          this.error = true
         }
       }
       if (
         this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
           .sitStrategyTags.length === 0
       ) {
-        this.$message.warning(`指标里${this.getFenZuNum + 1}里分组数为0`);
-        this.error = true;
-        return;
+        this.$message.warning(`指标里${this.getFenZuNum + 1}里分组数为0`)
+        this.error = true
+        return
       }
-      this.error = false;
-      const paramsList = [];
+      this.error = false
+      const paramsList = []
       for (
         let j = 0;
         j <
@@ -2121,25 +2121,25 @@ export default {
           ].sitStrategyTags[j].leftOperator,
           rightOperator: this.$store.state.strategy.sitStratrgyTegTags[
             this.getFenZuNum
-          ].sitStrategyTags[j].rightOperator,
-        });
+          ].sitStrategyTags[j].rightOperator
+        })
       }
       checkAddGroup(paramsList).then((res) => {
         if (res.data.code !== 0) {
-          this.$message.warning(res.data.msg);
-          return;
+          this.$message.warning(res.data.msg)
+          return
         } else {
           this.$store.state.strategy.sitStratrgyTegTags[
             e
-          ].factorDialogVisible = false;
+          ].factorDialogVisible = false
         }
-        console.log(res);
-      });
+        console.log(res)
+      })
     },
-    handleAddTagGroupTemplate() {
+    handleAddTagGroupTemplate () {
       console.log(
         this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-      );
+      )
       for (
         let j = 0;
         j <
@@ -2149,25 +2149,25 @@ export default {
       ) {
         if (
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].groupName === ""
+            .sitStrategyTags[j].groupName === ''
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}名称为空`
-          );
-          this.error = true;
-          return;
+          )
+          this.error = true
+          return
         }
         if (
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].startValue === "" &&
+            .sitStrategyTags[j].startValue === '' &&
           this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
-            .sitStrategyTags[j].endValue === ""
+            .sitStrategyTags[j].endValue === ''
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}至少填写一个值`
-          );
-          this.error = true;
-          return;
+          )
+          this.error = true
+          return
         }
         if (
           isNaN(
@@ -2177,8 +2177,8 @@ export default {
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}开始值不是数字`
-          );
-          this.error = true;
+          )
+          this.error = true
         }
         if (
           isNaN(
@@ -2188,20 +2188,20 @@ export default {
         ) {
           this.$message.warning(
             `指标里${this.getFenZuNum + 1}里分组${j + 1}结束值不是数字`
-          );
-          this.error = true;
+          )
+          this.error = true
         }
       }
       if (
         this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
           .sitStrategyTags.length === 0
       ) {
-        this.$message.warning(`指标里${this.getFenZuNum + 1}里分组数为0`);
-        this.error = true;
-        return;
+        this.$message.warning(`指标里${this.getFenZuNum + 1}里分组数为0`)
+        this.error = true
+        return
       }
-      this.error = false;
-      const paramsList = [];
+      this.error = false
+      const paramsList = []
       for (
         let j = 0;
         j <
@@ -2224,25 +2224,25 @@ export default {
           ].sitStrategyTags[j].leftOperator,
           rightOperator: this.$store.state.strategy.sitStratrgyTegTags[
             this.getFenZuNum
-          ].sitStrategyTags[j].rightOperator,
-        });
+          ].sitStrategyTags[j].rightOperator
+        })
       }
       checkAddGroup(paramsList).then((res) => {
         if (res.data.code === 0) {
-          this.getTemplateNameVisible = true;
-          return false;
+          this.getTemplateNameVisible = true
+          return false
         } else {
-          this.$message.warning(res.data.msg);
-          this.jishiNum += 1;
+          this.$message.warning(res.data.msg)
+          this.jishiNum += 1
         }
-      });
+      })
     },
-    delTemplate() {
-      this.templateName = "";
-      this.getTemplateNameVisible = false;
+    delTemplate () {
+      this.templateName = ''
+      this.getTemplateNameVisible = false
     },
-    addOne() {
-      const paramsList = [];
+    addOne () {
+      const paramsList = []
       for (
         let j = 0;
         j <
@@ -2265,8 +2265,8 @@ export default {
           ].sitStrategyTags[j].leftOperator,
           rightOperator: this.$store.state.strategy.sitStratrgyTegTags[
             this.getFenZuNum
-          ].sitStrategyTags[j].rightOperator,
-        });
+          ].sitStrategyTags[j].rightOperator
+        })
       }
       const params = {
         groupSwarmsList: paramsList,
@@ -2274,79 +2274,79 @@ export default {
           .id,
         tagName: this.$store.state.strategy.sitStratrgyTegTags[this.getFenZuNum]
           .name,
-        templateName: this.templateName,
-      };
+        templateName: this.templateName
+      }
       addTagGroupTemplate(params).then((ress) => {
         if (ress.data.code === 0) {
-          this.$message.success(ress.data.msg);
-          this.getTemplateNameVisible = false;
+          this.$message.success(ress.data.msg)
+          this.getTemplateNameVisible = false
           this.$store.state.strategy.sitStratrgyTegTags[
             this.getFenZuNum
-          ].optionIndex = this.templateName;
-          this.templateName = "";
-          console.log("456");
+          ].optionIndex = this.templateName
+          this.templateName = ''
+          console.log('456')
           getGroupTemplates({
             tagId: this.$store.state.strategy.sitStratrgyTegTags[
               this.getFenZuNum
-            ].id,
+            ].id
           }).then((res) => {
-            const arr = this.$store.state.strategy.sitStratrgyTegTags.slice(0);
-            arr[this.getFenZuNum].option = res.data.data;
-            this.$store.state.strategy.sitStratrgyTegTags = arr;
-          });
+            const arr = this.$store.state.strategy.sitStratrgyTegTags.slice(0)
+            arr[this.getFenZuNum].option = res.data.data
+            this.$store.state.strategy.sitStratrgyTegTags = arr
+          })
         } else {
-          this.$message.error(ress.data.msg);
+          this.$message.error(ress.data.msg)
         }
-      });
+      })
     },
-    open() {
-      console.log(this.$refs);
-      this.$refs.CronUi.dialogVisible = true;
+    open () {
+      console.log(this.$refs)
+      this.$refs.CronUi.dialogVisible = true
     },
-    open2() {
-      this.$refs.CronUiSecond.dialogVisible = true;
+    open2 () {
+      this.$refs.CronUiSecond.dialogVisible = true
     },
     // 一次一个表达式---最终产生出来的cron表达式
-    resultValue(data) {
-      this.$store.state.strategy.cron = data;
+    resultValue (data) {
+      this.$store.state.strategy.cron = data
     },
     // 一次两个表达式---规则配置-确定
-    confirmCron(data) {
-      console.log("cron结果", data);
-      this.resultForm.cpmEveryStartCron = data.result;
-      this.resultForm.cpmEveryEndCron = data.resultEnd;
+    confirmCron (data) {
+      console.log('cron结果', data)
+      this.resultForm.cpmEveryStartCron = data.result
+      this.resultForm.cpmEveryEndCron = data.resultEnd
     },
-    getData() {
+    getData () {
       if (this.$route.query.strategyId) {
-        const params = { strategyId: this.$route.query.strategyId };
+        const params = { strategyId: this.$route.query.strategyId }
         getStrategySelectOne(params).then((res) => {
           // cronParse(this.$store.state.strategy.cron).then((res) => {
           //   this.cron = this.$store.state.strategy.cron + res.data.data
           // })
-          this.message.list = res.data.data.tagEnumList;
+          this.message.list = res.data.data.tagEnumList
           if (res.data.data.tagEnumList[0]) {
-            this.message.nowList = res.data.data.tagEnumList[0];
+            this.message.nowList = res.data.data.tagEnumList[0]
           }
-          this.form = res.data.data;
-          this.$store.state.strategy = res.data.data;
-          this.$store.state.strategy.switch = true;
-          this.$store.state.switch = true;
+          this.form = res.data.data
+          this.$store.state.strategy = res.data.data
+          this.$store.state.strategy.switch = true
+          this.$store.state.switch = true
           // console.log(res.data.data.corn)
-          if (res.data.data.messageCronType === "1") {
+          if (res.data.data.messageCronType === '1') {
             // 每周
-            console.log("每周");
-            this.checkListWeek = res.data.data.sendDay.split(",");
-            this.radio = "week";
-          } else if (res.data.data.messageCronType === "2") {
+            console.log('每周')
+            this.checkListWeek = res.data.data.sendDay.split(',')
+            this.radio = 'week'
+          } else if (res.data.data.messageCronType === '2') {
             // 每月
-            this.checkListMonth = res.data.data.sendDay.split(",");
-            this.radio = "month";
+            this.checkListMonth = res.data.data.sendDay.split(',')
+            this.radio = 'month'
           } else {
-            console.log("每天");
-            this.radio = "day";
+            console.log('每天')
+            this.radio = 'day'
           }
           if (res.data.data.exceptionDay) {
-            this.sendEles = res.data.data.exceptionDay.split(",");
+            this.sendEles = res.data.data.exceptionDay.split(',')
           }
           for (
             let i = 0;
@@ -2372,102 +2372,102 @@ export default {
                   this.$store.state.strategy.sitConditions[
                     i
                   ].strategyTagEnumDtoList.splice(j, 0, {
-                    enumValue: "",
-                    tagName: this.$store.state.strategy.tagEnumList[j].tagName,
-                  });
+                    enumValue: '',
+                    tagName: this.$store.state.strategy.tagEnumList[j].tagName
+                  })
                 }
               }
             }
           }
-          console.log(this.$store.state.strategy);
-          this.sendFrequency();
+          console.log(this.$store.state.strategy)
+          this.sendFrequency()
           for (let i = 0; i < res.data.data.sitStratrgyTegTags.length; i++) {
             getGroupTemplates({
-              tagId: res.data.data.sitStratrgyTegTags[i].id,
+              tagId: res.data.data.sitStratrgyTegTags[i].id
             }).then((res) => {
               this.$store.state.strategy.sitStratrgyTegTags[i].option =
-                res.data.data;
-            });
+                res.data.data
+            })
           }
-        });
+        })
       }
       findAllTagClassAndTagCustom(this.$store.state.strategy.groupId).then(
         (res) => {
-          this.$store.state.strategy.groupList = res.data.data;
+          this.$store.state.strategy.groupList = res.data.data
         }
-      );
+      )
       findAllTags().then((res) => {
-        this.$store.state.strategy.groupListAll = res.data.data;
-      });
+        this.$store.state.strategy.groupListAll = res.data.data
+      })
       findStrategyTagClassAndTag().then((res) => {
-        this.$store.state.strategy.groupListNumEnum = res.data.data;
-      });
-      this.sendFrequency();
+        this.$store.state.strategy.groupListNumEnum = res.data.data
+      })
+      this.sendFrequency()
       // getGroupId().then((ress) => {
       //   this.$store.state.strategy.strategyId = ress.data.data
       // })
     },
-    change(data) {
-      this.newData = data;
+    change (data) {
+      this.newData = data
     },
-    handleClick() {
-      console.log(this.testInp);
+    handleClick () {
+      console.log(this.testInp)
     },
-    addAction() {
+    addAction () {
       // 添加情况
-      const arr = [];
+      const arr = []
       for (let i = 0; i < this.$store.state.strategy.tagEnumList.length; i++) {
         arr.push({
-          enumValue: "",
-        });
+          enumValue: ''
+        })
       }
       this.$store.state.strategy.sitConditions.push({
         sitConditionFactors: [],
-        sitMessagev: "",
+        sitMessagev: '',
         messageVisible: false,
         factorDialogVisible: false,
         templateList: [],
-        strategyTagEnumDtoList: arr,
-      });
+        strategyTagEnumDtoList: arr
+      })
     },
-    addStrategy() {
+    addStrategy () {
       // 弹出添加指标框
       // const _this = this
-      this.$store.state.strategy.strategyVisible = true;
-      console.log(this.$store.state.strategy);
-      const idArr = [];
+      this.$store.state.strategy.strategyVisible = true
+      console.log(this.$store.state.strategy)
+      const idArr = []
       for (
         let i = 0;
         i < this.$store.state.strategy.sitStratrgyTegTags.length;
         i++
       ) {
-        idArr.push(this.$store.state.strategy.sitStratrgyTegTags[i].id);
+        idArr.push(this.$store.state.strategy.sitStratrgyTegTags[i].id)
       }
-      console.log(idArr);
+      console.log(idArr)
       this.$nextTick(() => {
-        console.log(this.$refs.treeStrategy);
-        this.$refs.treeStrategy.setCheckedKeys(idArr);
-      });
+        console.log(this.$refs.treeStrategy)
+        this.$refs.treeStrategy.setCheckedKeys(idArr)
+      })
     },
-    addStrategyTags() {
+    addStrategyTags () {
       // 添加关注指标
-      const oldData = this.$store.state.strategy.sitStratrgyTegTags;
-      const ybData = this.$refs.treeStrategy.getCheckedNodes();
-      const newData = [];
-      const resultList = [];
+      const oldData = this.$store.state.strategy.sitStratrgyTegTags
+      const ybData = this.$refs.treeStrategy.getCheckedNodes()
+      const newData = []
+      const resultList = []
       for (let i = 0; i < ybData.length; i++) {
         if (ybData[i].tagFieldName) {
-          newData.push(ybData[i]);
+          newData.push(ybData[i])
         }
       }
       for (let i = 0; i < newData.length; i++) {
-        let num = -10;
+        let num = -10
         for (let j = 0; j < oldData.length; j++) {
           if (newData[i].id === oldData[j].id) {
-            num = j;
+            num = j
           }
         }
-        console.log(num);
+        console.log(num)
         if (num !== -10) {
           resultList.push({
             id: oldData[num].id,
@@ -2477,10 +2477,10 @@ export default {
             tagType: newData[i].tagType,
             sitStrategyTags: oldData[num].sitStrategyTags,
             factorDialogVisible: false,
-            sortNum: oldData[num].sortNum,
-          });
+            sortNum: oldData[num].sortNum
+          })
         } else {
-          console.log(i);
+          console.log(i)
           resultList.push({
             id: newData[i].id,
             tagValue: newData[i].tagValueType,
@@ -2489,42 +2489,42 @@ export default {
             // groupType: newData[i].tagFieldName,
             sitStrategyTags: [],
             factorDialogVisible: false,
-            sortNum: Date.parse(new Date()),
-          });
+            sortNum: Date.parse(new Date())
+          })
         }
       }
-      function object(a, b) {
-        return b.sortNum - a.sortNum;
+      function object (a, b) {
+        return b.sortNum - a.sortNum
       }
-      resultList.sort(object);
-      resultList.reverse();
-      this.$store.state.strategy.sitStratrgyTegTags = resultList;
-      this.$store.state.strategy.strategyVisible = false;
+      resultList.sort(object)
+      resultList.reverse()
+      this.$store.state.strategy.sitStratrgyTegTags = resultList
+      this.$store.state.strategy.strategyVisible = false
       for (let i = 0; i < resultList.length; i++) {
         getGroupTemplates({ tagId: resultList[i].id }).then((res) => {
           this.$store.state.strategy.sitStratrgyTegTags[i].option =
-            res.data.data;
-        });
+            res.data.data
+        })
       }
     },
-    deleteFactor(index) {
+    deleteFactor (index) {
       // 删除指标
-      console.log(index);
-      const newArr = this.$store.state.strategy.sitStratrgyTegTags.slice(0);
-      newArr.splice(index, 1);
-      this.$store.state.strategy.sitStratrgyTegTags = newArr;
+      console.log(index)
+      const newArr = this.$store.state.strategy.sitStratrgyTegTags.slice(0)
+      newArr.splice(index, 1)
+      this.$store.state.strategy.sitStratrgyTegTags = newArr
       // this.$store.state.strategy.sitStratrgyTegTags.splice(index, 1)
     },
-    tageNameVisibleShow() {
-      this.tageNameVisible = true;
+    tageNameVisibleShow () {
+      this.tageNameVisible = true
       setTimeout(() => {
         this.$refs.treeMessage.setCheckedKeys(
           this.$store.state.strategy.tagIds
-        );
-      }, 0);
-    },
-  },
-};
+        )
+      }, 0)
+    }
+  }
+}
 </script>
 <style scoped lang="less">
 /deep/ .el-button {

@@ -47,99 +47,99 @@
 
 <script>
 export default {
-  name: "specailChart",
-  props: ["params", "status"],
-  data() {
+  name: 'specailChart',
+  props: ['params', 'status'],
+  data () {
     return {
       use: [],
       GetWindowInfo: {
-        width: "",
+        width: ''
       },
-      xSize: 18,
-    };
+      xSize: 18
+    }
   },
-  created() {
-    window.addEventListener("resize", this.GetWindowInfo);
-    this.GetWindow();
+  created () {
+    window.addEventListener('resize', this.GetWindowInfo)
+    this.GetWindow()
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
-      this.roundChart();
-    }, 1100);
+      this.roundChart()
+    }, 1100)
   },
   watch: {
-    status() {
-      this.roundChart();
-    },
+    status () {
+      this.roundChart()
+    }
   },
   methods: {
-    GetWindow() {
-      this.GetWindowInfo.width = window.outerWidth;
+    GetWindow () {
+      this.GetWindowInfo.width = window.outerWidth
       if (this.GetWindowInfo.width === 1366) {
-        this.xSize = 14;
+        this.xSize = 14
       }
       if (this.GetWindowInfo.width === 1600) {
-        this.xSize = 16;
+        this.xSize = 16
       }
       if (this.GetWindowInfo.width === 1920) {
-        this.xSize = 18;
+        this.xSize = 18
       }
     },
-    roundChart() {
-      var roundChart = this.$refs.roundChart;
-      const myChart = this.$echarts.init(roundChart);
-      const _this = this;
-      this.use = _this.params;
-      console.log(_this.status);
+    roundChart () {
+      var roundChart = this.$refs.roundChart
+      const myChart = this.$echarts.init(roundChart)
+      const _this = this
+      this.use = _this.params
+      console.log(_this.status)
       const option = {
         color: _this.params.color,
         grid: {
-          top: "0px",
-          left: "0%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+          top: '0px',
+          left: '0%',
+          right: '0%',
+          bottom: '0%',
+          containLabel: true
         },
         tooltip: {
           show: true,
-          trigger: "item",
+          trigger: 'item'
           // formatter: (a) => {
           //   return a.data.name + "：" + a.data.value + "%";
           // },
         },
         series: [
           {
-            name: "",
-            type: "pie",
-            radius: ["60%", "80%"],
+            name: '',
+            type: 'pie',
+            radius: ['60%', '80%'],
             avoidLabelOverlap: false,
             label: {
               show: false,
-              position: "inner",
-              formatter: "{b}: {d}%",
-              color: "#000",
+              position: 'inner',
+              formatter: '{b}: {d}%',
+              color: '#000'
             },
             emphasis: {
               label: {
                 show: false,
-                fontSize: "12",
+                fontSize: '12'
                 // fontWeight: 'bold'
-              },
+              }
             },
             labelLine: {
-              show: false,
+              show: false
             },
-            data: _this.params.chartData,
-          },
-        ],
-      };
-      myChart.setOption(option);
-      window.addEventListener("resize", function () {
-        myChart.resize();
-      });
-    },
-  },
-};
+            data: _this.params.chartData
+          }
+        ]
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+  }
+}
 </script>
 
 <style lang='less' scoped>

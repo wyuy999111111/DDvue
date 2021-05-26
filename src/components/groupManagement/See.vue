@@ -888,24 +888,24 @@ import {
   checkTagName,
   formulaCheck,
   findSalesTagMemberPageGroup,
-  findGroupByGroupId,
-} from "@/api/getApi";
+  findGroupByGroupId
+} from '@/api/getApi'
 import {
   salesNameList,
   addSalesNameList,
-  delSalesNameList,
-} from "@/api/nameList";
+  delSalesNameList
+} from '@/api/nameList'
 
-import GroupManagementCard from "../../common/GroupManagementCard";
-import CustomCondition from "../../common/CustomCondition";
+import GroupManagementCard from '../../common/GroupManagementCard'
+import CustomCondition from '../../common/CustomCondition'
 
 export default {
-  name: "asd",
+  name: 'asd',
   components: {
     GroupManagementCard,
-    CustomCondition,
+    CustomCondition
   },
-  data() {
+  data () {
     return {
       // rules: {
       //   groupName: [
@@ -918,67 +918,67 @@ export default {
       //     { required: true, message: '群组类型不能为空', trigger: ['blur', 'change'] }
       //   ]
       // },
-      nameListNow: "0",
+      nameListNow: '0',
       listVisible: false,
       nameListWhite: {
         data: [],
-        addId: "",
-        findId: "",
-        pageNow: "",
-        pageSize: "",
-        total: "",
+        addId: '',
+        findId: '',
+        pageNow: '',
+        pageSize: '',
+        total: '',
         deleteList: [],
-        action: "",
+        action: ''
       },
-      groupId: "",
+      groupId: '',
       nameListBlack: {
         data: [],
-        addId: "",
-        findId: "",
-        pageNow: "",
-        pageSize: "",
-        total: "",
+        addId: '',
+        findId: '',
+        pageNow: '',
+        pageSize: '',
+        total: '',
         deleteList: [],
-        action: "",
+        action: ''
       },
       monitorInput: 0,
-      finType: "",
+      finType: '',
       bqVisible: false,
-      tabNow: "",
+      tabNow: '',
       user: [],
       idArr: [],
-      resultStr: "",
-      filterText: "",
-      checkList: ["姓名", "日期", "地址"],
-      fixedLeft: "-300px",
-      fixedLeftResult: "-300px",
-      fixedLeftResultThree: "-300px",
-      fixedLeftResultBq: "-300px",
+      resultStr: '',
+      filterText: '',
+      checkList: ['姓名', '日期', '地址'],
+      fixedLeft: '-300px',
+      fixedLeftResult: '-300px',
+      fixedLeftResultThree: '-300px',
+      fixedLeftResultBq: '-300px',
       data: [
         {
           id: 1,
-          label: "基本信息",
+          label: '基本信息',
           children: [
             {
               id: 4,
-              label: "个人信息",
+              label: '个人信息',
               children: [
                 {
-                  id: "年龄",
-                  label: "年龄",
+                  id: '年龄',
+                  label: '年龄'
                 },
                 {
-                  id: "性别",
-                  label: "性别",
+                  id: '性别',
+                  label: '性别'
                 },
                 {
-                  id: "入职时间",
-                  label: "入职时间",
-                },
-              ],
-            },
-          ],
-        },
+                  id: '入职时间',
+                  label: '入职时间'
+                }
+              ]
+            }
+          ]
+        }
       ],
       dataRe: [],
       dataReThreee: [],
@@ -988,8 +988,8 @@ export default {
       inputList: [{}],
       tableData: [],
       defaultProps: {
-        children: "child",
-        label: "name",
+        children: 'child',
+        label: 'name'
       },
       totalCount: 0,
       pageSize: 10,
@@ -1001,240 +1001,240 @@ export default {
       mechanismResult: [],
       props: {
         multiple: true,
-        children: "child",
-        label: "name",
-        value: "id",
+        children: 'child',
+        label: 'name',
+        value: 'id'
       },
       windowHeight: 0,
       arrTop: [],
-      filterTextCopy: "",
-      activeIndex: "1",
+      filterTextCopy: '',
+      activeIndex: '1',
       optionChart: [
         {
-          label: "柱状图",
-          value: "1",
+          label: '柱状图',
+          value: '1'
         },
         {
-          label: "条形图",
-          value: "2",
+          label: '条形图',
+          value: '2'
         },
         {
-          label: "饼图",
-          value: "3",
+          label: '饼图',
+          value: '3'
         },
         {
-          label: "环状图",
-          value: "4",
-        },
+          label: '环状图',
+          value: '4'
+        }
       ],
       dialogVisible: false,
-      groupingDetail: "",
+      groupingDetail: '',
       customLabelVisible: false, // 自定义标签
       customNow: 0,
       tagList: [
         {
-          groupFields: "",
-          tagName: "",
-          ifpercent: "0",
-          tagFieldName: "",
-          tagType: "1", // 1公式 2分组
+          groupFields: '',
+          tagName: '',
+          ifpercent: '0',
+          tagFieldName: '',
+          tagType: '1', // 1公式 2分组
           groupSwarmsList: [
             {
-              groupValue: "",
-              groupFields: "",
-              tagFieldName: "",
-              tagType: "", // 1公式 2分组
-            },
+              groupValue: '',
+              groupFields: '',
+              tagFieldName: '',
+              tagType: '' // 1公式 2分组
+            }
           ],
-          groupValue: "", // 公式
-          labelForm: "",
+          groupValue: '', // 公式
+          labelForm: '',
           grouping: [], // 分组
-          name: "",
-        },
+          name: ''
+        }
       ],
       customLabelNow: 0,
       submitVisible: false,
-      groupName: "",
-      groupDesc: "",
-      groupType: "",
+      groupName: '',
+      groupDesc: '',
+      groupType: '',
       dataReOld: [],
       treeData: [],
       resultListThree: [],
       mapNum: 0,
-      tabNowMap: "",
-      filterTextCopyTwo: "",
-      indexNow: "",
+      tabNowMap: '',
+      filterTextCopyTwo: '',
+      indexNow: '',
       error: false,
-      filterTextCopyThree: "",
-      returnList: "",
+      filterTextCopyThree: '',
+      returnList: '',
       salesTagMemberDto: [],
-      findGo: false,
-    };
+      findGo: false
+    }
   },
-  created() {
-    this.groupId = this.$route.query.groupId;
+  created () {
+    this.groupId = this.$route.query.groupId
     resultTagClassAndTag().then((res) => {
-      this.treeData = res.data.data;
-    });
+      this.treeData = res.data.data
+    })
     if (this.$route.query.groupId) {
-      const params = { groupId: this.$route.query.groupId };
+      const params = { groupId: this.$route.query.groupId }
       findGroupByGroupId(this.$route.query.groupId).then((res) => {
-        console.log(res.data.data);
-        this.returnList = res.data.data;
-      });
+        console.log(res.data.data)
+        this.returnList = res.data.data
+      })
       findGroupPortary({ groupId: this.$route.query.groupId }).then((res) => {
-        const newArr = [];
-        const resultList = res.data.data.slice(0);
-        function object(a, b) {
+        const newArr = []
+        const resultList = res.data.data.slice(0)
+        function object (a, b) {
           if (b.sortNum === a.sortNum) {
-            return a.id - b.id;
+            return a.id - b.id
           } else {
-            return a.sortNum - b.sortNum;
+            return a.sortNum - b.sortNum
           }
         }
-        resultList.sort(object);
-        this.resultList = resultList;
+        resultList.sort(object)
+        this.resultList = resultList
         for (let i = 0; i < res.data.data.length; i++) {
-          newArr.push(res.data.data[i].tagId);
+          newArr.push(res.data.data[i].tagId)
         }
-        this.$refs.treeCopy.setCheckedKeys(newArr);
+        this.$refs.treeCopy.setCheckedKeys(newArr)
         for (let i = 0; i < this.resultList.length; i++) {
-          this.hadnleSubmitSelf(this.resultList[i], i);
+          this.hadnleSubmitSelf(this.resultList[i], i)
         }
         // this.mapNum += 1
-      });
+      })
       // findGroupInfo(params).then((res) => {
       //   this.tableData = res.data.data.list
       //   this.totalCount = res.data.data.totalCount
       // })
       customTagList(params).then((res) => {
-        this.tagList = res.data.data;
-        const newArr = this.tagList.slice(0);
+        this.tagList = res.data.data
+        const newArr = this.tagList.slice(0)
         for (let i = 0; i < res.data.data.length; i++) {
-          newArr[i].tagNameCopy = this.tagList[i].tagName;
+          newArr[i].tagNameCopy = this.tagList[i].tagName
         }
-        this.tagList = newArr;
-      });
+        this.tagList = newArr
+      })
       findConditions(params).then((res) => {
-        this.findGo = !this.findGo;
-        this.groupName = res.data.data.groupName;
-        this.groupDesc = res.data.data.groupDesc;
-        this.groupType = res.data.data.groupType;
-        this.strategyList = res.data.data.strategyList;
-        this.resultListThree = res.data.data.resultList;
-        this.mapNum += 1;
-        const newArr = [];
-        const inputArr = [];
-        this.salesTagMemberDto = res.data.data.salesTagMemberDto;
+        this.findGo = !this.findGo
+        this.groupName = res.data.data.groupName
+        this.groupDesc = res.data.data.groupDesc
+        this.groupType = res.data.data.groupType
+        this.strategyList = res.data.data.strategyList
+        this.resultListThree = res.data.data.resultList
+        this.mapNum += 1
+        const newArr = []
+        const inputArr = []
+        this.salesTagMemberDto = res.data.data.salesTagMemberDto
         if (this.$route.query.share) {
           for (let i = 0; i < this.salesTagMemberDto.length; i++) {
             if (
-              this.salesTagMemberDto[i].name === "渠道" ||
-              this.salesTagMemberDto[i].name === "机构"
+              this.salesTagMemberDto[i].name === '渠道' ||
+              this.salesTagMemberDto[i].name === '机构'
             ) {
-              this.salesTagMemberDto[i].list = [];
-              this.salesTagMemberDto[i].mechanismResultList = [];
+              this.salesTagMemberDto[i].list = []
+              this.salesTagMemberDto[i].mechanismResultList = []
             }
           }
         }
-        this.$refs.tree.setCheckedKeys(newArr);
-        this.inputList = inputArr;
-        const arrThree = [];
+        this.$refs.tree.setCheckedKeys(newArr)
+        this.inputList = inputArr
+        const arrThree = []
         for (let i = 0; i < res.data.data.resultList.length; i++) {
-          arrThree.push(res.data.data.resultList[i].id);
+          arrThree.push(res.data.data.resultList[i].id)
         }
-        this.$refs.treeCopyThreeqqq.setCheckedKeys(arrThree);
+        this.$refs.treeCopyThreeqqq.setCheckedKeys(arrThree)
         // this.handleCheckChange()
         // this.monitorInput += 1
-      });
+      })
     }
-    this.windowHeight = document.documentElement.clientHeight - 80;
+    this.windowHeight = document.documentElement.clientHeight - 80
     findOrgByUser().then((res) => {
-      this.mechanismOption = res.data.data;
-    });
+      this.mechanismOption = res.data.data
+    })
     findChannel().then((res) => {
-      this.channelOption = res.data.data;
-    });
+      this.channelOption = res.data.data
+    })
     findUserRe().then((res) => {
       for (let i = 0; i < res.data.data.length; i++) {
-        if (res.data.data[i].resName === "群组画像") {
+        if (res.data.data[i].resName === '群组画像') {
           for (let j = 0; j < res.data.data[i].children.length; j++) {
-            if (res.data.data[i].children[j].resName === "群组创建") {
-              this.user = res.data.data[i].children[j].prmsIdentity;
+            if (res.data.data[i].children[j].resName === '群组创建') {
+              this.user = res.data.data[i].children[j].prmsIdentity
             }
           }
         }
         console.log(this.user)
       }
-    });
-    this.getData();
-    this.checkChange();
-    this.handleCheckChange();
+    })
+    this.getData()
+    this.checkChange()
+    this.handleCheckChange()
   },
   watch: {
-    checkList() {
-      this.checkChange();
+    checkList () {
+      this.checkChange()
     },
-    filterText(val) {
-      this.$refs.tree.filter(val);
+    filterText (val) {
+      this.$refs.tree.filter(val)
     },
-    filterTextCopy(val) {
+    filterTextCopy (val) {
       // 分布1
-      this.$refs.treeCopy.filter(val);
+      this.$refs.treeCopy.filter(val)
     },
-    filterTextCopyTwo(val) {
+    filterTextCopyTwo (val) {
       // 分布2
-      this.$refs.treeCopyThreeqqq.filter(val);
+      this.$refs.treeCopyThreeqqq.filter(val)
     },
-    filterTextCopyThree(val) {
-      this.$refs.treeCopyThree.filter(val);
+    filterTextCopyThree (val) {
+      this.$refs.treeCopyThree.filter(val)
     },
-    tabNow() {
+    tabNow () {
       setTimeout(() => {
-        this.tabNowMap = this.tabNow;
-      }, 0);
+        this.tabNowMap = this.tabNow
+      }, 0)
     },
-    mapNum() {
+    mapNum () {
       if (this.mapNum === 2) {
         this.resultList.map((item, index) => {
-          this.hadnleSubmitSelf(item, index);
-        });
+          this.hadnleSubmitSelf(item, index)
+        })
       }
-    },
+    }
   },
-  mounted() {
-    const _this = this;
-    document.addEventListener("click", function (e) {
+  mounted () {
+    const _this = this
+    document.addEventListener('click', function (e) {
       if (
-        e.target.className !== "" &&
-        e.target.className !== "fixedHead" &&
-        e.target.className !== "el-input__inner" &&
-        e.target.className !== "fixedResult fixedaaa" &&
-        e.target.className !== "el-tree__empty-block" &&
-        e.target.className !== "el-row is-justify-end el-row--flex"
+        e.target.className !== '' &&
+        e.target.className !== 'fixedHead' &&
+        e.target.className !== 'el-input__inner' &&
+        e.target.className !== 'fixedResult fixedaaa' &&
+        e.target.className !== 'el-tree__empty-block' &&
+        e.target.className !== 'el-row is-justify-end el-row--flex'
       ) {
-        _this.fixedResultNone();
-        _this.fixedResultNoneThree();
+        _this.fixedResultNone()
+        _this.fixedResultNoneThree()
       }
-    });
+    })
   },
   methods: {
-    handleList() {
-      this.listVisible = true;
-      this.nameListWhiteFind();
-      this.nameListBlackFind();
+    handleList () {
+      this.listVisible = true
+      this.nameListWhiteFind()
+      this.nameListBlackFind()
     },
-    goBack() {
-      console.log(this.$route.query);
+    goBack () {
+      console.log(this.$route.query)
       this.$router.push({
-        path: `${this.$route.query.history}?firId=${this.$route.query.firId}`,
-      });
+        path: `${this.$route.query.history}?firId=${this.$route.query.firId}`
+      })
       // this.$router.push(this.$route.query.history + '?strategyIdBack=' + this.$route.query.strategyIdBack)
     },
-    groupStart() {
-      this.groupStart = "";
-      this.tagList[this.customNow].groupValue = "";
-      this.tagList[this.customNow].groupSwarmsList[0].tagFieldName = "";
+    groupStart () {
+      this.groupStart = ''
+      this.tagList[this.customNow].groupValue = ''
+      this.tagList[this.customNow].groupSwarmsList[0].tagFieldName = ''
     },
     // handleChange () {
     //   if (this.tagList[this.customNow].tagType === '1') {
@@ -1243,246 +1243,246 @@ export default {
     //     this.dataReThreee = this.dataReFz
     //   }
     // },
-    handleCheckTagName(e) {
+    handleCheckTagName (e) {
       checkTagName(e).then((res) => {
         if (res.data.code !== 0) {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    addDetailSure() {
+    addDetailSure () {
       for (let i = 0; i < this.groupingDetail.groupSwarmsList.length; i++) {
         if (isNaN(this.groupingDetail.groupSwarmsList[i].endValue)) {
-          this.$message.warning(`${i + 1}分组结束值不是数字`);
-          return;
+          this.$message.warning(`${i + 1}分组结束值不是数字`)
+          return
         }
         if (isNaN(this.groupingDetail.groupSwarmsList[i].startValue)) {
-          this.$message.warning(`${i + 1}分组开始值不是数字`);
-          return;
+          this.$message.warning(`${i + 1}分组开始值不是数字`)
+          return
         }
-        if (this.groupingDetail.groupSwarmsList[i].groupName === "") {
-          this.$message.warning("未设置分组名");
-          return;
+        if (this.groupingDetail.groupSwarmsList[i].groupName === '') {
+          this.$message.warning('未设置分组名')
+          return
         }
         if (
-          this.groupingDetail.groupSwarmsList[i].startValue === "" &&
-          this.groupingDetail.groupSwarmsList[i].endValue === ""
+          this.groupingDetail.groupSwarmsList[i].startValue === '' &&
+          this.groupingDetail.groupSwarmsList[i].endValue === ''
         ) {
-          this.$message.warning("至少设置一个值");
-          return;
+          this.$message.warning('至少设置一个值')
+          return
         }
       }
-      this.dialogVisible = false;
+      this.dialogVisible = false
     },
-    delDetail(index) {
-      const resultList = this.resultList.slice(0);
-      var newArr = JSON.parse(JSON.stringify(this.groupingDetail));
-      newArr.groupSwarmsList.splice(index, 1);
-      this.groupingDetail = newArr;
-      resultList[this.indexNow].groupSwarmsList.splice(index, 1);
-      this.resultList = resultList;
+    delDetail (index) {
+      const resultList = this.resultList.slice(0)
+      var newArr = JSON.parse(JSON.stringify(this.groupingDetail))
+      newArr.groupSwarmsList.splice(index, 1)
+      this.groupingDetail = newArr
+      resultList[this.indexNow].groupSwarmsList.splice(index, 1)
+      this.resultList = resultList
     },
-    groupClose(index) {
-      const newArr = this.tagList.slice(0);
-      newArr[this.customNow].grouping.splice(index, 1);
-      this.tagList = newArr;
+    groupClose (index) {
+      const newArr = this.tagList.slice(0)
+      newArr[this.customNow].grouping.splice(index, 1)
+      this.tagList = newArr
     },
-    addBasicLabel() {
+    addBasicLabel () {
       // 添加基础标签
-      if (this.tagList[this.customNow].name === "") {
-        this.$message.warning("请选择基础标签");
-        return;
+      if (this.tagList[this.customNow].name === '') {
+        this.$message.warning('请选择基础标签')
+        return
       }
       this.tagList[this.customNow].grouping.push({
-        groupName: "",
-        startValue: "",
-        endValue: "",
-      });
+        groupName: '',
+        startValue: '',
+        endValue: ''
+      })
     },
-    deleteTagList(index) {
+    deleteTagList (index) {
       setTimeout(() => {
-        this.customNow = 0;
-        const newArr = this.tagList.slice(0);
-        newArr.splice(index, 1);
-        this.tagList = newArr;
-      }, 0);
+        this.customNow = 0
+        const newArr = this.tagList.slice(0)
+        newArr.splice(index, 1)
+        this.tagList = newArr
+      }, 0)
     },
-    handleClick(index) {
-      this.customNow = index;
+    handleClick (index) {
+      this.customNow = index
       if (
-        this.tagList[this.tagList.length - 1].tagName === "" &&
+        this.tagList[this.tagList.length - 1].tagName === '' &&
         this.tagList.length - 1 !== index
       ) {
-        const newArr = this.tagList;
-        newArr.splice(this.tagList.length - 1, 1);
+        const newArr = this.tagList
+        newArr.splice(this.tagList.length - 1, 1)
       }
     },
-    customLabelSure() {
+    customLabelSure () {
       if (!this.tagList[this.customNow].tagNameCopy) {
-        this.$message.warning("请设置标签名称");
-        return;
+        this.$message.warning('请设置标签名称')
+        return
       }
-      if (this.tagList[this.customNow].tagType === "2") {
+      if (this.tagList[this.customNow].tagType === '2') {
         // 对分组进行判断
         for (let i = 0; i < this.tagList[this.customNow].grouping.length; i++) {
           if (this.tagList[this.customNow].grouping === 0) {
-            this.$message.warning("至少添加一个分组");
-            return;
+            this.$message.warning('至少添加一个分组')
+            return
           }
           if (isNaN(this.tagList[this.customNow].grouping[i].endValue)) {
-            this.$message.warning(`${i + 1}分组结束值不是数字`);
-            return;
+            this.$message.warning(`${i + 1}分组结束值不是数字`)
+            return
           }
           if (isNaN(this.tagList[this.customNow].grouping[i].startValue)) {
-            this.$message.warning(`${i + 1}分组开始值不是数字`);
-            return;
+            this.$message.warning(`${i + 1}分组开始值不是数字`)
+            return
           }
-          if (this.tagList[this.customNow].grouping[i].groupName === "") {
-            this.$message.warning("未设置分组名");
-            return;
+          if (this.tagList[this.customNow].grouping[i].groupName === '') {
+            this.$message.warning('未设置分组名')
+            return
           }
           if (
-            this.tagList[this.customNow].grouping[i].startValue === "" &&
-            this.tagList[this.customNow].grouping[i].endValue === ""
+            this.tagList[this.customNow].grouping[i].startValue === '' &&
+            this.tagList[this.customNow].grouping[i].endValue === ''
           ) {
-            this.$message.warning("至少设置一个值");
-            return;
+            this.$message.warning('至少设置一个值')
+            return
           }
         }
       }
 
-      if (this.tagList[this.customNow].tagType === "1") {
+      if (this.tagList[this.customNow].tagType === '1') {
         // 公式
-        let num = 0;
+        let num = 0
         checkTagName(this.tagList[this.customNow].tagNameCopy).then((res) => {
           if (res.data.code !== 0) {
-            this.$message.error(res.data.msg);
+            this.$message.error(res.data.msg)
           } else {
-            num += 1;
+            num += 1
           }
           if (num === 2) {
             this.tagList[this.customNow].tagName = this.tagList[
               this.customNow
-            ].tagNameCopy;
+            ].tagNameCopy
           }
-        });
+        })
         const params = {
           tagFieldName: this.tagList[this.customNow].groupSwarmsList[0]
             .tagFieldName,
           groupFields: this.tagList[this.customNow].groupSwarmsList[0]
-            .groupFields,
-        };
+            .groupFields
+        }
         formulaCheck(params).then((res) => {
           if (res.data.code === 0) {
-            num += 1;
+            num += 1
           } else {
-            this.$message.error(res.data.msg);
+            this.$message.error(res.data.msg)
           }
           if (num === 2) {
             this.tagList[this.customNow].tagName = this.tagList[
               this.customNow
-            ].tagNameCopy;
+            ].tagNameCopy
           }
-        });
+        })
       } else {
         checkTagName(this.tagList[this.customNow].tagNameCopy).then((res) => {
           if (res.data.code !== 0) {
-            this.$message.error(res.data.msg);
+            this.$message.error(res.data.msg)
           } else {
             this.tagList[this.customNow].tagName = this.tagList[
               this.customNow
-            ].tagNameCopy;
+            ].tagNameCopy
           }
-        });
+        })
       }
     },
-    customLabelStart() {
-      const newArr = this.tagList.slice(0);
+    customLabelStart () {
+      const newArr = this.tagList.slice(0)
       newArr[this.customNow] = {
-        tagFiledName: "",
-        tagName: "",
-        tagNameCopy: "",
-        ifpercent: "0",
-        tagFieldName: "",
-        tagType: "1", // 1公式 2分组
+        tagFiledName: '',
+        tagName: '',
+        tagNameCopy: '',
+        ifpercent: '0',
+        tagFieldName: '',
+        tagType: '1', // 1公式 2分组
         groupSwarmsList: [
           {
-            groupValue: [], // 公式
-          },
+            groupValue: [] // 公式
+          }
         ],
-        groupValue: "", // 公式
+        groupValue: '', // 公式
         grouping: [], // 分组
-        labelForm: "",
-      };
-      this.tagList = newArr;
+        labelForm: ''
+      }
+      this.tagList = newArr
     },
-    handleAdd(item) {
-      this.tagList[this.customNow].groupValue += item;
+    handleAdd (item) {
+      this.tagList[this.customNow].groupValue += item
       if (this.tagList[this.customNow].groupSwarmsList[0].tagFieldName) {
-        this.tagList[this.customNow].groupSwarmsList[0].tagFieldName += item;
+        this.tagList[this.customNow].groupSwarmsList[0].tagFieldName += item
       } else {
-        this.tagList[this.customNow].groupSwarmsList[0].tagFieldName = item;
+        this.tagList[this.customNow].groupSwarmsList[0].tagFieldName = item
       }
     },
-    customLabel() {
-      this.customLabelVisible = true;
+    customLabel () {
+      this.customLabelVisible = true
     },
-    handleAddGroup() {
+    handleAddGroup () {
       this.groupingDetail.groupSwarmsList.push({
-        groupName: "",
-        startValue: "",
-        endValue: "",
-      });
+        groupName: '',
+        startValue: '',
+        endValue: ''
+      })
     },
-    hadnleSubmitSelf(item, index) {
-      if (item.title === "") {
-        this.$message.warning(`${item.name}画像请输入标题`);
-        this.error = true;
-        return;
+    hadnleSubmitSelf (item, index) {
+      if (item.title === '') {
+        this.$message.warning(`${item.name}画像请输入标题`)
+        this.error = true
+        return
       }
-      if (item.picType === "") {
-        this.$message.warning(`${item.name}画像请选择图形`);
-        this.error = true;
-        return;
+      if (item.picType === '') {
+        this.$message.warning(`${item.name}画像请选择图形`)
+        this.error = true
+        return
       }
-      if (item.valueType === "1") {
+      if (item.valueType === '1') {
         if (item.groupSwarmsList.length === 0) {
-          this.$message.warning(`${item.name}画像至少添加一个分组`);
-          this.error = true;
-          return;
+          this.$message.warning(`${item.name}画像至少添加一个分组`)
+          this.error = true
+          return
         }
         for (let i = 0; i < item.groupSwarmsList.length; i++) {
           if (isNaN(item.groupSwarmsList[i].endValue)) {
-            this.$message.warning(`${item.name}画像${i + 1}分组结束值不是数字`);
-            this.error = true;
-            return;
+            this.$message.warning(`${item.name}画像${i + 1}分组结束值不是数字`)
+            this.error = true
+            return
           }
           if (isNaN(item.groupSwarmsList[i].startValue)) {
-            this.$message.warning(`${item.name}画像${i + 1}分组开始值不是数字`);
-            this.error = true;
-            return;
+            this.$message.warning(`${item.name}画像${i + 1}分组开始值不是数字`)
+            this.error = true
+            return
           }
-          if (item.groupSwarmsList[i].groupName === "") {
-            this.$message.warning(`${item.name}画像未设置分组名`);
-            this.error = true;
-            return;
+          if (item.groupSwarmsList[i].groupName === '') {
+            this.$message.warning(`${item.name}画像未设置分组名`)
+            this.error = true
+            return
           }
           if (
-            item.groupSwarmsList[i].startValue === "" &&
-            item.groupSwarmsList[i].endValue === ""
+            item.groupSwarmsList[i].startValue === '' &&
+            item.groupSwarmsList[i].endValue === ''
           ) {
-            this.$message.warning(`${item.name}分组至少设置一个值`);
-            this.error = true;
-            return;
+            this.$message.warning(`${item.name}分组至少设置一个值`)
+            this.error = true
+            return
           }
         }
       }
       // this.resultList[index].type = false
-      this.error = false;
-      const newArrList = this.resultList.slice(0);
-      newArrList[index].type = false;
-      this.resultList = newArrList;
-      console.log(item);
+      this.error = false
+      const newArrList = this.resultList.slice(0)
+      newArrList[index].type = false
+      this.resultList = newArrList
+      console.log(item)
       const params = {
         groupId: this.nameListGroupId,
         groupPortList: [
@@ -1501,68 +1501,68 @@ export default {
             secondTagFieldName: item.secondTagFieldName,
             width: item.width,
             flag: item.flag,
-            secondEnumerateData: item.secondEnumerateData,
-          },
+            secondEnumerateData: item.secondEnumerateData
+          }
         ],
         saleList: [
           {
-            actual_rank: "客户经理一级",
-            age: "41",
-            sales_status: "1",
+            actual_rank: '客户经理一级',
+            age: '41',
+            sales_status: '1'
           },
           {
-            actual_rank: "客户经理一级",
-            age: "26",
-            sales_status: "2",
-          },
+            actual_rank: '客户经理一级',
+            age: '26',
+            sales_status: '2'
+          }
         ],
-        salesTagMemberDto: this.salesTagMemberDto,
-      };
-      postFindSaleGroup(params).then((res) => {
-        item.params = res.data.data;
-        var itemNew = JSON.parse(JSON.stringify(this.resultList));
-        itemNew[index].params = res.data.data;
-        this.resultList = itemNew;
-      });
-    },
-    handleGrouping(item, index) {
-      this.indexNow = index;
-      this.groupingDetail = item;
-      this.dialogVisible = true;
-    },
-    submitOn() {
-      if (this.groupName === "") {
-        this.$message.warning("请填写群组名称");
-        return;
+        salesTagMemberDto: this.salesTagMemberDto
       }
-      if (this.groupType === "") {
-        this.$message.warning("请填写群组类型");
-        return;
+      postFindSaleGroup(params).then((res) => {
+        item.params = res.data.data
+        var itemNew = JSON.parse(JSON.stringify(this.resultList))
+        itemNew[index].params = res.data.data
+        this.resultList = itemNew
+      })
+    },
+    handleGrouping (item, index) {
+      this.indexNow = index
+      this.groupingDetail = item
+      this.dialogVisible = true
+    },
+    submitOn () {
+      if (this.groupName === '') {
+        this.$message.warning('请填写群组名称')
+        return
+      }
+      if (this.groupType === '') {
+        this.$message.warning('请填写群组类型')
+        return
       }
       for (let i = 0; i < this.tagList.length; i++) {
-        if (this.tagList[i].tagName === "") {
-          this.tagList.splice(i, 1);
+        if (this.tagList[i].tagName === '') {
+          this.tagList.splice(i, 1)
         }
       }
       for (let i = 0; i < this.resultList.length; i++) {
-        this.hadnleSubmitSelf(this.resultList[i], i);
+        this.hadnleSubmitSelf(this.resultList[i], i)
       }
       for (let i = 0; i < this.tagList.length; i++) {
-        if (this.tagList[i].tagType === "1") {
+        if (this.tagList[i].tagType === '1') {
           this.tagList[i].groupSwarmsList[0].groupValue = this.tagList[
             i
-          ].groupValue;
+          ].groupValue
         } else {
-          if (this.tagList[i].grouping.tagName === "") {
-            this.tagList.splice(i, 1);
+          if (this.tagList[i].grouping.tagName === '') {
+            this.tagList.splice(i, 1)
           }
-          this.tagList[i].groupSwarmsList = this.tagList[i].grouping;
+          this.tagList[i].groupSwarmsList = this.tagList[i].grouping
         }
       }
-      const arr = this.tagList;
-      const paramsList = [];
+      const arr = this.tagList
+      const paramsList = []
       for (let i = 0; i < this.resultListThree.length; i++) {
-        paramsList.push(this.resultListThree[i]);
+        paramsList.push(this.resultListThree[i])
       }
       const params = {
         groupPortList: this.resultList,
@@ -1571,155 +1571,155 @@ export default {
         groupDesc: this.groupDesc,
         groupType: this.groupType,
         salesTagMemberDto: this.salesTagMemberDto,
-        resultList: paramsList,
-      };
-      params.groupId = this.$route.query.groupId;
+        resultList: paramsList
+      }
+      params.groupId = this.$route.query.groupId
       updateGroup(params).then((res) => {
         if (res.data.code === 0) {
-          this.$router.push("/groupManagement/polling");
+          this.$router.push('/groupManagement/polling')
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    hadnleSubmit() {
+    hadnleSubmit () {
       for (let i = 0; i < this.resultList.length; i++) {
-        this.hadnleSubmitSelf(this.resultList[i], i);
+        this.hadnleSubmitSelf(this.resultList[i], i)
       }
       if (!this.error) {
-        this.submitVisible = true;
+        this.submitVisible = true
       }
     },
-    deleteOne(e) {
+    deleteOne (e) {
       for (let i = 0; i < this.inputList.length; i++) {
         if (this.inputList[i].name === e.name) {
-          this.inputList.splice(i, 1);
+          this.inputList.splice(i, 1)
         }
       }
-      const onArr = [];
+      const onArr = []
       for (let i = 0; i < this.inputList.length; i++) {
-        onArr.push(this.inputList[i].id);
+        onArr.push(this.inputList[i].id)
       }
-      this.$refs.tree.setCheckedKeys(onArr);
+      this.$refs.tree.setCheckedKeys(onArr)
     },
-    startOn() {
-      this.channelResult = [];
-      this.mechanismResult = "";
+    startOn () {
+      this.channelResult = []
+      this.mechanismResult = ''
       for (let i = 0; i < this.inputList.length; i++) {
-        if (this.inputList[i].tagValueType === "2") {
-          this.inputList[i].model = [];
+        if (this.inputList[i].tagValueType === '2') {
+          this.inputList[i].model = []
         } else {
-          this.inputList[i].model = "";
+          this.inputList[i].model = ''
         }
-        this.inputList[i].modela = "";
-        this.inputList[i].modelb = "";
+        this.inputList[i].modela = ''
+        this.inputList[i].modelb = ''
       }
     },
-    down() {
-      const arr = [];
-      const list = [];
+    down () {
+      const arr = []
+      const list = []
       for (let i = 0; i < this.mechanismResult.length; i++) {
-        list.push(this.mechanismResult[i].slice(-1).toString());
+        list.push(this.mechanismResult[i].slice(-1).toString())
       }
       arr.push({
-        filedName: "sales_channelcode",
-        tagValueType: "2",
-        list: this.channelResult,
-      });
+        filedName: 'sales_channelcode',
+        tagValueType: '2',
+        list: this.channelResult
+      })
       arr.push({
-        filedName: "sales_comcode",
-        tagValueType: "2",
+        filedName: 'sales_comcode',
+        tagValueType: '2',
         list: list,
-        mechanismResultList: this.mechanismResult,
-      });
+        mechanismResultList: this.mechanismResult
+      })
       for (let i = 0; i < this.inputList.length; i++) {
-        if (this.inputList[i].tagValueType === "1") {
+        if (this.inputList[i].tagValueType === '1') {
           arr.push({
             filedName: this.inputList[i].tagFieldName,
             tagValueType: this.inputList[i].tagValueType,
             value: this.inputList[i].model,
             startFiledName: this.inputList[i].modela,
-            endFiledName: this.inputList[i].modelb,
-          });
-        } else if (this.inputList[i].tagValueType === "2") {
+            endFiledName: this.inputList[i].modelb
+          })
+        } else if (this.inputList[i].tagValueType === '2') {
           arr.push({
             filedName: this.inputList[i].tagFieldName,
             tagValueType: this.inputList[i].tagValueType,
-            list: this.inputList[i].model,
-          });
-        } else if (this.inputList[i].tagValueType === "3") {
+            list: this.inputList[i].model
+          })
+        } else if (this.inputList[i].tagValueType === '3') {
           arr.push({
             filedName: this.inputList[i].tagFieldName,
             tagValueType: this.inputList[i].tagValueType,
             startDate: this.inputList[i].model[0]
-              ? this.inputList[i].model[0] + " 00:00:00"
-              : "",
+              ? this.inputList[i].model[0] + ' 00:00:00'
+              : '',
             endDate: this.inputList[i].model[1]
-              ? this.inputList[i].model[1] + " 23:59:59"
-              : "",
-          });
+              ? this.inputList[i].model[1] + ' 23:59:59'
+              : ''
+          })
         } else {
           arr.push({
             filedName: this.inputList[i].tagFieldName,
             tagValueType: this.inputList[i].tagValueType,
-            value: this.inputList[i].model,
-          });
+            value: this.inputList[i].model
+          })
         }
       }
       const paramsList = [
         {
-          name: "工号",
-          tagFieldName: "sales_code",
+          name: '工号',
+          tagFieldName: 'sales_code'
         },
         {
-          name: "姓名",
-          tagFieldName: "sales_name",
+          name: '姓名',
+          tagFieldName: 'sales_name'
         },
         {
-          name: "二级机构名称",
-          tagFieldName: "sales_comname2",
+          name: '二级机构名称',
+          tagFieldName: 'sales_comname2'
         },
         {
-          name: "三级机构名称",
-          tagFieldName: "sales_comname3",
+          name: '三级机构名称',
+          tagFieldName: 'sales_comname3'
         },
         {
-          name: "机构代码",
-          tagFieldName: "sales_comcode",
+          name: '机构代码',
+          tagFieldName: 'sales_comcode'
         },
         {
-          name: "机构名称",
-          tagFieldName: "sales_comname",
+          name: '机构名称',
+          tagFieldName: 'sales_comname'
         },
         {
-          name: "渠道代码",
-          tagFieldName: "sales_channelcode",
+          name: '渠道代码',
+          tagFieldName: 'sales_channelcode'
         },
         {
-          name: "渠道名称",
-          tagFieldName: "sales_channename",
-        },
-      ];
+          name: '渠道名称',
+          tagFieldName: 'sales_channename'
+        }
+      ]
       for (let i = 0; i < this.resultListThree.length; i++) {
-        paramsList.push(this.resultListThree[i]);
+        paramsList.push(this.resultListThree[i])
       }
       const params = {
         salesTagMemberDto: this.salesTagMemberDto,
         resultList: paramsList,
-        groupId: this.groupId,
-      };
-      const url = location.host;
+        groupId: this.groupId
+      }
+      const url = location.host
       findUploadSales(params).then((res) => {
         if (res.data.code === 0) {
           // window.open(`http://${url}/sit-web/sit/salesTag/uploadSales?jId=${res.data.data}`)
           window.open(
             `http://${url}/sit-web/sit/salesTag/uploadSalesForGroup?loadFlag=4&jId=${res.data.data}`
-          );
+          )
         }
-      });
+      })
     },
-    handleCurrentChange(val) {
-      this.pageNow = val;
+    handleCurrentChange (val) {
+      this.pageNow = val
       findSalesTagMemberPageGroup(
         this.pageNow,
         this.pageSize,
@@ -1727,99 +1727,99 @@ export default {
         this.salesTagMemberDto
       )
         .then((res) => {
-          this.loading = false;
-          this.mapNum += 1;
-          console.log(res.data.data.totalCount);
-          this.tableData = res.data.data.list;
-          this.totalCount = res.data.data.totalCount;
+          this.loading = false
+          this.mapNum += 1
+          console.log(res.data.data.totalCount)
+          this.tableData = res.data.data.list
+          this.totalCount = res.data.data.totalCount
         })
         .catch(() => {
-          this.loading = false;
-        });
+          this.loading = false
+        })
     },
-    setType(index) {
-      const newArr = this.resultList.slice(0);
-      newArr[index].type = true;
-      this.resultList = newArr;
+    setType (index) {
+      const newArr = this.resultList.slice(0)
+      newArr[index].type = true
+      this.resultList = newArr
     },
-    checkChange() {
-      const arr = [];
-      this.resultList = arr;
+    checkChange () {
+      const arr = []
+      this.resultList = arr
     },
-    filterNode(value, data) {
-      if (!value) return true;
-      return data.name.indexOf(value) !== -1;
+    filterNode (value, data) {
+      if (!value) return true
+      return data.name.indexOf(value) !== -1
     },
-    getData() {
+    getData () {
       // postGroup().then(res => {
       //   this.dataReOld = res.data.data
       //   this.monitorInput += 1
       // })
       findGroupEnumTagClassAndTag().then((res) => {
-        this.dataRe = res.data.data;
-        this.dataReFz = res.data.data;
-        this.monitor += 1;
-      });
+        this.dataRe = res.data.data
+        this.dataReFz = res.data.data
+        this.monitor += 1
+      })
       findNumTagClassAndTag().then((res) => {
-        this.dataReGs = res.data.data;
-        this.dataReThreee = res.data.data;
-      });
+        this.dataReGs = res.data.data
+        this.dataReThreee = res.data.data
+      })
     },
-    renderHeaderDate(data, index) {
-      const _this = this;
-      const name = this.resultListThree[index].name;
+    renderHeaderDate (data, index) {
+      const _this = this
+      const name = this.resultListThree[index].name
       if (
-        name !== "姓名" &&
-        name !== "工号" &&
-        name !== "机构代码" &&
-        name !== "渠道名称" &&
-        name !== "渠道代码" &&
-        name !== "机构名称"
+        name !== '姓名' &&
+        name !== '工号' &&
+        name !== '机构代码' &&
+        name !== '渠道名称' &&
+        name !== '渠道代码' &&
+        name !== '机构名称'
       ) {
         return (
           <div class="flexBetween">
             <span>{name}</span>
             <i
               onClick={() => {
-                _this.deleteResult(index);
+                _this.deleteResult(index)
               }}
               class="el-icon-close"
             ></i>
           </div>
-        );
+        )
       } else {
         return (
           <div class="flexBetween">
             <span>{name}</span>
             <i></i>
           </div>
-        );
+        )
       }
     },
-    deleteResult(e) {
-      const arr = this.resultListThree.slice(0);
-      arr.splice(e, 1);
-      this.resultListThree = arr;
-      const idArr = [];
+    deleteResult (e) {
+      const arr = this.resultListThree.slice(0)
+      arr.splice(e, 1)
+      this.resultListThree = arr
+      const idArr = []
       for (let i = 0; i < this.resultListThree.length; i++) {
-        idArr.push(this.resultListThree[i].id);
+        idArr.push(this.resultListThree[i].id)
       }
-      this.$refs.treeCopyThreeqqq.setCheckedKeys(idArr);
+      this.$refs.treeCopyThreeqqq.setCheckedKeys(idArr)
     },
-    gotoSee(res) {
+    gotoSee (res) {
       this.$router.push({
-        path: `/portrait?sales_code=${res.row.sales_code}&historySec=/groupManagement/create&groupId=${this.$route.query.groupId}&operationId=${setReturn.data.data}&history=${this.$route.query.history}&firId=${this.$route.query.firId}&share=${this.$route.query.share}`,
-      });
+        path: `/portrait?sales_code=${res.row.sales_code}&historySec=/groupManagement/create&groupId=${this.$route.query.groupId}&operationId=${setReturn.data.data}&history=${this.$route.query.history}&firId=${this.$route.query.firId}&share=${this.$route.query.share}`
+      })
       // this.$router.push({ path: `/portrait?sales_code=${res.row.sales_code}&historySec=/groupManagement/see&groupId=${this.$route.query.groupId}&history=${this.$route.query.history}&firId=${this.$route.query.firId}` })
     },
-    addInput() {
-      this.fixedLeft = "35px";
+    addInput () {
+      this.fixedLeft = '35px'
     },
-    fixedNone() {
-      this.fixedLeft = "-300px";
+    fixedNone () {
+      this.fixedLeft = '-300px'
     },
-    customConditionResult(data) {
-      this.salesTagMemberDto = data;
+    customConditionResult (data) {
+      this.salesTagMemberDto = data
       findSalesTagMemberPageGroup(
         this.pageNow,
         this.pageSize,
@@ -1827,21 +1827,21 @@ export default {
         data
       )
         .then((res) => {
-          this.mapNum += 1;
-          this.tableData = res.data.data.list;
-          this.totalCount = res.data.data.totalCount;
+          this.mapNum += 1
+          this.tableData = res.data.data.list
+          this.totalCount = res.data.data.totalCount
         })
-        .catch(() => {});
+        .catch(() => {})
     },
-    handleCheckChange(res) {
-      const dataOn = this.$refs.tree.getCheckedNodes();
-      const oldArr = this.inputList;
-      const newResult = [];
+    handleCheckChange (res) {
+      const dataOn = this.$refs.tree.getCheckedNodes()
+      const oldArr = this.inputList
+      const newResult = []
       for (let i = 0; i < dataOn.length; i++) {
         if (dataOn[i].tagFieldName) {
           if (oldArr.length === 0) {
             // 之没前有选项 添加空属性
-            if (dataOn[i].tagValueType === "1") {
+            if (dataOn[i].tagValueType === '1') {
               newResult.push({
                 tagFieldName: dataOn[i].tagFieldName,
                 id: dataOn[i].id,
@@ -1849,10 +1849,10 @@ export default {
                 name: dataOn[i].name,
                 tagValueType: dataOn[i].tagValueType,
                 enumerateData: dataOn[i].enumerateData,
-                modela: "",
-                modelb: "",
-              });
-            } else if (dataOn[i].tagValueType === "3") {
+                modela: '',
+                modelb: ''
+              })
+            } else if (dataOn[i].tagValueType === '3') {
               newResult.push({
                 tagFieldName: dataOn[i].tagFieldName,
                 tagId: dataOn[i].tagId,
@@ -1860,8 +1860,8 @@ export default {
                 name: dataOn[i].name,
                 tagValueType: dataOn[i].tagValueType,
                 enumerateData: dataOn[i].enumerateData,
-                model: [],
-              });
+                model: []
+              })
             } else {
               newResult.push({
                 tagFieldName: dataOn[i].tagFieldName,
@@ -1870,20 +1870,20 @@ export default {
                 name: dataOn[i].name,
                 tagValueType: dataOn[i].tagValueType,
                 enumerateData: dataOn[i].enumerateData,
-                modal: "",
-              });
+                modal: ''
+              })
             }
           } else {
             // 之前有选项
-            let num = -10;
+            let num = -10
             for (let j = 0; j < oldArr.length; j++) {
               if (dataOn[i].id === oldArr[j].id) {
-                num = j;
+                num = j
               }
             }
             if (num !== -10) {
               // 继承属性
-              if (dataOn[i].tagValueType === "1") {
+              if (dataOn[i].tagValueType === '1') {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
                   id: dataOn[i].id,
@@ -1892,9 +1892,9 @@ export default {
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
                   modela: oldArr[num].startFiledName,
-                  modelb: oldArr[num].endFiledName,
-                });
-              } else if (dataOn[i].tagValueType === "2") {
+                  modelb: oldArr[num].endFiledName
+                })
+              } else if (dataOn[i].tagValueType === '2') {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
                   tagId: dataOn[i].tagId,
@@ -1902,9 +1902,9 @@ export default {
                   name: dataOn[i].name,
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
-                  model: oldArr[num].list,
-                });
-              } else if (dataOn[i].tagValueType === "3") {
+                  model: oldArr[num].list
+                })
+              } else if (dataOn[i].tagValueType === '3') {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
                   tagId: dataOn[i].tagId,
@@ -1912,8 +1912,8 @@ export default {
                   name: dataOn[i].name,
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
-                  model: [oldArr[num].startDate, oldArr[num].endDate],
-                });
+                  model: [oldArr[num].startDate, oldArr[num].endDate]
+                })
               } else {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
@@ -1924,12 +1924,12 @@ export default {
                   enumerateData: dataOn[i].enumerateData,
                   model: oldArr[num].value
                     ? oldArr[num].value
-                    : oldArr[num].model,
-                });
+                    : oldArr[num].model
+                })
               }
             } else {
               // 添加空属性
-              if (dataOn[i].tagValueType === "1") {
+              if (dataOn[i].tagValueType === '1') {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
                   id: dataOn[i].id,
@@ -1937,10 +1937,10 @@ export default {
                   name: dataOn[i].name,
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
-                  modela: "",
-                  modelb: "",
-                });
-              } else if (dataOn[i].tagValueType === "3") {
+                  modela: '',
+                  modelb: ''
+                })
+              } else if (dataOn[i].tagValueType === '3') {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
                   tagId: dataOn[i].tagId,
@@ -1948,8 +1948,8 @@ export default {
                   name: dataOn[i].name,
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
-                  model: [],
-                });
+                  model: []
+                })
               } else {
                 newResult.push({
                   tagFieldName: dataOn[i].tagFieldName,
@@ -1958,24 +1958,24 @@ export default {
                   name: dataOn[i].name,
                   tagValueType: dataOn[i].tagValueType,
                   enumerateData: dataOn[i].enumerateData,
-                  modal: "",
-                });
+                  modal: ''
+                })
               }
             }
           }
         }
       }
-      this.inputList = newResult;
+      this.inputList = newResult
     },
-    handleCheckChangeCopy(res) {
-      const newResult = this.resultList.slice(0);
+    handleCheckChangeCopy (res) {
+      const newResult = this.resultList.slice(0)
       if (res.tagFieldName) {
-        if (this.addCardType === "addCombination") {
-          newResult[this.addCombinationIndex].secondTagId = res.tagId;
-          newResult[this.addCombinationIndex].secondTagName = res.tagName;
-          newResult[this.addCombinationIndex].secondValueType = res.valueType;
+        if (this.addCardType === 'addCombination') {
+          newResult[this.addCombinationIndex].secondTagId = res.tagId
+          newResult[this.addCombinationIndex].secondTagName = res.tagName
+          newResult[this.addCombinationIndex].secondValueType = res.valueType
           newResult[this.addCombinationIndex].secondTagFieldName =
-            res.tagFieldName;
+            res.tagFieldName
         } else {
           newResult.push({
             name: res.name,
@@ -1983,266 +1983,266 @@ export default {
             id: res.id,
             enumerateData: res.enumerateData,
             title: res.name,
-            picType: "",
+            picType: '',
             valueType: res.valueType,
             groupSwarmsList: [],
             width: 1,
             flag: false,
-            addCombination: "",
-          });
+            addCombination: ''
+          })
         }
       }
-      this.resultList = newResult;
+      this.resultList = newResult
     },
-    handleCheckChangeCopyThree() {
-      const dataOn = this.$refs.treeCopyThreeqqq.getCheckedNodes();
-      const arr = [];
+    handleCheckChangeCopyThree () {
+      const dataOn = this.$refs.treeCopyThreeqqq.getCheckedNodes()
+      const arr = []
       for (let i = 0; i < dataOn.length; i++) {
         if (dataOn[i].tagFieldName) {
           arr.push({
             name: dataOn[i].name,
             tagFieldName: dataOn[i].tagFieldName,
-            id: dataOn[i].id,
-          });
+            id: dataOn[i].id
+          })
         }
       }
-      this.resultListThree = arr;
+      this.resultListThree = arr
     },
-    addResult() {
-      this.fixedLeftResult = "35px";
+    addResult () {
+      this.fixedLeftResult = '35px'
     },
-    addResultThree() {
-      this.fixedLeftResultThree = "35px";
+    addResultThree () {
+      this.fixedLeftResultThree = '35px'
     },
-    fixedResultNone() {
-      this.fixedLeftResult = "-300px";
+    fixedResultNone () {
+      this.fixedLeftResult = '-300px'
     },
-    fixedResultNoneThree() {
-      this.fixedLeftResultThree = "-300px";
+    fixedResultNoneThree () {
+      this.fixedLeftResultThree = '-300px'
     },
-    addBq() {
+    addBq () {
       // 自定义标签添加基础标签
-      this.fixedLeftResultBq = "35px";
-      this.finType = "bq";
+      this.fixedLeftResultBq = '35px'
+      this.finType = 'bq'
     },
-    fixedResultNoneBq() {
-      this.fixedLeftResultBq = "-300px";
+    fixedResultNoneBq () {
+      this.fixedLeftResultBq = '-300px'
     },
-    handleNodeClick(res) {
+    handleNodeClick (res) {
       if (res.tagFieldName) {
-        if (this.finType === "bq") {
+        if (this.finType === 'bq') {
           if (this.tagList[this.customNow].groupSwarmsList[0].groupFields) {
             this.tagList[this.customNow].groupSwarmsList[0].groupFields +=
-              res.tagFieldName + ",";
+              res.tagFieldName + ','
           } else {
             this.tagList[this.customNow].groupSwarmsList[0].groupFields =
-              res.tagFieldName + ",";
+              res.tagFieldName + ','
           }
           if (this.tagList[this.customNow].groupSwarmsList[0].tagFieldName) {
             this.tagList[this.customNow].groupSwarmsList[0].tagFieldName +=
-              "#" + res.tagFieldName;
+              '#' + res.tagFieldName
           } else {
             this.tagList[this.customNow].groupSwarmsList[0].tagFieldName =
-              "#" + res.tagFieldName;
+              '#' + res.tagFieldName
           }
-          this.tagList[this.customNow].groupValue += "#" + res.name;
+          this.tagList[this.customNow].groupValue += '#' + res.name
         } else {
-          const newArr = this.tagList.slice(0);
-          newArr[this.customNow].customTagFiledName = res.tagFieldName;
-          newArr[this.customNow].baseTagId = res.id;
-          newArr[this.customNow].name = res.name;
-          newArr[this.customNow].groupFields = "#" + res.tagFieldName + ",";
-          this.tagList = newArr;
+          const newArr = this.tagList.slice(0)
+          newArr[this.customNow].customTagFiledName = res.tagFieldName
+          newArr[this.customNow].baseTagId = res.id
+          newArr[this.customNow].name = res.name
+          newArr[this.customNow].groupFields = '#' + res.tagFieldName + ','
+          this.tagList = newArr
         }
       }
     },
-    onSelect() {
-      this.fixedLeftResultBq = "35px";
-      this.finType = "select";
+    onSelect () {
+      this.fixedLeftResultBq = '35px'
+      this.finType = 'select'
     },
-    deleteMap(e) {
-      this.resultList.splice(e, 1);
-      const newArr = [];
+    deleteMap (e) {
+      this.resultList.splice(e, 1)
+      const newArr = []
       for (let i = 0; i < this.resultList.length; i++) {
-        newArr.push(this.resultList[i].id);
+        newArr.push(this.resultList[i].id)
       }
-      this.$refs.treeCopy.setCheckedKeys(newArr);
+      this.$refs.treeCopy.setCheckedKeys(newArr)
     },
-    nameListBlackFind() {
+    nameListBlackFind () {
       const params = {
-        status: "1",
+        status: '1',
         salesCode: this.nameListBlack.findId,
         groupId: this.groupId,
         pageSize: this.nameListBlack.pageSize,
-        pageNow: this.nameListBlack.pageNow,
-      };
+        pageNow: this.nameListBlack.pageNow
+      }
       salesNameList(params).then((res) => {
-        console.log(res.data.data.list);
-        this.nameListBlack.data = res.data.data.list;
-        this.nameListBlack.total = res.data.data.totalCount;
-      });
+        console.log(res.data.data.list)
+        this.nameListBlack.data = res.data.data.list
+        this.nameListBlack.total = res.data.data.totalCount
+      })
     },
-    nameListWhiteFind() {
+    nameListWhiteFind () {
       const params = {
-        status: "0",
+        status: '0',
         salesCode: this.nameListWhite.findId,
         groupId: this.groupId,
         pageSize: this.nameListWhite.pageSize,
-        pageNow: this.nameListWhite.pageNow,
-      };
+        pageNow: this.nameListWhite.pageNow
+      }
       salesNameList(params).then((res) => {
-        this.nameListWhite.data = res.data.data.list;
-        this.nameListWhite.total = res.data.data.totalCount;
-      });
+        this.nameListWhite.data = res.data.data.list
+        this.nameListWhite.total = res.data.data.totalCount
+      })
     },
-    addNameListWhite() {
+    addNameListWhite () {
       const params = {
         salesCode: this.nameListWhite.addId,
         groupId: this.groupId,
-        status: 0,
-      };
+        status: 0
+      }
       addSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListWhiteFind();
+          this.$message.success(res.data.msg)
+          this.nameListWhiteFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    addNameListBlack() {
+    addNameListBlack () {
       const params = {
         salesCode: this.nameListBlack.addId,
         groupId: this.groupId,
-        status: 1,
-      };
+        status: 1
+      }
       addSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListBlackFind();
+          this.$message.success(res.data.msg)
+          this.nameListBlackFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    handleNameListWhiteChange(val) {
-      this.nameListWhite.pageNow = val;
-      this.nameListWhiteFind();
+    handleNameListWhiteChange (val) {
+      this.nameListWhite.pageNow = val
+      this.nameListWhiteFind()
     },
-    handleNameListBlackChange(val) {
-      this.nameListBlack.pageNow = val;
-      this.nameListBlackFind();
+    handleNameListBlackChange (val) {
+      this.nameListBlack.pageNow = val
+      this.nameListBlackFind()
     },
-    handleSelectionChangeBlack(e) {
-      this.nameListBlack.deleteList = e;
+    handleSelectionChangeBlack (e) {
+      this.nameListBlack.deleteList = e
     },
-    handleSelectionChangeWhite(e) {
-      this.nameListWhite.deleteList = e;
+    handleSelectionChangeWhite (e) {
+      this.nameListWhite.deleteList = e
     },
-    handleDeleteWhite(e) {
-      const salesCodeList = [];
-      salesCodeList.push(e.row.salesCode);
+    handleDeleteWhite (e) {
+      const salesCodeList = []
+      salesCodeList.push(e.row.salesCode)
       const params = {
         groupId: this.groupId,
         status: 1,
-        salesCodeList,
-      };
+        salesCodeList
+      }
       delSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListWhiteFind();
+          this.$message.success(res.data.msg)
+          this.nameListWhiteFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    handleDeleteBlack(e) {
-      const salesCodeList = [];
-      salesCodeList.push(e.row.salesCode);
-      console.log(salesCodeList);
+    handleDeleteBlack (e) {
+      const salesCodeList = []
+      salesCodeList.push(e.row.salesCode)
+      console.log(salesCodeList)
       const params = {
         groupId: this.groupId,
         status: 0,
-        salesCodeList,
-      };
-      console.log(params);
+        salesCodeList
+      }
+      console.log(params)
       delSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListBlackFind();
+          this.$message.success(res.data.msg)
+          this.nameListBlackFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    deleteAllBlack() {
+    deleteAllBlack () {
       if (this.nameListBlack.deleteList.length === 0) {
-        return;
+        return
       }
-      const salesCodeList = [];
+      const salesCodeList = []
       for (let i = 0; i < this.nameListBlack.deleteList.length; i++) {
-        salesCodeList.push(this.nameListBlack.deleteList[i].salesCode);
+        salesCodeList.push(this.nameListBlack.deleteList[i].salesCode)
       }
       const params = {
         groupId: this.groupId,
         status: 0,
-        salesCodeList,
-      };
+        salesCodeList
+      }
       delSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListBlackFind();
+          this.$message.success(res.data.msg)
+          this.nameListBlackFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    deleteAllWhite() {
+    deleteAllWhite () {
       if (this.nameListWhite.deleteList.length === 0) {
-        return;
+        return
       }
-      const salesCodeList = [];
+      const salesCodeList = []
       for (let i = 0; i < this.nameListWhite.deleteList.length; i++) {
-        salesCodeList.push(this.nameListWhite.deleteList[i].salesCode);
+        salesCodeList.push(this.nameListWhite.deleteList[i].salesCode)
       }
       const params = {
         groupId: this.groupId,
         status: 1,
-        salesCodeList,
-      };
+        salesCodeList
+      }
       delSalesNameList(params).then((res) => {
         if (res.data.code === 0) {
-          this.$message.success(res.data.msg);
-          this.nameListWhiteFind();
+          this.$message.success(res.data.msg)
+          this.nameListWhiteFind()
         } else {
-          this.$message.error(res.data.msg);
+          this.$message.error(res.data.msg)
         }
-      });
+      })
     },
-    onSuccess(e) {
+    onSuccess (e) {
       if (e.code === 0) {
-        this.$message.success(e.msg);
+        this.$message.success(e.msg)
       } else if (e.code === 200) {
-        const url = location.host;
-        window.open(`http://${url}/sit-web/sit/group/getErrorFile?id=${e.msg}`);
+        const url = location.host
+        window.open(`http://${url}/sit-web/sit/group/getErrorFile?id=${e.msg}`)
       } else {
-        this.$message.error(e.msg);
+        this.$message.error(e.msg)
       }
     },
-    onError(e) {
+    onError (e) {
       if (e.code === 0) {
-        this.$message.success(e.msg);
+        this.$message.success(e.msg)
       } else {
-        this.$message.error(e.msg);
+        this.$message.error(e.msg)
       }
     },
-    handleDown() {
-      const url = location.host;
-      window.open(`http://${url}/sit-web/sit/group/downloadFile`);
+    handleDown () {
+      const url = location.host
+      window.open(`http://${url}/sit-web/sit/group/downloadFile`)
       // window.open('sit-web/sit/group/downloadFile')
-    },
-  },
-};
+    }
+  }
+}
 </script>
 <style>
 .alignItem {

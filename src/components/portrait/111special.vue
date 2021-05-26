@@ -167,114 +167,114 @@
 </template>
 
 <script>
-import giftImageUrl from "../../assets/111专项/资源 196.png";
-import specailChart from "../../components/charts/111chart";
-import lineChart from "../../components/charts/111card";
+import giftImageUrl from '../../assets/111专项/资源 196.png'
+import specailChart from '../../components/charts/111chart'
+import lineChart from '../../components/charts/111card'
 export default {
   components: {
     specailChart,
-    lineChart,
+    lineChart
   },
-  data() {
+  data () {
     return {
       status: true,
       list: [],
-      Home_wy: "",
-      Car_wy: "",
-      Money_wy: "",
-      Go_wy: "",
+      Home_wy: '',
+      Car_wy: '',
+      Money_wy: '',
+      Go_wy: '',
       GetWindowInfo: {
-        width: "",
+        width: ''
       },
       xSize: 18,
       params1: {
-        color: ["#5780CE", "#61AFFF", "#9BDAFA"],
+        color: ['#5780CE', '#61AFFF', '#9BDAFA'],
         chartData: [
-          { value: 0, name: "标准版" },
-          { value: 0, name: "经典版" },
-          { value: 0, name: "豪华版" },
+          { value: 0, name: '标准版' },
+          { value: 0, name: '经典版' },
+          { value: 0, name: '豪华版' }
         ],
-        status: true,
+        status: true
       },
       params2: {
-        color: ["#584FBC", "#927CFF", "#D8D2FF"],
+        color: ['#584FBC', '#927CFF', '#D8D2FF'],
         chartData: [
-          { value: 0, name: "标准版" },
-          { value: 0, name: "经典版" },
-          { value: 0, name: "豪华版" },
+          { value: 0, name: '标准版' },
+          { value: 0, name: '经典版' },
+          { value: 0, name: '豪华版' }
         ],
-        status: true,
+        status: true
       },
       params3: {
-        color: ["#51CB76", "#8EE49A", "#C2FDC6"],
+        color: ['#51CB76', '#8EE49A', '#C2FDC6'],
         chartData: [
-          { value: 0, name: "标准版" },
-          { value: 0, name: "经典版" },
-          { value: 0, name: "豪华版" },
+          { value: 0, name: '标准版' },
+          { value: 0, name: '经典版' },
+          { value: 0, name: '豪华版' }
         ],
-        status: true,
+        status: true
       },
       params4: {
-        color: ["#FA8A1C", "#FECA64", "#FEE0AA"],
+        color: ['#FA8A1C', '#FECA64', '#FEE0AA'],
         chartData: [
-          { value: 0, name: "标准版" },
-          { value: 0, name: "经典版" },
-          { value: 0, name: "豪华版" },
+          { value: 0, name: '标准版' },
+          { value: 0, name: '经典版' },
+          { value: 0, name: '豪华版' }
         ],
-        status: true,
+        status: true
       },
       paramsC1: {
-        title: "家无忧保费分布",
-        lineData: [["product", "标准版", "经典版", "豪华版"]],
-        status: true,
+        title: '家无忧保费分布',
+        lineData: [['product', '标准版', '经典版', '豪华版']],
+        status: true
       },
       paramsC2: {
-        title: "驾无忧保费分布",
-        lineData: [["product", "标准版", "经典版", "豪华版"]],
-        status: true,
+        title: '驾无忧保费分布',
+        lineData: [['product', '标准版', '经典版', '豪华版']],
+        status: true
       },
       paramsC3: {
-        title: "财无忧保费分布",
-        lineData: [["product", "标准版", "经典版", "豪华版"]],
-        status: true,
+        title: '财无忧保费分布',
+        lineData: [['product', '标准版', '经典版', '豪华版']],
+        status: true
       },
       paramsC4: {
-        title: "行无忧保费分布",
-        lineData: [["product", "标准版", "经典版", "豪华版"]],
-        status: true,
-      },
-    };
+        title: '行无忧保费分布',
+        lineData: [['product', '标准版', '经典版', '豪华版']],
+        status: true
+      }
+    }
   },
   watch: {
-    "$store.state.role.state"() {
-      this.drowRoundChartGolden();
+    '$store.state.role.state' () {
+      this.drowRoundChartGolden()
       // if (this.$store.state.role.orglResult !== '' && this.$store.state.role.channelResult === '') {
       // }
-    },
+    }
   },
-  mounted() {
-    this.drowRoundChartGolden();
+  mounted () {
+    this.drowRoundChartGolden()
   },
-  created() {
-    window.addEventListener("resize", this.GetWindowInfo);
-    this.GetWindow();
+  created () {
+    window.addEventListener('resize', this.GetWindowInfo)
+    this.GetWindow()
   },
   methods: {
-    GetWindow() {
-      this.GetWindowInfo.width = window.outerWidth;
+    GetWindow () {
+      this.GetWindowInfo.width = window.outerWidth
       if (this.GetWindowInfo.width === 1366) {
-        this.xSize = 12;
+        this.xSize = 12
       }
       if (this.GetWindowInfo.width === 1600) {
-        this.xSize = 16;
+        this.xSize = 16
       }
       if (this.GetWindowInfo.width === 1920) {
-        this.xSize = 18;
+        this.xSize = 18
       }
     },
-    drowRoundChartGolden() {
+    drowRoundChartGolden () {
       setTimeout(() => {
-        console.log(this.$store.state.specialDto.dy_fwf_prm);
+        console.log(this.$store.state.specialDto.dy_fwf_prm)
         this.Home_wy =
           this.$store.state.specialDto.dy_fwf_std_polnum +
           this.$store.state.specialDto.dy_fwf_clc_polnum +
@@ -283,278 +283,278 @@ export default {
           this.$store.state.specialDto.dy_dwf_std_polnum +
           this.$store.state.specialDto.dy_dwf_clc_polnum +
           this.$store.state.specialDto.dy_dwf_luy_polnum),
-          (this.Money_wy =
+        (this.Money_wy =
             this.$store.state.specialDto.dy_pwf_std_polnum +
             this.$store.state.specialDto.dy_pwf_clc_polnum +
             this.$store.state.specialDto.dy_pwf_luy_polnum),
-          (this.Go_wy =
+        (this.Go_wy =
             this.$store.state.specialDto.dy_twf_std_polnum +
             this.$store.state.specialDto.dy_twf_clc_polnum +
             this.$store.state.specialDto.dy_twf_luy_polnum),
-          (this.params1.chartData = [
-            {
-              value: this.$store.state.specialDto.dy_fwf_std_polnum,
-              name: "标准版",
-            },
-            {
-              value: this.$store.state.specialDto.dy_fwf_clc_polnum,
-              name: "经典版",
-            },
-            {
-              value: this.$store.state.specialDto.dy_fwf_luy_polnum,
-              name: "豪华版",
-            },
-          ]);
+        (this.params1.chartData = [
+          {
+            value: this.$store.state.specialDto.dy_fwf_std_polnum,
+            name: '标准版'
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_clc_polnum,
+            name: '经典版'
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_luy_polnum,
+            name: '豪华版'
+          }
+        ])
         this.params1.chartAll = [
           this.$store.state.specialDto.dy_fwf_std_prm,
           this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm,
-        ];
-        console.log(this.params1);
+          this.$store.state.specialDto.dy_fwf_luy_prm
+        ]
+        console.log(this.params1)
         this.params2.chartData = [
           {
             value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: "标准版",
+            name: '标准版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: "经典版",
+            name: '经典版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: "豪华版",
-          },
-        ];
+            name: '豪华版'
+          }
+        ]
         this.params2.chartAll = [
           this.$store.state.specialDto.dy_fwf_std_prm,
           this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm,
-        ];
+          this.$store.state.specialDto.dy_fwf_luy_prm
+        ]
         this.params3.chartData = [
           {
             value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: "标准版",
+            name: '标准版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: "经典版",
+            name: '经典版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: "豪华版",
-          },
-        ];
+            name: '豪华版'
+          }
+        ]
         this.params3.chartAll = [
           this.$store.state.specialDto.dy_fwf_std_prm,
           this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm,
-        ];
+          this.$store.state.specialDto.dy_fwf_luy_prm
+        ]
         this.params4.chartData = [
           {
             value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: "标准版",
+            name: '标准版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: "经典版",
+            name: '经典版'
           },
           {
             value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: "豪华版",
-          },
-        ];
+            name: '豪华版'
+          }
+        ]
         this.params4.chartAll = [
           this.$store.state.specialDto.dy_fwf_std_prm,
           this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm,
-        ];
+          this.$store.state.specialDto.dy_fwf_luy_prm
+        ]
         for (let i = 0; i < this.$store.state.specialDto.fwfList.length; i++) {
           this.paramsC1.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_luy_prm,
-          ];
+            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_luy_prm
+          ]
           this.paramsC2.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_luy_prm,
-          ];
+            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_luy_prm
+          ]
           this.paramsC3.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_luy_prm,
-          ];
+            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_luy_prm
+          ]
           this.paramsC4.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_twf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_twf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_luy_prm,
-          ];
-          console.log(this.paramsC1);
+            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_luy_prm
+          ]
+          console.log(this.paramsC1)
         }
-        var roundChartG = this.$refs.roundChartG;
-        const myChart = this.$echarts.init(roundChartG);
+        var roundChartG = this.$refs.roundChartG
+        const myChart = this.$echarts.init(roundChartG)
         const option = {
           color: [
-            "#61afff",
-            "#6172ff",
-            "#ff6671",
-            "#ffc95c",
-            "#8ee498",
-            "#9adbf9",
-            "#ddd1c2",
+            '#61afff',
+            '#6172ff',
+            '#ff6671',
+            '#ffc95c',
+            '#8ee498',
+            '#9adbf9',
+            '#ddd1c2'
           ],
           grid: {
-            top: "80px",
-            left: "5%",
-            right: "0%",
-            bottom: "0%",
-            containLabel: true,
+            top: '80px',
+            left: '5%',
+            right: '0%',
+            bottom: '0%',
+            containLabel: true
           },
           graphic: {
             elements: [
               {
-                type: "image",
+                type: 'image',
                 style: {
                   image: giftImageUrl,
                   width: 45,
-                  height: 45,
+                  height: 45
                 },
-                left: "center",
-                top: "middle",
-              },
-            ],
+                left: 'center',
+                top: 'middle'
+              }
+            ]
           },
           tooltip: {
-            trigger: "item",
+            trigger: 'item',
             show: true,
             formatter: (a) => {
               // return a.name + '：' + a.data.value + '元' + '(' + a.percent + '%' + ')'
-              var reg = /\d(?=(\d{3})+$)/g;
+              var reg = /\d(?=(\d{3})+$)/g
               if (a.data.value < 10000) {
-                let integer = a.data.value + "";
+                let integer = a.data.value + ''
                 integer = integer.replace(reg, (content) => {
-                  return content + ",";
-                });
+                  return content + ','
+                })
                 return (
-                  a.name + "：" + integer + "元" + "(" + a.percent + "%" + ")"
-                );
+                  a.name + '：' + integer + '元' + '(' + a.percent + '%' + ')'
+                )
               } else if (a.data.value < 100000000) {
-                let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+                let integer = parseInt((a.data.value % 100000000) / 10000) + ''
                 integer = integer.replace(reg, (content) => {
-                  return content + ",";
-                });
-                let decimals = (a.data.value % 10000) / 10000;
+                  return content + ','
+                })
+                let decimals = (a.data.value % 10000) / 10000
                 if (decimals === 0) {
-                  decimals = "" + "万";
+                  decimals = '' + '万'
                 } else {
                   decimals =
-                    "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                    '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                 }
                 if (integer === 0) {
-                  integer = "";
+                  integer = ''
                 }
                 return (
                   a.name +
-                  "：" +
+                  '：' +
                   integer +
                   decimals +
-                  "元" +
-                  "(" +
+                  '元' +
+                  '(' +
                   a.percent +
-                  "%" +
-                  ")"
-                );
+                  '%' +
+                  ')'
+                )
               } else if (a.data.value > 100000000) {
-                let yi = parseInt(a.data.value / 100000000) + "";
+                let yi = parseInt(a.data.value / 100000000) + ''
                 yi = yi.replace(reg, (content) => {
-                  return content + ",";
-                });
-                let integer = parseInt((a.data.value % 100000000) / 10000) + "";
+                  return content + ','
+                })
+                let integer = parseInt((a.data.value % 100000000) / 10000) + ''
                 integer = integer.replace(reg, (content) => {
-                  return content + ",";
-                });
-                let decimals = (a.data.value % 10000) / 10000;
+                  return content + ','
+                })
+                let decimals = (a.data.value % 10000) / 10000
                 if (decimals === 0) {
-                  decimals = "";
+                  decimals = ''
                 } else {
                   decimals =
-                    "." + String(decimals.toFixed(2)).split(".")[1] + "万";
+                    '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
                 }
                 if (integer === 0) {
-                  integer = "";
+                  integer = ''
                 }
                 return (
                   a.name +
-                  "：" +
+                  '：' +
                   yi +
-                  "亿" +
+                  '亿' +
                   integer +
                   decimals +
-                  "元" +
-                  "(" +
+                  '元' +
+                  '(' +
                   a.percent +
-                  "%" +
-                  ")"
-                );
+                  '%' +
+                  ')'
+                )
               }
-            },
+            }
           },
           series: [
             {
-              name: "",
-              type: "pie",
-              radius: ["50%", "80%"],
+              name: '',
+              type: 'pie',
+              radius: ['50%', '80%'],
               avoidLabelOverlap: false,
               label: {
                 show: false,
                 // fontSize: '30',
-                position: "inner",
-                formatter: "{b}: {c}元",
-                color: "#000",
+                position: 'inner',
+                formatter: '{b}: {c}元',
+                color: '#000'
               },
               emphasis: {
                 label: {
-                  show: false,
+                  show: false
                   // fontSize: '30',
                   // fontWeight: 'bold'
-                },
+                }
               },
               labelLine: {
-                show: false,
+                show: false
               },
               data: [
                 {
                   value: this.$store.state.specialDto.dy_fwf_prm,
-                  name: "家无忧",
+                  name: '家无忧'
                 },
                 {
                   value: this.$store.state.specialDto.dy_dwf_prm,
-                  name: "驾无忧",
+                  name: '驾无忧'
                 },
                 {
                   value: this.$store.state.specialDto.dy_pwf_prm,
-                  name: "财无忧",
+                  name: '财无忧'
                 },
                 {
                   value: this.$store.state.specialDto.dy_twf_prm,
-                  name: "行无忧",
-                },
-              ],
-            },
-          ],
-        };
-        myChart.setOption(option);
-        window.addEventListener("resize", function () {
-          myChart.resize();
-        });
-      }, 1000);
-    },
-  },
-};
+                  name: '行无忧'
+                }
+              ]
+            }
+          ]
+        }
+        myChart.setOption(option)
+        window.addEventListener('resize', function () {
+          myChart.resize()
+        })
+      }, 1000)
+    }
+  }
+}
 </script>
 
 <style>
