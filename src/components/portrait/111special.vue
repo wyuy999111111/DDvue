@@ -8,8 +8,8 @@
       </div>
       <div class="topRight">
         <div class="yearAll">当年累计保费</div>
-        <img  style="width:33px" src="../../assets/111专项/资源 197.png" alt="" />
-        <div class="num">{{ list.dy_wf_prm }}</div>
+        <img style="width:33px" src="../../assets/111专项/资源 197.png" alt="" />
+        <div class="num">{{ $store.state.specialDto.dy_wf_prm }}</div>
       </div>
     </div>
     <div class="middle">
@@ -18,7 +18,7 @@
           <div>
             <div class="titleBgp">当月续保保单到期量</div>
             <div class="roundChartG" ref="roundChartG"></div>
-            <div style="margin-top:55px" class="productMixDetail flex">
+            <div  style="margin-top:55px" class="productMixDetail flex">
               <div class="detailLeft">
                 <div class="detailCor">
                   <div class="colorblue"></div>
@@ -49,16 +49,32 @@
                 <div class="detailList">
                   <div class="detailList_a">
                     <div class="detailNum">
-                      <span>{{ this.list.dy_fwf_prm | fixNumber }}元</span>
+                      <span
+                        >{{
+                          $store.state.specialDto.dy_fwf_prm | fixNumber
+                        }}元</span
+                      >
                     </div>
                     <div class="detailNum">
-                      <span>{{ this.list.dy_dwf_prm | fixNumber }}元</span>
+                      <span
+                        >{{
+                          $store.state.specialDto.dy_dwf_prm | fixNumber
+                        }}元</span
+                      >
                     </div>
                     <div class="detailNum">
-                      <span>{{ this.list.dy_pwf_prm | fixNumber }}元</span>
+                      <span
+                        >{{
+                          $store.state.specialDto.dy_pwf_prm | fixNumber
+                        }}元</span
+                      >
                     </div>
                     <div class="detailNum">
-                      <span>{{ this.list.dy_twf_prm | fixNumber }}元</span>
+                      <span
+                        >{{
+                          $store.state.specialDto.dy_twf_prm | fixNumber
+                        }}元</span
+                      >
                     </div>
                   </div>
                   <div class="detailList_b">
@@ -134,24 +150,16 @@
     <div class="bot">
       <el-row>
         <el-col :span="12">
-          <div class="lineChartSty">
-            <lineChart :params="paramsC1" :status="status"></lineChart>
-          </div>
+          <lineChart :params="paramsC1" :status="status"></lineChart>
         </el-col>
         <el-col :span="12">
-          <div class="lineChartSty">
-            <lineChart :params="paramsC2" :status="status"></lineChart>
-          </div>
+          <lineChart :params="paramsC2" :status="status"></lineChart>
         </el-col>
         <el-col :span="12">
-          <div class="lineChartSty">
-            <lineChart :params="paramsC3" :status="status"></lineChart>
-          </div>
+          <lineChart :params="paramsC3" :status="status"></lineChart>
         </el-col>
         <el-col :span="12">
-          <div class="lineChartSty">
-            <lineChart :params="paramsC4"></lineChart>
-          </div>
+          <lineChart :params="paramsC4" :status="status"></lineChart>
         </el-col>
       </el-row>
     </div>
@@ -162,10 +170,8 @@
 import giftImageUrl from "../../assets/111专项/资源 196.png";
 import specailChart from "../../components/charts/111chart";
 import lineChart from "../../components/charts/111card";
-import { findRoleshow111 } from "../../api/getApi";
 export default {
   components: {
-    findRoleshow111,
     specailChart,
     lineChart,
   },
@@ -184,42 +190,43 @@ export default {
       params1: {
         color: ["#5780CE", "#61AFFF", "#9BDAFA"],
         chartData: [
-          { value: 21, name: "标准版" },
-          { value: 23, name: "经典版" },
-          { value: 44, name: "豪华版" },
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
         status: true,
       },
       params2: {
         color: ["#584FBC", "#927CFF", "#D8D2FF"],
         chartData: [
-          { value: 21, name: "标准版" },
-          { value: 23, name: "经典版" },
-          { value: 44, name: "豪华版" },
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
         status: true,
       },
       params3: {
         color: ["#51CB76", "#8EE49A", "#C2FDC6"],
         chartData: [
-          { value: 21, name: "标准版" },
-          { value: 23, name: "经典版" },
-          { value: 44, name: "豪华版" },
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
         status: true,
       },
       params4: {
         color: ["#FA8A1C", "#FECA64", "#FEE0AA"],
         chartData: [
-          { value: 21, name: "标准版" },
-          { value: 23, name: "经典版" },
-          { value: 44, name: "豪华版" },
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
         status: true,
       },
       paramsC1: {
         title: "家无忧保费分布",
         lineData: [["product", "标准版", "经典版", "豪华版"]],
+        status: true,
       },
       paramsC2: {
         title: "驾无忧保费分布",
@@ -266,102 +273,128 @@ export default {
       }
     },
     drowRoundChartGolden() {
-      const params = {
-        id: this.$store.state.role.orglResult,
-        sales_channelcode: this.$store.state.role.channelResult,
-        year: this.$store.state.role.dateYear,
-        month: this.$store.state.role.dateMonth,
-        dataDate: this.$store.state.role.date,
-        level: this.$store.state.role.orglOption,
-        // level: 2,
-      };
-      console.log(this.$store.state.role.state);
-      findRoleshow111(params).then((res) => {
-        this.list = res.data.data.secondcompanyRoleshow111[0];
+      setTimeout(() => {
+        console.log(this.$store.state.specialDto.dy_fwf_prm);
         this.Home_wy =
-          this.list.dy_fwf_std_polnum +
-          this.list.dy_fwf_clc_polnum +
-          this.list.dy_fwf_luy_polnum;
+          this.$store.state.specialDto.dy_fwf_std_polnum +
+          this.$store.state.specialDto.dy_fwf_clc_polnum +
+          this.$store.state.specialDto.dy_fwf_luy_polnum;
         (this.Car_wy =
-          this.list.dy_dwf_std_polnum +
-          this.list.dy_dwf_clc_polnum +
-          this.list.dy_dwf_luy_polnum),
+          this.$store.state.specialDto.dy_dwf_std_polnum +
+          this.$store.state.specialDto.dy_dwf_clc_polnum +
+          this.$store.state.specialDto.dy_dwf_luy_polnum),
           (this.Money_wy =
-            this.list.dy_pwf_std_polnum +
-            this.list.dy_pwf_clc_polnum +
-            this.list.dy_pwf_luy_polnum),
+            this.$store.state.specialDto.dy_pwf_std_polnum +
+            this.$store.state.specialDto.dy_pwf_clc_polnum +
+            this.$store.state.specialDto.dy_pwf_luy_polnum),
           (this.Go_wy =
-            this.list.dy_twf_std_polnum +
-            this.list.dy_twf_clc_polnum +
-            this.list.dy_twf_luy_polnum),
+            this.$store.state.specialDto.dy_twf_std_polnum +
+            this.$store.state.specialDto.dy_twf_clc_polnum +
+            this.$store.state.specialDto.dy_twf_luy_polnum),
           (this.params1.chartData = [
-            { value: this.list.dy_fwf_std_polnum, name: "标准版" },
-            { value: this.list.dy_fwf_clc_polnum, name: "经典版" },
-            { value: this.list.dy_fwf_luy_polnum, name: "豪华版" },
+            {
+              value: this.$store.state.specialDto.dy_fwf_std_polnum,
+              name: "标准版",
+            },
+            {
+              value: this.$store.state.specialDto.dy_fwf_clc_polnum,
+              name: "经典版",
+            },
+            {
+              value: this.$store.state.specialDto.dy_fwf_luy_polnum,
+              name: "豪华版",
+            },
           ]);
         this.params1.chartAll = [
-          this.list.dy_fwf_std_prm,
-          this.list.dy_fwf_clc_prm,
-          this.list.dy_fwf_luy_prm,
+          this.$store.state.specialDto.dy_fwf_std_prm,
+          this.$store.state.specialDto.dy_fwf_clc_prm,
+          this.$store.state.specialDto.dy_fwf_luy_prm,
         ];
+        console.log(this.params1);
         this.params2.chartData = [
-          { value: this.list.dy_fwf_std_prm, name: "标准版" },
-          { value: this.list.dy_fwf_clc_prm, name: "经典版" },
-          { value: this.list.dy_fwf_luy_prm, name: "豪华版" },
+          {
+            value: this.$store.state.specialDto.dy_fwf_std_prm,
+            name: "标准版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_clc_prm,
+            name: "经典版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_luy_prm,
+            name: "豪华版",
+          },
         ];
         this.params2.chartAll = [
-          this.list.dy_fwf_std_prm,
-          this.list.dy_fwf_clc_prm,
-          this.list.dy_fwf_luy_prm,
+          this.$store.state.specialDto.dy_fwf_std_prm,
+          this.$store.state.specialDto.dy_fwf_clc_prm,
+          this.$store.state.specialDto.dy_fwf_luy_prm,
         ];
         this.params3.chartData = [
-          { value: this.list.dy_fwf_std_prm, name: "标准版" },
-          { value: this.list.dy_fwf_clc_prm, name: "经典版" },
-          { value: this.list.dy_fwf_luy_prm, name: "豪华版" },
+          {
+            value: this.$store.state.specialDto.dy_fwf_std_prm,
+            name: "标准版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_clc_prm,
+            name: "经典版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_luy_prm,
+            name: "豪华版",
+          },
         ];
         this.params3.chartAll = [
-          this.list.dy_fwf_std_prm,
-          this.list.dy_fwf_clc_prm,
-          this.list.dy_fwf_luy_prm,
+          this.$store.state.specialDto.dy_fwf_std_prm,
+          this.$store.state.specialDto.dy_fwf_clc_prm,
+          this.$store.state.specialDto.dy_fwf_luy_prm,
         ];
         this.params4.chartData = [
-          { value: this.list.dy_fwf_std_prm, name: "标准版" },
-          { value: this.list.dy_fwf_clc_prm, name: "经典版" },
-          { value: this.list.dy_fwf_luy_prm, name: "豪华版" },
+          {
+            value: this.$store.state.specialDto.dy_fwf_std_prm,
+            name: "标准版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_clc_prm,
+            name: "经典版",
+          },
+          {
+            value: this.$store.state.specialDto.dy_fwf_luy_prm,
+            name: "豪华版",
+          },
         ];
         this.params4.chartAll = [
-          this.list.dy_fwf_std_prm,
-          this.list.dy_fwf_clc_prm,
-          this.list.dy_fwf_luy_prm,
+          this.$store.state.specialDto.dy_fwf_std_prm,
+          this.$store.state.specialDto.dy_fwf_clc_prm,
+          this.$store.state.specialDto.dy_fwf_luy_prm,
         ];
-        for (let i = 0; i < this.list.fwfList.length; i++) {
+        for (let i = 0; i < this.$store.state.specialDto.fwfList.length; i++) {
           this.paramsC1.lineData[i + 1] = [
-            this.list.fwfList[i].data_date,
-            this.list.fwfList[i].dy_evrym_fwf_std_prm,
-            this.list.fwfList[i].dy_evrym_fwf_clc_prm,
-            this.list.fwfList[i].dy_evrym_fwf_luy_prm,
+            this.$store.state.specialDto.fwfList[i].data_date,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_std_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_clc_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_luy_prm,
           ];
           this.paramsC2.lineData[i + 1] = [
-            this.list.fwfList[i].data_date,
-            this.list.fwfList[i].dy_evrym_dwf_std_prm,
-            this.list.fwfList[i].dy_evrym_dwf_clc_prm,
-            this.list.fwfList[i].dy_evrym_dwf_luy_prm,
+            this.$store.state.specialDto.fwfList[i].data_date,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_std_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_clc_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_luy_prm,
           ];
           this.paramsC3.lineData[i + 1] = [
-            this.list.fwfList[i].data_date,
-            this.list.fwfList[i].dy_evrym_pwf_std_prm,
-            this.list.fwfList[i].dy_evrym_pwf_clc_prm,
-            this.list.fwfList[i].dy_evrym_pwf_luy_prm,
+            this.$store.state.specialDto.fwfList[i].data_date,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_std_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_clc_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_luy_prm,
           ];
           this.paramsC4.lineData[i + 1] = [
-            this.list.fwfList[i].data_date,
-            this.list.fwfList[i].dy_evrym_twf_std_prm,
-            this.list.fwfList[i].dy_evrym_twf_clc_prm,
-            this.list.fwfList[i].dy_evrym_twf_luy_prm,
+            this.$store.state.specialDto.fwfList[i].data_date,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_std_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_clc_prm,
+            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_luy_prm,
           ];
           console.log(this.paramsC1);
         }
-        this.status = !this.status;
         var roundChartG = this.$refs.roundChartG;
         const myChart = this.$echarts.init(roundChartG);
         const option = {
@@ -402,7 +435,6 @@ export default {
               // return a.name + '：' + a.data.value + '元' + '(' + a.percent + '%' + ')'
               var reg = /\d(?=(\d{3})+$)/g;
               if (a.data.value < 10000) {
-                console.log(a.data.value);
                 let integer = a.data.value + "";
                 integer = integer.replace(reg, (content) => {
                   return content + ",";
@@ -495,10 +527,22 @@ export default {
                 show: false,
               },
               data: [
-                { value: this.list.dy_fwf_prm, name: "家无忧" },
-                { value: this.list.dy_dwf_prm, name: "驾无忧" },
-                { value: this.list.dy_pwf_prm, name: "财无忧" },
-                { value: this.list.dy_twf_prm, name: "行无忧" },
+                {
+                  value: this.$store.state.specialDto.dy_fwf_prm,
+                  name: "家无忧",
+                },
+                {
+                  value: this.$store.state.specialDto.dy_dwf_prm,
+                  name: "驾无忧",
+                },
+                {
+                  value: this.$store.state.specialDto.dy_pwf_prm,
+                  name: "财无忧",
+                },
+                {
+                  value: this.$store.state.specialDto.dy_twf_prm,
+                  name: "行无忧",
+                },
               ],
             },
           ],
@@ -507,7 +551,7 @@ export default {
         window.addEventListener("resize", function () {
           myChart.resize();
         });
-      });
+      }, 1000);
     },
   },
 };
@@ -703,11 +747,5 @@ export default {
   line-height: 0;
   margin: 5px 25px;
   font-size: 16px;
-}
-.lineChartSty {
-  border: 1px solid #dad7d7;
-  padding: 20px;
-  border-radius: 0.5rem;
-  margin: 10px;
 }
 </style>

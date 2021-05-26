@@ -1441,52 +1441,47 @@ export default {
       const myChart = this.$echarts.init(asd);
       const option = {
         tooltip: {
-          show: true,
-          axisPointer: {
-            type: "shadow",
-          },
-          formatter: "{b}:{c}元",
+          trigger: "axis",
         },
-        grid: {
-          top: "50px",
-          left: "5%",
-          right: "0%",
-          bottom: "0%",
-          containLabel: true,
+        legend: {
+          data: ["保费", "购买客户数"],
         },
-        xAxis: {
-          type: "category",
-          data: this.list.dy_nocar_top10_pro_prm_name,
-          axisTick: {
-            // y轴刻度线
-            show: false,
+        xAxis: [
+          {
+            type: "category",
+            data: this.list.dy_nocar_top10_pro_prm_name,
+            axisPointer: {
+              type: "shadow",
+            },
           },
-          axisLine: {
-            // y轴
-            show: false,
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "保费",
           },
-          axisLabel: {
-            margin: 25,
-            fontSize: 14,
+          {
+            type: "value",
+            name: "购买客户数",
           },
-        },
-        yAxis: {
-          type: "value",
-          axisTick: {
-            // y轴刻度线
-            show: false,
-          },
-          axisLine: {
-            // y轴
-            show: false,
-          },
-        },
+        ],
         series: [
           {
+            name: "保费",
+            type: "bar",
+            position: "left",
+            barWidth: 22,
+            yAxisIndex: 1,
             data: this.list.dy_nocar_top10_pro_prm_money,
+            color: ["#62AFFF"],
+          },
+          {
+            name: "购买客户数",
+            position: "right",
             type: "bar",
             barWidth: 22,
-            color: ["#61afff"],
+            data: this.list.dy_nocar_top10_pro_prm_num,
+            color: ["#98DCF8"],
           },
         ],
       };

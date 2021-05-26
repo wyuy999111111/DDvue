@@ -9,7 +9,7 @@
           class="borderTop"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList[0] ===
-            '1' && $store.state.user.codeName !== '总公司'
+              '1' && $store.state.user.codeName !== '总公司'
           "
         >
           分公司管理者统计信息配置 :
@@ -18,7 +18,7 @@
           class="borderTop"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList[0] ===
-            '2' && $store.state.user.codeName !== '总公司'
+              '2' && $store.state.user.codeName !== '总公司'
           "
         >
           中支公司管理者统计信息配置 ：
@@ -99,7 +99,7 @@
           class="borderTop"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList[0] ===
-            '1' && $store.state.user.codeName === '总公司'
+              '1' && $store.state.user.codeName === '总公司'
           "
         >
           总公司管理者统计信息配置 :
@@ -108,7 +108,7 @@
           class="borderTop"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList[0] ===
-            '2' && $store.state.user.codeName === '总公司'
+              '2' && $store.state.user.codeName === '总公司'
           "
         >
           分公司管理者统计信息配置 :
@@ -117,7 +117,7 @@
           class="borderTop"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList[0] ===
-            '3' && $store.state.user.codeName === '总公司'
+              '3' && $store.state.user.codeName === '总公司'
           "
         >
           中支公司管理者统计信息配置 ：
@@ -126,7 +126,7 @@
           class="setMessage"
           v-if="
             $store.state.strategy.managerMessageList[index].manageIdList
-              .length !== 0   && $store.state.user.codeName === '总公司'
+              .length !== 0 && $store.state.user.codeName === '总公司'
           "
         >
           <div class="messageShow">
@@ -187,7 +187,23 @@
             >
               <el-table-column prop="salesCode" label="工号" />
               <el-table-column prop="salesName" label="姓名" />
-              <el-table-column prop="salesComname2" label="二级机构" />
+              <el-table-column
+                v-if="
+                  $store.state.strategy.managerMessageList[index]
+                    .manageIdList[0] === '2'
+                "
+                prop="salesComname2"
+                label="二级机构"
+              />
+
+              <el-table-column
+                v-if="
+                  $store.state.strategy.managerMessageList[index]
+                    .manageIdList[0] === '3'
+                "
+                prop="salesComname2"
+                label="三级机构"
+              />
               <el-table-column prop="salesChannelName" label="渠道" />
             </el-table>
           </div>
@@ -322,8 +338,7 @@ export default {
       this.$refs.treeMessage.filter(val);
     },
   },
-  created() {
-  },
+  created() {},
   methods: {
     setUploadNum(index) {
       this.uploadNum = index;

@@ -17,7 +17,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="选择群组：">
-              <div class="flex alignItem">
+              <div style="margin: 0" class="flex alignItem">
                 <el-select v-model="$store.state.strategy.groupId" filterable>
                   <el-option
                     clearable
@@ -862,7 +862,10 @@ export default {
       this.res = res.data;
       this.$store.state.user = res.data;
       console.log(this.$store.state.user.codeName);
-      if (this.$store.state.user.codeName !== "总公司") {
+      if (
+        this.$store.state.user.codeName !== "总公司" &&
+        this.$store.state.strategy.managerMessageList.length > 2
+      ) {
         const newArr = this.$store.state.strategy.managerMessageList.slice(0);
         newArr.shift();
         this.$store.state.strategy.managerMessageList = newArr;

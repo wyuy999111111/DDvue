@@ -222,7 +222,7 @@ export default {
     findUserRe().then((res) => {
       console.log(res.data.data)
       for (let i = 0; i < res.data.data.length; i++) {
-        if (res.data.data[i].resName === '人员管理') {
+        if (res.data.data[i].resName === '人员画像') {
           for (let j = 0; j < res.data.data[i].children.length; j++) {
             if (res.data.data[i].children[j].resName === '人员查询') {
               console.log('xtgl')

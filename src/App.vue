@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   created () {
-    document.cookie = 'JSESSIONID=A45DC021E6349954436038E7C44F90C7'
+    document.cookie = 'JSESSIONID=C67E4EE871E3460A6C0013AB9B5CC71A'
     const backCommon = function () {
       history.pushState(null, null, document.URL)
     }

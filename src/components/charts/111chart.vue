@@ -1,13 +1,57 @@
 <template>
-  <div class="roundChart" ref="roundChartc"></div>
+  <div>
+    <div class="roundChart" ref="roundChart"></div>
+    <div class="productMixDetail_t flex">
+      <div class="detailLeft_t">
+        <div class="detailCor_t">
+          <div class="colorblue_c"></div>
+          标准型
+        </div>
+        <div class="detailCor_t">
+          <div class="colorblue_b"></div>
+          经典型
+        </div>
+        <div class="detailCor_t">
+          <div class="colorblue_a"></div>
+          豪华型
+        </div>
+      </div>
+      <div class="detailRight_t">
+        <div class="flex">
+          <el-button>保费</el-button> <el-button>保单数</el-button>
+        </div>
+        <div class="detailList_t">
+          <div class="leftPart">
+            <div
+              v-for="(item, index) in use.chartData"
+              :key="index"
+              class="detailNum_t"
+            >
+              <span align="right">{{ item.value | fixNumber }}元</span>
+            </div>
+          </div>
+          <div class="rightPart">
+            <div
+              v-for="(item, index) in use.chartAll"
+              :key="index"
+              class="detailNum_t"
+            >
+              <span align="right">{{ item | fixNumber }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "111chart",
-  props: ["params"],
+  name: "specailChart",
+  props: ["params", "status"],
   data() {
     return {
+      use: [],
       GetWindowInfo: {
         width: "",
       },
@@ -17,13 +61,15 @@ export default {
   created() {
     window.addEventListener("resize", this.GetWindowInfo);
     this.GetWindow();
+  },
+  mounted() {
     setTimeout(() => {
-      this.drowRoundChart();
-    }, 1000);
+      this.roundChart();
+    }, 1100);
   },
   watch: {
-    params() {
-      this.drowRoundChart();
+    status() {
+      this.roundChart();
     },
   },
   methods: {
@@ -39,11 +85,14 @@ export default {
         this.xSize = 18;
       }
     },
-    drowRoundChart() {
-      var roundChart = this.$refs.roundChartc;
+    roundChart() {
+      var roundChart = this.$refs.roundChart;
       const myChart = this.$echarts.init(roundChart);
+      const _this = this;
+      this.use = _this.params;
+      console.log(_this.status);
       const option = {
-        color: ["#C8EEBB", "#8CE394", "#67BF96", "#4CA37A"],
+        color: _this.params.color,
         grid: {
           top: "0px",
           left: "0%",
@@ -54,9 +103,9 @@ export default {
         tooltip: {
           show: true,
           trigger: "item",
-          formatter: (a) => {
-            return a.data.name + "：" + a.data.value + "%";
-          },
+          // formatter: (a) => {
+          //   return a.data.name + "：" + a.data.value + "%";
+          // },
         },
         series: [
           {
@@ -80,12 +129,7 @@ export default {
             labelLine: {
               show: false,
             },
-            data: [
-              { value: this.list.dy_high_pasger_prm, name: "公路客运" },
-              { value: this.list.dy_pubbus_prm, name: "城市公交" },
-              { value: this.list.dy_lease_car_prm, name: "出租租赁" },
-              { value: this.list.dy_apmt_taxi_prm, name: "预约出租车" },
-            ],
+            data: _this.params.chartData,
           },
         ],
       };
@@ -100,8 +144,72 @@ export default {
 
 <style lang='less' scoped>
 .roundChart {
-  width: 220px;
-  height: 220px;
-  margin: auto;
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin-top: 30px;
+  margin-left: -35px;
+}
+.productMixDetail_t {
+  float: right;
+  width: 380px;
+  height: 250px;
+  margin-top: 20px;
+  // padding-left: 40px;
+}
+.flex {
+  display: flex;
+  margin-top: 30px;
+}
+.detailLeft_t {
+  width: 80px;
+  height: 280px;
+  font-size: 18px;
+  margin-top: 65px;
+  // margin-left: 30px;
+}
+.detailCor_t {
+  width: 235px;
+  height: 9px;
+  display: flex;
+  align-items: center;
+  margin: 35px auto;
+  font-size: 14px;
+}
+.detailRight_t {
+  width: 180px;
+  height: 326px;
+}
+.detailRight_t .el-button {
+  border-radius: 30px;
+  width: 94px;
+  height: 35px;
+  line-height: 30px;
+  line-height: 0;
+  margin: 5px 25px;
+  font-size: 16px;
+}
+.detailList_t {
+  width: 14.725rem;
+  background: #f6f7fc;
+  border-radius: 10px;
+  // margin-left: 20px;
+  margin-top: 10px;
+}
+.detailNum_t {
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 44px;
+  flex-direction: row-reverse;
+}
+.leftPart {
+  float: left;
+}
+.leftRight {
+  float: right;
+}
+.rightPart {
+  padding: 0 0 0 0;
 }
 </style>

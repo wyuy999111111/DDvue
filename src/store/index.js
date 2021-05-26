@@ -57,19 +57,19 @@ export default new Vuex.Store({
       managerMessageList: [{
         messageContent: '', // 消息模板
         manageIdList: '', // id 1，2，3
-        text: '是否给总公司管理者发送信息',
+        text: '总公司',
         manageList: [],
         sendMethod: '1'
       }, {
         messageContent: '',
         manageIdList: '',
-        text: '是否给分公司管理者发送信息',
+        text: '分公司',
         manageList: [],
         sendMethod: '1'
       }, {
         messageContent: '',
         manageIdList: '',
-        text: '是否给中支公司管理者发送信息',
+        text: '中支公司',
         manageList: [],
         sendMethod: '1'
       }]
@@ -107,6 +107,7 @@ export default new Vuex.Store({
       std_rank: '', // 标准职级
       working_experience: '' // 工作经验
     },
+    specialDto:[],
     // 图表数据
     salesPortrayDto: {
       change_sales_date: '', // 转销事件

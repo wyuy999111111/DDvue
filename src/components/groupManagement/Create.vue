@@ -915,7 +915,7 @@ export default {
     this.windowHeight = document.documentElement.clientHeight - 80
     findUserRe().then(res => {
       for (let i = 0; i < res.data.data.length; i++) {
-        if (res.data.data[i].resName === '群组管理') {
+        if (res.data.data[i].resName === '群组画像') {
           for (let j = 0; j < res.data.data[i].children.length; j++) {
             if (res.data.data[i].children[j].resName === '群组创建') {
               this.user = res.data.data[i].children[j].prmsIdentity

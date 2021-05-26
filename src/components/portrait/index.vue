@@ -12,6 +12,7 @@
           <li class="topBtn" @click='topTitleFour' :class="activeTop === '4' ? 'active' : '' "><a>客户结构</a></li>
           <li class="topBtn" @click='topTitleFive' :class="activeTop === '5' ? 'active' : '' "><a>续保结构</a></li>
           <li class="topBtn" @click='topTitleSix' :class="activeTop === '6' ? 'active' : '' "><a>行为信息</a></li>
+          <li class="topBtn" @click='topTitleSeven' :class="activeTop === '7' ? 'active' : '' "><a>111专项</a></li>
         </ul>
       </div>
       <div class="topBack" @click='goBack' style='cursor: pointer;'>
@@ -25,6 +26,7 @@
       <customer ref="customer" name="customer"/>
       <insurance ref="insurance" name="insurance"/>
       <behaviors ref="behaviors" name="behaviors"/>
+      <special ref="special" name="special"/>
     </div>
   </div>
 </template>
@@ -37,6 +39,7 @@ import business from './business'
 import insurance from './insurance'
 import behaviors from './behaviors'
 import customer from './customer'
+import special from './111special'
 // import '../../utils/rem'
 
 export default {
@@ -47,7 +50,8 @@ export default {
     business,
     behaviors,
     customer,
-    insurance
+    insurance,
+    special
   },
   data () {
     return {
@@ -391,6 +395,7 @@ export default {
       console.log(res.data.data.salesTagMemberDto)
       // 画像侧边信息
       this.$store.state.salesTagMemberDto = res.data.data.salesTagMemberDto
+      this.$store.state.specialDto = res.data.data.specialDto
       // 图表数据
       this.$store.state.salesPortrayDto = res.data.data.salesPortrayDto
       this.$store.state.histogram = res.data.data
@@ -483,6 +488,17 @@ export default {
       }
       // console.log(this.$refs.behaviors)
       this.activeTop = '6'
+    },
+    topTitleSeven () {
+      if (this.GetWindowInfo.width === 1366) {
+        this.$refs.login.scrollTop = this.$refs.behaviors.$el.clientHeight + 3650
+      } else if (this.GetWindowInfo.width === 1600) {
+        this.$refs.login.scrollTop = this.$refs.behaviors.$el.clientHeight + 4270
+      } else {
+        this.$refs.login.scrollTop = this.$refs.behaviors.$el.clientHeight + 4780
+      }
+      // console.log(this.$refs.behaviors)
+      this.activeTop = '7'
     },
     goBack () {
       console.log(this.$route.query)

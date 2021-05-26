@@ -42,9 +42,9 @@
             <template slot="title" style="height: 35px; line-height: 35px; color: #47bcea;" class="el-title" >
               <img src='../assets/home/symbolNew/系统管理.png' alt id='title' v-if="menu.resName === '系统管理'" />
               <img src='../assets/home/symbolNew/标签管理.png' alt id='title' v-if="menu.resName === '标签管理'" />
-              <img src='../assets/home/symbolNew/人员管理.png' alt id='title' v-if="menu.resName === '人员管理'" />
+              <img src='../assets/home/symbolNew/人员管理.png' alt id='title' v-if="menu.resName === '人员画像'" />
               <img src='../assets/home/symbolNew/策略管理.png' alt id='title' v-if="menu.resName === '策略管理'" />
-              <img src='../assets/home/symbolNew/群组管理.png' alt id='title' v-if="menu.resName === '群组管理'" />
+              <img src='../assets/home/symbolNew/群组管理.png' alt id='title' v-if="menu.resName === '群组画像'" />
               <img src='../assets/home/symbolNew/业务监控.png' alt id='title' v-if="menu.resName === '运营中心'" />
               <span>{{menu.resName}}</span>
             </template>

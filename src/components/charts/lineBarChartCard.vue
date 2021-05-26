@@ -52,6 +52,7 @@ export default {
     drow () {
       let yAxis = ''
       const _this = this
+      console.log(_this.status)
       let series = []
       if (this.params.type === 1) {
         series = [{
