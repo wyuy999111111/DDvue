@@ -423,6 +423,7 @@ export default {
             type: 'shadow'
           },
           formatter: (a) => {
+            console.log(a)
             return (
               a[0].axisValue +
               '月' +

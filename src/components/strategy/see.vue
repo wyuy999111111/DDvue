@@ -26,7 +26,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="选择群组：">
-              <div class="flex alignItem">
+              <div style="margin-top:0px" class="flex alignItem">
                 <el-input v-model="$store.state.strategy.groupName" readonly />
                 <el-button @click="gotoGroupManagement">查看群组</el-button>
               </div>

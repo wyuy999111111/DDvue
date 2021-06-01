@@ -29,7 +29,7 @@ export const orgTree = () => axiosservice.get('/sit-web/sit/prms/user/orgTree.do
 export const findRoles = (params) => axiosservice.get(`/sit-web/sit/prms/role/findRoles.do?dataComcode=${params}`)
 export const findUserList = (params) => axiosservice.get(`/sit-web/sit/prms/user/findUserList.do?${params}`)
 export const findRoleDetail = (params) => axiosservice.get(`/sit-web/sit/prms/role/findRoleDetail.do?${params}`)
-
+export const downloadFile  = (params) => axiosservice.get(`/sit-web/sit/strategy/downloadFile?messageId=${params}`)
 export const checkTagName = (params) => axiosservice.get(`/sit-web/sit/group/checkTagName?tagName=${params}`)
 
 // post

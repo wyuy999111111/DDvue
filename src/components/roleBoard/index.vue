@@ -83,7 +83,7 @@
       <div :class="cut === 'renewal' ? 'tabBtnOn' : 'tabBtn'"  @click="handleCut('renewal')">续保情况</div>
       <div :class="cut === 'quotation' ? 'tabBtnOn' : 'tabBtn'"  @click="handleCut('quotation')">报价情况</div>
       <div :class="cut === 'behavioral' ? 'tabBtnOn' : 'tabBtn'"  @click="handleCut('behavioral')">行为信息</div>
-      <div :class="cut === 'special111' ? 'tabBtnOn' : 'tabBtn'"  @click="handleCut('special111')">111专项</div>
+      <div :class="cut === 'special111' ? 'tabBtnOn' : 'tabBtn'"  @click="handleCut('special111')">专项信息</div>
     </div>
     <div id="content">
       <OverView v-if="cut === 'overView'" :overViewStatus='overViewStatus' />

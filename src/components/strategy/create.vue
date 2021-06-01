@@ -991,6 +991,7 @@ export default {
         nameAdd: ''
       }
       this.$store.state.strategy.tagEnumList = arr
+      console.log(arr)
       for (
         let i = 0;
         i < this.$store.state.strategy.sitConditions.length;
@@ -1048,6 +1049,7 @@ export default {
         arr[this.message.nowNum] = this.message.nowList
         this.message.list = arr
         this.$store.state.strategy.tagEnumList = arr
+        console.log(arr)
       }
     },
     handleAddMessageList () {
@@ -1321,9 +1323,11 @@ export default {
         return
       }
       if (
-        this.$store.state.strategy.strategyStartTime >=
+        this.$store.state.strategy.strategyStartTime >
         this.$store.state.strategy.strategyEndTime
       ) {
+        console.log(this.$store.state.strategy.strategyStartTime)
+        console.log(this.$store.state.strategy.strategyEndTime)
         this.$message.warning('开始时间要小于结束时间')
         return
       }

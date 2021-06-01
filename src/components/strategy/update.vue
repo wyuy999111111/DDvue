@@ -18,7 +18,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="选择群组：">
-              <div class="flex alignItem">
+              <div style="margin-top:0" class="flex alignItem">
                 <el-select
                   v-model="$store.state.strategy.groupId"
                   filterable
@@ -1268,7 +1268,7 @@ export default {
         return
       }
       if (
-        this.$store.state.strategy.strategyStartTime >=
+        this.$store.state.strategy.strategyStartTime >
         this.$store.state.strategy.strategyEndTime
       ) {
         this.$message.warning('开始时间要小于结束时间')
@@ -1678,7 +1678,7 @@ export default {
         return
       }
       if (
-        this.$store.state.strategy.strategyStartTime >=
+        this.$store.state.strategy.strategyStartTime >
         this.$store.state.strategy.strategyEndTime
       ) {
         this.$message.warning('开始时间要小于结束时间')

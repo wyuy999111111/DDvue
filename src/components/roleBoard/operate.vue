@@ -9,7 +9,7 @@
         <div class="customerNum">
           <div class="totalNum">
             <div class="totalNumTitle">
-              <span>当前客户总数</span>
+              <span>当前客户总数(在保)</span>
             </div>
             <div class="totalNumDb">
               <img src="../../assets/portraitImg/ClientBehavior/customerNum.png" alt="">
@@ -20,7 +20,7 @@
           </div>
           <div class="policiesNum">
             <div class="policiesNumTitle">
-              <span>客均保单数</span>
+              <span>客均保单数(在保)</span>
             </div>
             <div class="policiesNumDb">
               <img src="../../assets/portraitImg/ClientBehavior/bdBook.png" alt="">
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="custType">
-          <p>客户意向分</p>
+          <p>客户意向分(在保)</p>
         </div>
         <div class="intention" ref="intention"></div>
         <div class="intentionData">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="custType">
-          <p>客户属性</p>
+          <p>客户属性(在保)</p>
         </div>
         <div class="typeCharts">
           <div class="typeChartsTop">
@@ -135,7 +135,7 @@
             <div class="chartsL">
               <div class="chartTitle">
                 <img src="../../assets/portraitImg/ClientBehavior/triangle.png" alt="">
-                <p>按家用车保全度</p>
+                <p>按家用车保全度 </p>
               </div>
               <div class="chartsEn">
                 <!-- <Doughnut :seriesData='dataBut' :color='colorBut' /> -->
@@ -177,7 +177,7 @@
         <div class="customerRtop">
           <div class="customerRyear">
             <div class="yearTitle">
-              <p>客户年龄分布情况</p>
+              <p>客户年龄分布情况(在保)</p>
             </div>
             <div class="yearChart">
               <div class="yearChart" ref="yearChart" ></div>
@@ -185,7 +185,7 @@
           </div>
           <div class="customerRsex">
             <div class="sexTitle">
-              <p>客户性别分布情况</p>
+              <p>客户性别分布情况(在保)</p>
             </div>
             <div class="sexBody">
               <div class="sexLeft">
@@ -221,7 +221,7 @@
         </div>
         <div class="customerRbody">
           <div class="bodyTitle">
-            <p>月客户活跃次数</p>
+            <p>月客户活跃次数(在保)</p>
           </div>
           <div class="lineChart" ref="lineChart"></div>
         </div>
@@ -410,6 +410,7 @@ export default {
             type: 'shadow'
           },
           formatter: (a) => {
+            console.log(a)
             var reg = /\d(?=(\d{3})+$)/g
             if (a[0].value < 10000) {
               let integer = a[0].value + ''
@@ -587,7 +588,7 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          data: ['绑定官微客户数', '注册超A客户数'],
+          data: ['绑定官微客户数(在保)', '注册超A客户数(在保)'],
           axisTick: {
             alignWithLabel: true,
             show: false
@@ -698,12 +699,12 @@ export default {
           axisLine: {
             show: false
           },
-          axisLabel: {
-            interval: 0,
-            formatter: (value) => {
-              return '当年' + '\n' + value
-            }
-          }
+          // axisLabel: {
+          //   interval: 0,
+          //   formatter: (value) => {
+          //     return '当年' + '\n' + value
+          //   }
+          // }
         }],
         yAxis: [
           {
@@ -1059,8 +1060,8 @@ export default {
 }
 .totalNumTitle{
   background: url('../../assets/portraitImg/ClientBehavior/white.png') no-repeat;
-  width: 172px;
-  height: 39px;
+  width: 190px;
+  height: 42px;
   line-height: 39px;
   padding-left: 45px;
   margin: 0 auto;
@@ -1474,7 +1475,7 @@ export default {
 }
 .yearTitle{
   background: url('../../assets/portraitImg/ClientBehavior/blue.png') no-repeat;
-  width: 211px;
+  width: 14rem;
   height: 37px;
   margin-top: 20px;
   padding-left: 35px;
@@ -1492,7 +1493,7 @@ export default {
 }
 .sexTitle{
   background: url('../../assets/portraitImg/ClientBehavior/blue.png') no-repeat;
-  width: 211px;
+  width: 14rem;
   height: 37px;
   margin-top: 20px;
   padding-left: 35px;

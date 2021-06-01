@@ -1,14 +1,20 @@
 <template>
-  <div style="background: white">
-    <div class="backGround"><div class="spe">111专项</div></div>
+  <div class="beImformation">
+    <div class="xwTitle">
+      <span>专项信息</span>
+    </div>
     <div class="Top">
       <div class="topLeft">
         <img class="noWorried" src="../../assets/111专项/资源 198.png" alt="" />
-        <div>无忧产品</div>
+        <div style="margin-top: -9px">无忧产品</div>
       </div>
       <div class="topRight">
-        <div class="yearAll">当年累计保费</div>
-        <img style="width:33px" src="../../assets/111专项/资源 197.png" alt="" />
+        <div class="yearAll">当年累计总保费</div>
+        <img
+          style="width: 33px"
+          src="../../assets/111专项/资源 197.png"
+          alt=""
+        />
         <div class="num">{{ $store.state.specialDto.dy_wf_prm }}</div>
       </div>
     </div>
@@ -16,9 +22,9 @@
       <el-row>
         <el-col :span="8">
           <div>
-            <div class="titleBgp">当月续保保单到期量</div>
+            <div class="titleBgp">无忧产品保费分布图</div>
             <div class="roundChartG" ref="roundChartG"></div>
-            <div  style="margin-top:55px" class="productMixDetail flex">
+            <div style="margin-top: 55px" class="productMixDetail flex">
               <div class="detailLeft">
                 <div class="detailCor">
                   <div class="colorblue"></div>
@@ -167,114 +173,127 @@
 </template>
 
 <script>
-import giftImageUrl from '../../assets/111专项/资源 196.png'
-import specailChart from '../../components/charts/111chart'
-import lineChart from '../../components/charts/111card'
+import giftImageUrl from "../../assets/111专项/资源 196.png";
+import specailChart from "../../components/charts/111chart";
+import lineChart from "../../components/charts/111card";
 export default {
   components: {
     specailChart,
-    lineChart
+    lineChart,
   },
-  data () {
+  data() {
     return {
       status: true,
       list: [],
-      Home_wy: '',
-      Car_wy: '',
-      Money_wy: '',
-      Go_wy: '',
+      Home_wy: "",
+      Car_wy: "",
+      Money_wy: "",
+      Go_wy: "",
       GetWindowInfo: {
-        width: ''
+        width: "",
       },
       xSize: 18,
       params1: {
-        color: ['#5780CE', '#61AFFF', '#9BDAFA'],
+        color: ["#5780CE", "#61AFFF", "#9BDAFA"],
         chartData: [
-          { value: 0, name: '标准版' },
-          { value: 0, name: '经典版' },
-          { value: 0, name: '豪华版' }
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
-        status: true
+        status: true,
       },
       params2: {
-        color: ['#584FBC', '#927CFF', '#D8D2FF'],
+        color: ["#584FBC", "#927CFF", "#D8D2FF"],
         chartData: [
-          { value: 0, name: '标准版' },
-          { value: 0, name: '经典版' },
-          { value: 0, name: '豪华版' }
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
-        status: true
+        status: true,
       },
       params3: {
-        color: ['#51CB76', '#8EE49A', '#C2FDC6'],
+        color: ["#51CB76", "#8EE49A", "#C2FDC6"],
         chartData: [
-          { value: 0, name: '标准版' },
-          { value: 0, name: '经典版' },
-          { value: 0, name: '豪华版' }
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
+          { value: 0, name: "豪华版" },
         ],
-        status: true
+        status: true,
       },
       params4: {
-        color: ['#FA8A1C', '#FECA64', '#FEE0AA'],
+        color: ["#FA8A1C", "#FECA64", "#FEE0AA"],
         chartData: [
-          { value: 0, name: '标准版' },
-          { value: 0, name: '经典版' },
-          { value: 0, name: '豪华版' }
+          { value: 0, name: "基础版" },
+          { value: 0, name: "标准版" },
+          { value: 0, name: "经典版" },
         ],
-        status: true
+        status: true,
       },
       paramsC1: {
-        title: '家无忧保费分布',
-        lineData: [['product', '标准版', '经典版', '豪华版']],
-        status: true
+        title: "家无忧保费分布",
+        lineData: [["product", "标准版", "经典版", "豪华版"]],
+        status: true,
       },
       paramsC2: {
-        title: '驾无忧保费分布',
-        lineData: [['product', '标准版', '经典版', '豪华版']],
-        status: true
+        title: "驾无忧保费分布",
+        lineData: [["product", "标准版", "经典版", "豪华版"]],
+        status: true,
       },
       paramsC3: {
-        title: '财无忧保费分布',
-        lineData: [['product', '标准版', '经典版', '豪华版']],
-        status: true
+        title: "财无忧保费分布",
+        lineData: [["product", "标准版", "经典版", "豪华版"]],
+        status: true,
       },
       paramsC4: {
-        title: '行无忧保费分布',
-        lineData: [['product', '标准版', '经典版', '豪华版']],
-        status: true
-      }
-    }
+        title: "行无忧保费分布",
+        lineData: [["product", "基础班", "经典版", "豪华版"]],
+        status: true,
+      },
+    };
   },
   watch: {
-    '$store.state.role.state' () {
-      this.drowRoundChartGolden()
+    "$store.state.role.state"() {
+      this.drowRoundChartGolden();
       // if (this.$store.state.role.orglResult !== '' && this.$store.state.role.channelResult === '') {
       // }
-    }
+    },
   },
-  mounted () {
-    this.drowRoundChartGolden()
+  mounted() {
+    this.drowRoundChartGolden();
   },
-  created () {
-    window.addEventListener('resize', this.GetWindowInfo)
-    this.GetWindow()
+  created() {
+    window.addEventListener("resize", this.GetWindowInfo);
+    this.GetWindow();
   },
   methods: {
-    GetWindow () {
-      this.GetWindowInfo.width = window.outerWidth
+    GetWindow() {
+      this.GetWindowInfo.width = window.outerWidth;
       if (this.GetWindowInfo.width === 1366) {
-        this.xSize = 12
+        this.xSize = 12;
       }
       if (this.GetWindowInfo.width === 1600) {
-        this.xSize = 16
+        this.xSize = 16;
       }
       if (this.GetWindowInfo.width === 1920) {
-        this.xSize = 18
+        this.xSize = 18;
       }
     },
-    drowRoundChartGolden () {
+    drowRoundChartGolden() {
       setTimeout(() => {
-        console.log(this.$store.state.specialDto.dy_fwf_prm)
+        var reg = /\d(?=(\d{3})+$)/g;
+        if (this.$store.state.specialDto.dy_wf_prm < 10000) {
+          let integer = this.$store.state.specialDto.dy_wf_prm + "";
+          integer = integer.replace(reg, (content) => {
+            return content + ",";
+          });
+          this.$store.state.specialDto.dy_wf_prm = integer + "元";
+        } else if (this.$store.state.specialDto.dy_wf_prm >= 10000) {
+          this.$store.state.specialDto.dy_wf_prm =
+            this.$store.state.specialDto.dy_wf_prm / 10000 + "万元";
+        } else if (this.$store.state.specialDto.dy_wf_prm >= 100000000) {
+          this.$store.state.specialDto.dy_wf_prm =
+            this.$store.state.specialDto.dy_wf_prm + "亿元";
+        }
         this.Home_wy =
           this.$store.state.specialDto.dy_fwf_std_polnum +
           this.$store.state.specialDto.dy_fwf_clc_polnum +
@@ -283,281 +302,287 @@ export default {
           this.$store.state.specialDto.dy_dwf_std_polnum +
           this.$store.state.specialDto.dy_dwf_clc_polnum +
           this.$store.state.specialDto.dy_dwf_luy_polnum),
-        (this.Money_wy =
+          (this.Money_wy =
             this.$store.state.specialDto.dy_pwf_std_polnum +
             this.$store.state.specialDto.dy_pwf_clc_polnum +
             this.$store.state.specialDto.dy_pwf_luy_polnum),
-        (this.Go_wy =
+          (this.Go_wy =
             this.$store.state.specialDto.dy_twf_std_polnum +
             this.$store.state.specialDto.dy_twf_clc_polnum +
             this.$store.state.specialDto.dy_twf_luy_polnum),
-        (this.params1.chartData = [
-          {
-            value: this.$store.state.specialDto.dy_fwf_std_polnum,
-            name: '标准版'
-          },
-          {
-            value: this.$store.state.specialDto.dy_fwf_clc_polnum,
-            name: '经典版'
-          },
-          {
-            value: this.$store.state.specialDto.dy_fwf_luy_polnum,
-            name: '豪华版'
-          }
-        ])
+          (this.params1.chartData = [
+            {
+              value: this.$store.state.specialDto.dy_fwf_std_prm,
+              name: "标准版",
+            },
+            {
+              value: this.$store.state.specialDto.dy_fwf_clc_prm,
+              name: "经典版",
+            },
+            {
+              value: this.$store.state.specialDto.dy_fwf_luy_prm,
+              name: "豪华版",
+            },
+          ]);
         this.params1.chartAll = [
-          this.$store.state.specialDto.dy_fwf_std_prm,
-          this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm
-        ]
-        console.log(this.params1)
+          this.$store.state.specialDto.dy_fwf_std_polnum,
+          this.$store.state.specialDto.dy_fwf_clc_polnum,
+          this.$store.state.specialDto.dy_fwf_luy_polnum,
+        ];
+        console.log(this.params1);
         this.params2.chartData = [
           {
-            value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: '标准版'
+            value: this.$store.state.specialDto.dy_dwf_std_prm,
+            name: "标准版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: '经典版'
+            value: this.$store.state.specialDto.dy_dwf_clc_prm,
+            name: "经典版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: '豪华版'
-          }
-        ]
+            value: this.$store.state.specialDto.dy_dwf_luy_prm,
+            name: "豪华版",
+          },
+        ];
         this.params2.chartAll = [
-          this.$store.state.specialDto.dy_fwf_std_prm,
-          this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm
-        ]
+          this.$store.state.specialDto.dy_dwf_std_polnum,
+          this.$store.state.specialDto.dy_dwf_clc_polnum,
+          this.$store.state.specialDto.dy_dwf_luy_polnum,
+        ];
         this.params3.chartData = [
           {
-            value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: '标准版'
+            value: this.$store.state.specialDto.dy_pwf_std_prm,
+            name: "标准版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: '经典版'
+            value: this.$store.state.specialDto.dy_pwf_clc_prm,
+            name: "经典版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: '豪华版'
-          }
-        ]
+            value: this.$store.state.specialDto.dy_pwf_luy_prm,
+            name: "豪华版",
+          },
+        ];
         this.params3.chartAll = [
-          this.$store.state.specialDto.dy_fwf_std_prm,
-          this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm
-        ]
+          this.$store.state.specialDto.dy_pwf_std_polnum,
+          this.$store.state.specialDto.dy_pwf_clc_polnum,
+          this.$store.state.specialDto.dy_pwf_luy_polnum,
+        ];
         this.params4.chartData = [
           {
-            value: this.$store.state.specialDto.dy_fwf_std_prm,
-            name: '标准版'
+            value: this.$store.state.specialDto.dy_twf_std_prm,
+            name: "基础版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_clc_prm,
-            name: '经典版'
+            value: this.$store.state.specialDto.dy_twf_clc_prm,
+            name: "标准版",
           },
           {
-            value: this.$store.state.specialDto.dy_fwf_luy_prm,
-            name: '豪华版'
-          }
-        ]
+            value: this.$store.state.specialDto.dy_twf_luy_prm,
+            name: "经典版",
+          },
+        ];
         this.params4.chartAll = [
-          this.$store.state.specialDto.dy_fwf_std_prm,
-          this.$store.state.specialDto.dy_fwf_clc_prm,
-          this.$store.state.specialDto.dy_fwf_luy_prm
-        ]
+          this.$store.state.specialDto.dy_twf_std_polnum,
+          this.$store.state.specialDto.dy_twf_clc_polnum,
+          this.$store.state.specialDto.dy_twf_luy_polnum,
+        ];
         for (let i = 0; i < this.$store.state.specialDto.fwfList.length; i++) {
           this.paramsC1.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_luy_prm
-          ]
+            this.$store.state.specialDto.fwfList[i].dy_evrym_fwf_luy_prm,
+          ];
           this.paramsC2.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_luy_prm
-          ]
+            this.$store.state.specialDto.fwfList[i].dy_evrym_dwf_luy_prm,
+          ];
           this.paramsC3.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_luy_prm
-          ]
+            this.$store.state.specialDto.fwfList[i].dy_evrym_pwf_luy_prm,
+          ];
           this.paramsC4.lineData[i + 1] = [
             this.$store.state.specialDto.fwfList[i].data_date,
             this.$store.state.specialDto.fwfList[i].dy_evrym_twf_std_prm,
             this.$store.state.specialDto.fwfList[i].dy_evrym_twf_clc_prm,
-            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_luy_prm
-          ]
-          console.log(this.paramsC1)
+            this.$store.state.specialDto.fwfList[i].dy_evrym_twf_luy_prm,
+          ];
         }
-        var roundChartG = this.$refs.roundChartG
-        const myChart = this.$echarts.init(roundChartG)
+        this.status = !this.status;
+        var roundChartG = this.$refs.roundChartG;
+        const myChart = this.$echarts.init(roundChartG);
         const option = {
           color: [
-            '#61afff',
-            '#6172ff',
-            '#ff6671',
-            '#ffc95c',
-            '#8ee498',
-            '#9adbf9',
-            '#ddd1c2'
+            "#61afff",
+            "#6172ff",
+            "#ff6671",
+            "#ffc95c",
+            "#8ee498",
+            "#9adbf9",
+            "#ddd1c2",
           ],
           grid: {
-            top: '80px',
-            left: '5%',
-            right: '0%',
-            bottom: '0%',
-            containLabel: true
+            top: "80px",
+            left: "5%",
+            right: "0%",
+            bottom: "0%",
+            containLabel: true,
           },
           graphic: {
             elements: [
               {
-                type: 'image',
+                type: "image",
                 style: {
                   image: giftImageUrl,
                   width: 45,
-                  height: 45
+                  height: 45,
                 },
-                left: 'center',
-                top: 'middle'
-              }
-            ]
+                left: "center",
+                top: "middle",
+              },
+            ],
           },
           tooltip: {
-            trigger: 'item',
+            trigger: "item",
             show: true,
             formatter: (a) => {
               // return a.name + '：' + a.data.value + '元' + '(' + a.percent + '%' + ')'
-              var reg = /\d(?=(\d{3})+$)/g
+              var reg = /\d(?=(\d{3})+$)/g;
               if (a.data.value < 10000) {
-                let integer = a.data.value + ''
+                let integer = a.data.value + "";
                 integer = integer.replace(reg, (content) => {
-                  return content + ','
-                })
+                  return content + ",";
+                });
                 return (
-                  a.name + '：' + integer + '元' + '(' + a.percent + '%' + ')'
-                )
+                  a.name + "：" + integer + "元" + "(" + a.percent + "%" + ")"
+                );
               } else if (a.data.value < 100000000) {
-                let integer = parseInt((a.data.value % 100000000) / 10000) + ''
+                let integer = parseInt((a.data.value % 100000000) / 10000) + "";
                 integer = integer.replace(reg, (content) => {
-                  return content + ','
-                })
-                let decimals = (a.data.value % 10000) / 10000
+                  return content + ",";
+                });
+                let decimals = (a.data.value % 10000) / 10000;
                 if (decimals === 0) {
-                  decimals = '' + '万'
+                  decimals = "" + "万";
                 } else {
                   decimals =
-                    '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
+                    "." + String(decimals.toFixed(2)).split(".")[1] + "万";
                 }
                 if (integer === 0) {
-                  integer = ''
+                  integer = "";
                 }
                 return (
                   a.name +
-                  '：' +
+                  "：" +
                   integer +
                   decimals +
-                  '元' +
-                  '(' +
+                  "元" +
+                  "(" +
                   a.percent +
-                  '%' +
-                  ')'
-                )
+                  "%" +
+                  ")"
+                );
               } else if (a.data.value > 100000000) {
-                let yi = parseInt(a.data.value / 100000000) + ''
+                let yi = parseInt(a.data.value / 100000000) + "";
                 yi = yi.replace(reg, (content) => {
-                  return content + ','
-                })
-                let integer = parseInt((a.data.value % 100000000) / 10000) + ''
+                  return content + ",";
+                });
+                let integer = parseInt((a.data.value % 100000000) / 10000) + "";
                 integer = integer.replace(reg, (content) => {
-                  return content + ','
-                })
-                let decimals = (a.data.value % 10000) / 10000
+                  return content + ",";
+                });
+                let decimals = (a.data.value % 10000) / 10000;
                 if (decimals === 0) {
-                  decimals = ''
+                  decimals = "";
                 } else {
                   decimals =
-                    '.' + String(decimals.toFixed(2)).split('.')[1] + '万'
+                    "." + String(decimals.toFixed(2)).split(".")[1] + "万";
                 }
                 if (integer === 0) {
-                  integer = ''
+                  integer = "";
                 }
                 return (
                   a.name +
-                  '：' +
+                  "：" +
                   yi +
-                  '亿' +
+                  "亿" +
                   integer +
                   decimals +
-                  '元' +
-                  '(' +
+                  "元" +
+                  "(" +
                   a.percent +
-                  '%' +
-                  ')'
-                )
+                  "%" +
+                  ")"
+                );
               }
-            }
+            },
           },
           series: [
             {
-              name: '',
-              type: 'pie',
-              radius: ['50%', '80%'],
+              name: "",
+              type: "pie",
+              radius: ["50%", "80%"],
               avoidLabelOverlap: false,
               label: {
                 show: false,
                 // fontSize: '30',
-                position: 'inner',
-                formatter: '{b}: {c}元',
-                color: '#000'
+                position: "inner",
+                formatter: "{b}: {c}元",
+                color: "#000",
               },
               emphasis: {
                 label: {
-                  show: false
+                  show: false,
                   // fontSize: '30',
                   // fontWeight: 'bold'
-                }
+                },
               },
               labelLine: {
-                show: false
+                show: false,
               },
               data: [
                 {
                   value: this.$store.state.specialDto.dy_fwf_prm,
-                  name: '家无忧'
+                  name: "家无忧",
                 },
                 {
                   value: this.$store.state.specialDto.dy_dwf_prm,
-                  name: '驾无忧'
+                  name: "驾无忧",
                 },
                 {
                   value: this.$store.state.specialDto.dy_pwf_prm,
-                  name: '财无忧'
+                  name: "财无忧",
                 },
                 {
                   value: this.$store.state.specialDto.dy_twf_prm,
-                  name: '行无忧'
-                }
-              ]
-            }
-          ]
-        }
-        myChart.setOption(option)
-        window.addEventListener('resize', function () {
-          myChart.resize()
-        })
-      }, 1000)
-    }
-  }
-}
+                  name: "行无忧",
+                },
+              ],
+            },
+          ],
+        };
+        myChart.setOption(option);
+        window.addEventListener("resize", function () {
+          myChart.resize();
+        });
+      }, 1000);
+    },
+  },
+};
 </script>
 
 <style>
+.beImformation {
+  width: 1810px;
+  height: 1557px;
+  background-color: #fff;
+  padding-top: 27px;
+}
 .backGround {
   background: url("../../assets/111专项/111专项.png");
   background-size: 100% 100%;
@@ -567,9 +592,11 @@ export default {
   margin-top: 10px;
 }
 .spe {
+  font-weight: 1000;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   color: white;
+  margin-top: -2px;
 }
 .noWorried {
   float: left;
@@ -577,7 +604,7 @@ export default {
 }
 .Top {
   font-size: 20px;
-  height: 67px;
+  height: 51px;
   border-radius: 0.5rem;
   background: #f6f7fc;
   margin: 25px 45px 15px 45px;
@@ -723,23 +750,24 @@ export default {
 .yearAll {
   font-size: 15px;
   float: left;
-  margin: 10px 40px 0px 0px;
+  margin: 7px 40px 0px 0px;
   font-weight: 500;
 }
 .num {
   float: right;
   font-size: 20px;
-  margin: 6px 70px 0px 50px;
+  margin: 2px 70px 0px 50px;
   font-weight: 500;
 }
 .topLeft {
   padding-top: 18px;
   background: #d4ebfd;
-  height: 50px;
+  height: 35px;
   width: 15%;
   border-radius: 0.5rem;
 }
 .detailRight_t .el-button {
+  padding-top: 20px;
   border-radius: 30px;
   width: 94px;
   height: 35px;
@@ -747,5 +775,18 @@ export default {
   line-height: 0;
   margin: 5px 25px;
   font-size: 16px;
+}
+.xwTitle{
+  width: 220px;
+  height: 41px;
+  background: url('../../assets/111专项/111专项.png') no-repeat;
+  background-size: cover;
+}
+.xwTitle span{
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 70px;
+  line-height: 41px;
 }
 </style>
